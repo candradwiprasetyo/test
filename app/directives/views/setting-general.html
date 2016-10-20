@@ -1,0 +1,98 @@
+
+                <h1 class="c-set-right-heading"><ciayo translate="$GENERAL.SETTINGS">GENERAL SETTINGS</ciayo></h1>
+                <div class="c-set-right-body">
+                  <div class="c-set-gen">
+                      <!--<div class="c-set-gen-list">
+                        <div toggle-setting="toggle-setting" class="_toggler" ng-click="vm.cardsetting=!vm.cardsetting">
+                          <div class="_title"><ciayo translate="$card.setting">Card Settingsciayo></div><i class="ci-dropdown" ng-class="vm.cardsetting?'active':''"></i>
+                        </div>
+                        <div class="_pane">
+                            <div layout="row" class="c-set-gen-list-item">
+                              <div flex="flex" class="_title"><ciayo translate="$parallax.view.timeline">Parallax view timeline</ciayo></div>
+                              <div class="_parallax-info"><ciayo translate="$parallax.info">Parallax allows you to see activity images in a 3D-like perspective. If you have motion sickness, turn this off.</ciayo></div>
+                              <label flex="none" class="c-switch">
+                                <input type="checkbox" ng-checked="vm.parallax_view_timeline" ng-model="vm.parallax_view_timeline" ng-change="vm.parallaxViewTimeline()"/><span></span>
+                              </label>
+                            </div>
+                        </div>
+                      </div>-->
+                      <div class="c-set-gen-list" ng-class="vm.class" ng-style="vm.style">
+                        <div toggle-setting="toggle-setting" class="_toggler" ng-click="vm.notifsetting=!vm.notifsetting">
+                          <div class="_title"><ciayo translate="$notification.setting">Notification Setting</ciayo></div><i class="ci-dropdown" ng-class="vm.notifsetting?'active':''"></i>
+                        </div>
+                        <div class="_pane">
+                            <div layout="row" class="c-set-gen-list-item">
+                              <div flex="flex" class="_title"><ciayo translate="$notification.alerts">Notifications tone</ciayo></div>
+                              <label flex="none" class="c-switch _disable">
+                                <input type="checkbox" ng-checked="vm.notification_tone" ng-model="vm.notification_tone" ng-change="vm.notificationTone()" disabled/><span></span>
+                              </label>
+                            </div>
+                            <div layout="row" class="c-set-gen-list-item">
+                              <div flex="flex" class="_title"><ciayo translate="$friend.requests">Connection request</ciayo></div>
+                              <label flex="none" class="c-switch _disable">
+                                <input type="checkbox" ng-checked="vm.connection_request" ng-model="vm.connection_request" ng-change="vm.connectionRequest()" disabled/><span></span>
+                              </label>
+                            </div>
+                            <div layout="row" class="c-set-gen-list-item">
+                              <div flex="flex" class="_title"><ciayo translate="$comment.alerts">Comment</ciayo></div>
+                              <label flex="none" class="c-switch _disable">
+                                <input type="checkbox" ng-checked="vm.load_comment" ng-model="vm.comment" ng-change="vm._comment()" disabled/><span></span>
+                              </label>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="c-set-gen-list">
+                        <div toggle-setting="toggle-setting" class="_toggler" ng-click="vm.langsetting=!vm.langsetting">
+                          <div class="_title"><ciayo translate="$language.settings">Language Settings</ciayo></div><i class="ci-dropdown" ng-class="vm.langsetting?'active':''"></i>
+                        </div>
+                        <div class="_pane">
+                          <div layout="row" class="c-set-gen-list-item">
+                            <div flex="flex" class="_title"><ciayo translate="$language.use.ciayo?">What language do you want to use CIAYO in?</ciayo></div>
+                            <select ng-hide="!vm.language_setting" ng-model="vm.language_setting" ng-change="vm.languageSetting()" ng-selected="$cookieStore.get('language')" style="width:105px">
+                              <option ng-repeat="item in vm.language" ng-selected="{{vm.language_setting==item.value}}" value="{{item.value}}" ng-bind="item.name"></option>
+                            </select>
+                            <md-progress-circular md-mode="indeterminate" md-diameter="25" ng-hide="vm.language_setting"></md-progress-circular>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="c-set-gen-list">
+                        <div toggle-setting="toggle-setting" class="_toggler" ng-click="vm.emailsetting=!vm.emailsetting">
+                          <div class="_title"><ciayo translate="$email.notification">Email Notification</ciayo></div><i class="ci-dropdown" ng-class="vm.emailsetting?'active':''"></i>
+                        </div>
+                        <div class="_pane">
+                            <div layout="row" class="c-set-gen-list-item">
+                              <div flex="flex" class="_title"><ciayo translate="$reset.password">Reset password</ciayo></div>
+                              <label flex="none" class="c-switch">
+                                <input type="checkbox" ng-checked="vm.reset_password" ng-model="vm.reset_password" ng-change="vm.resetPassword()"/><span></span>
+                              </label>
+                            </div>
+                            <div layout="row" class="c-set-gen-list-item">
+                              <div flex="flex" class="_title"><ciayo translate="$login.failed">Login failed</ciayo></div>
+                              <label flex="none" class="c-switch">
+                                <input type="checkbox" ng-checked="vm.login_failed" ng-model="vm.login_failed" ng-change="vm.loginFailed()"/><span></span>
+                              </label>
+                            </div>
+                            <div layout="row" class="c-set-gen-list-item">
+                              <div flex="flex" class="_title"><ciayo translate="$account.deactivation">Account Deactivation</ciayo></div>
+                              <label flex="none" class="c-switch">
+                                <input type="checkbox" ng-checked="vm.deactive_account" ng-model="vm.deactive_account" ng-change="vm.deactiveAccount()"/><span></span>
+                              </label>
+                            </div>
+                            <div layout="row" class="c-set-gen-list-item">
+                              <div flex="flex" class="_title"><ciayo translate="$account.deletion">Account Deletion</ciayo></div>
+                              <label flex="none" class="c-switch">
+                                <input type="checkbox" ng-checked="vm.delete_account" ng-model="vm.delete_account" ng-change="vm.deleteAccount()"/><span></span>
+                              </label>
+                            </div>
+                            <div layout="row" class="c-set-gen-list-item">
+                              <div flex="flex" class="_title"><ciayo translate="$new.features">New features</ciayo></div>
+                              <label flex="none" class="c-switch">
+                                <input type="checkbox" ng-checked="vm.new_features" ng-model="vm.new_features" ng-change="vm.newFeatures()"/><span></span>
+                              </label>
+                            </div>
+                        </div>
+                      </div>
+                  </div><a href="javascript:void(0)" ng-click="vm.restoreDefaultSetting()" class="c-link-underline"><ciayo translate="$restore.default.setting">Restore Default Setting</ciayo></a>
+                </div>
+              </div>
+             

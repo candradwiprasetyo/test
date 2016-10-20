@@ -1,0 +1,232 @@
+<style type="text/css">
+
+	body, html{
+		overflow:hidden;
+	} 
+	.c-animate{
+		overflow-x: hidden;
+		overflow-y: scroll;
+		padding-bottom: 30px;
+	}
+</style>
+<c-header type="trending"></c-header>
+<div class="c-animate" id="c-animate" when-scroll-ends="(vm.state==0)?vm.loadData(vm.js_timeline.length):vm.loadMoreActivity()">
+	<div class="c-banner">
+		<ul class='c-banner-viewport'>
+			<li ng-repeat='banner in vm.banner' class='layer' data-depth='{{0.1+(0.20*(4-banner.speed))}}'>
+				<img ng-src='{{banner.image}}'>
+			</li>
+		</ul>
+	</div>
+	<div class="c-wrp">
+		<div class="c-trending">
+				<div layout="row" class="c-trending-menu">
+				<span md-ink-ripple=#000000"" flex="25" class="_menu flex-25 {{vm.state==0?'_active':''}}" ng-click="vm.state=0">
+					<span style="background-image: url({{vm.state==0?'../assets/svg/trend-posting-activ.svg':'../assets/svg/trend-posting-noactiv.svg'}})"><ciayo translate="$post">POST</ciayo></span>
+				</span>
+				<span md-ink-ripple=#000000"" flex="25" class="_menu flex-25 {{vm.state==1?'_active':''}}" ng-click="vm.action_state(1)">
+					<span style="background-image: url({{vm.state==1?'../assets/svg/trend-people-activ.svg':'../assets/svg/trend-people-noactiv.svg'}})"><ciayo translate="$people">PEOPLE</ciayo></span>
+				</span>
+				<span md-ink-ripple=#000000"" flex="25" class="_menu flex-25 {{vm.state==2?'_active':''}}" ng-click="vm.action_state(2)">
+					<span style="background-image: url({{vm.state==2?'../assets/svg/trend-activity-activ.svg':'../assets/svg/trend-activity-noactiv.svg'}})"><ciayo translate="$activity">ACTIVITY</ciayo></span>
+				</span>
+				<span md-ink-ripple=#000000"" flex="25" class="_menu flex-25 {{vm.state==3?'_active':''}}" ng-click="vm.action_state(3)">
+					<span style="background-image: url({{vm.state==3?'../assets/svg/trend-place-activ.svg':'../assets/svg/trend-place-noactiv.svg'}})"><ciayo translate="$place">PLACE</ciayo></span>
+				</span>
+			</div>
+			
+				<!-- trending post -->
+				<div class="c-trending-body" ng-if="vm.state==0">
+					<c-card trending="true" ng-repeat="(key,js_timeline) in vm.js_timeline | limitTo:10" post="js_timeline" index="$index"></c-card>
+					<c-card post="{view:'loading'}" ng-if="vm.is_searching&&vm.load_more==true"></c-card>
+
+				</div>
+
+				<!-- trending people -->
+				<div class="c-trending-body" ng-if="vm.state==1">
+
+						<div ng-if="vm.list_people_trending.length==0 && vm.start_people_trending == true" class="loading">
+							Data not found
+						</div>
+						<div ng-if="vm.list_people_trending.length==0 && vm.start_people_trending == false" class="loading">
+							<div class="loader">
+								<md-progress-circular md-mode="indeterminate" md-diameter="150"></md-progress-circular>
+							</div>
+						</div>
+
+<div layout="row" layout-wrap="layout-wrap" class="c-trending-people">
+
+						<c-friend-connection user = "user" ng-repeat="user in vm.list_people_trending" type="trending" flex="50" class="_col">
+								
+						</c-friend-connection>
+
+						<!-- 
+
+						<div flex="50" class="_col" ng-repeat="people_trending in vm.list_people_trending">
+							<div layout="row" class="_item">
+								<div class="_ribbon -potrait">{{people_trending.people_trending_number}}</div>
+								<div flex="none">
+									<div style="background-image: url();background-color: {{people_trending.user_avatar.background_avatar}}" class="c-pp -s130">
+											<img ng-src="{{people_trending.user_avatar.avatar}}">
+									</div>
+								</div>
+								<div flex="flex" layout="column" class="_right" ng-class="people_trending.open_action==true?'open':''">
+
+									<div class="icon-response" ng-show="people_trending.icon_action_response" click-outside="vm.closeActionResponse($index);">
+										<div class="item" ng-click="vm.action_response_accept(people_trending, $index)">
+											<md-icon class="material-icons md-light md-8 icon">done</md-icon> Accept
+										</div>
+										<div class="item" ng-click="vm.action_response_delete(people_trending, $index)">
+											<md-icon class="material-icons md-light md-8 icon">clear</md-icon> Delete
+										</div>
+									</div>
+
+									<div flex="flex" layout="row" class="_info">
+										<div flex="flex">
+											<div class="_username">{{people_trending.user_display_name}}</div>
+											<div class="_name">{{people_trending.user_full_name}}</div>
+											<div layout="row" class="_genre"><i class="{{people_trending.user_gender==1?'ci-male':'ci-female'}} s-12"></i><span ng-bind="people_trending.user_gender==1?'Male':'Female'"></span>
+											</div>
+										</div>
+										<div flex="none" layout="column" layout-align="top center" class="_button" ng-click="vm.show_frame(people_trending, $index)">
+											<i class="ci-c-button s-24"></i>
+										</div>
+									</div>
+									<div flex="none" layout="row" class="_stat"><span flex="none">
+											<div class="_stat-title"><ciayo translate="$follower">Follower</ciayo></div>
+											<div class="_stat-number">{{people_trending.followers}}</div></span><span flex="none">
+											<div class="_stat-title">Posting</div>
+											<div class="_stat-number">{{people_trending.posts}}</div></span>
+									</div>
+
+									
+
+									<div class="action" >
+										<div class="icon-group">
+											<div class="icon active" ng-click="vm.action_check_me(people_trending.user_user_name)"> 
+												<img src="../assets/svg/c-button_checkme-activ.svg">
+											</div>
+											<div class="name active" ng-click="vm.action_check_me(people_trending.user_user_name)">Check Me</div>
+										</div>
+										<div class="icon-group">
+											<div class="icon_action" ng-hide="people_trending.icon_addfriend"> 
+												<i class="ci-sent" id="ci-sent"></i>
+												<img src="../assets/svg/c-button_addfriends-noactiv.svg">
+											</div>
+											
+													<div class="icon active" ng-show="people_trending.icon_addfriend" ng-click="people_trending.icon_self==0?vm.action_addfriend(people_trending, $index):vm.action_response(people_trending, $index)">
+														<img src="../assets/svg/c-button_addfriends-activ.svg">
+													</div>
+
+											<div class="name_action" ng-hide="people_trending.name_addfriend" ng-bind="people_trending.checklist_addfriend==true?'Request Sent':'Friends'"></div>
+
+											<div class="name active" ng-show="people_trending.name_addfriend" ng-click="people_trending.icon_self==0?vm.action_addfriend(people_trending, $index):vm.action_response(people_trending, $index)" ng-bind="people_trending.icon_self==0?'Add Friend':'Response Friend Request'"></div>
+										</div>
+										<div class="icon-group">
+											<div class="icon_action" ng-hide="people_trending.icon_follow"> 
+												<i class="ci-sent" id="ci-sent"></i>
+												<img src="../assets/svg/c-button_follow-noactiv.svg">
+											</div>
+											<div class="icon active" ng-show="people_trending.icon_follow" ng-click="vm.action_follow(people_trending, $index)"> 
+												<img src="../assets/svg/c-button_follow-activ.svg">
+											</div>
+											<div class="name_action" ng-hide="people_trending.name_follow">Following</div>
+											<div class="name active" ng-show="people_trending.name_follow" ng-click="vm.action_follow(people_trending, $index)">Follow</div>
+										</div>
+										<div md-ink-ripple="#fff" ng-click="vm.close_frame(people_trending, $index)" class="close-button"> </div>
+									</div>
+
+								</div>
+							</div>
+
+
+
+						</div>-->
+					</div> 
+
+				</div>
+
+				<!-- trending activity -->
+				<div class="c-trending-body" ng-if="vm.state==2">
+
+					<div ng-if="vm.list_activity_trending.length==0 && vm.start_activity_trending == true" class="loading">
+							Data not found
+						</div>
+						<div ng-if="vm.list_activity_trending.length==0 && vm.start_activity_trending == false" class="loading">
+							<div class="loader">
+								<md-progress-circular md-mode="indeterminate" md-diameter="150"></md-progress-circular>
+							</div>
+						</div>
+
+					<div class="c-trending-activity">
+						<div layout="row" class="_list" ng-repeat="activity_trending in vm.list_activity_trending ">
+							<div class="_ribbon -landscape">{{$index>8?'':'0'}}{{$index+1}}</div>
+							<div flex="none" class="_left">
+								<!-- <parallax plx="activity_trending.activity_detail"></parallax> -->
+								<img ng-src="{{activity_trending.activity_detail.image}}" class="trending-activity-image">
+							</div>
+							<div flex="flex" layout="column" class="_right">
+								<div flex="flex" class="_content">{{activity_trending.activity_detail.name}}</div>
+								<div flex="none" class="_stat"><ciayo translate="$posted"></ciayo> {{activity_trending.activity_detail.count_activity}} <ciayo translate="$times"></ciayo></div>
+							</div>
+						</div>
+						
+					</div>
+
+					<div  class="loading_show_more" ng-show="vm.button_show_more">
+	                    <div class="loader">
+	                      <md-progress-circular md-mode="indeterminate" md-diameter="50"></md-progress-circular>
+	                    </div>
+	                </div>
+
+				</div>
+
+
+
+				<!-- trending place -->
+				<div class="c-trending-body" ng-if="vm.state==3">
+
+						<div ng-if="vm.list_place_trending.length==0 && vm.start_place_trending == true" class="loading">
+							Data not found
+						</div>
+						<div ng-if="vm.list_place_trending.length==0 && vm.start_place_trending == false" class="loading">
+							<div class="loader">
+								<md-progress-circular md-mode="indeterminate" md-diameter="150"></md-progress-circular>
+							</div>
+						</div>
+
+					<div class="c-trending-place">
+						<div layout="row" class="_list" ng-repeat="place_trending in vm.list_place_trending">
+							<div class="_ribbon -landscape">{{place_trending.place_trending_number}}</div>
+							<div flex="flex" layout="column" class="_left">
+								<div flex="none"><img ng-src="{{place_trending.img_thumb}}" class="_image"/>
+								</div>
+								<div flex="none" class="_name">{{place_trending.name}}</div>
+								<div flex="flex" class="_address">{{place_trending.address}}</div>
+								<div flex="none" class="_info"><ciayo translate="$visited"></ciayo>{{place_trending.visited}} <ciayo translate="$times"></ciayo></div>
+							</div>
+							<div flex="none" class="_right"><img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{place_trending.latitude}},{{place_trending.longitude}}&zoom=15&size=436x312&key=AIzaSyAp_OxlQ8w6fayEK51b-6mpupMi-wbdOwc"/>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+		
+		$(document).ready(function(){
+			trendingResize();
+		});
+		window.onresize = function(event) {
+			trendingResize();
+		}
+		 function trendingResize(){
+			var new_height = window.innerHeight;
+			document.getElementById("c-animate").style.height = new_height+'px';
+		}
+
+
+		</script>

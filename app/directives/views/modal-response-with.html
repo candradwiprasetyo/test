@@ -1,0 +1,29 @@
+<div id="MdlAskWithTag">
+	<div class="c-modal-wrapper" layout="column">
+		<div class="_title" flex="none">
+			<center>Who with you?</center>
+		</div>
+		<div class="_body" flex layout="column">
+			<div flex="none" class="_search" layout="row" layout-wrap>
+				<div flex="none" class="_add">
+					<div class="_added" ng-repeat="user in me.data.selected">
+						<span ng-bind="user.user_display_name"></span>
+						<i class="ci-delete-2 s-8" ng-click="me.data.removeUser(user)"></i>
+					</div>
+				</div>
+				<input flex type="text" placeholder="Who with you?" ng-model="me.data.search" ng-model-options="{debounce: 150}" ng-change="me.data.searchUser()">
+				<i class="ci-search s-16"></i>
+			</div>
+			<div flex class="_friends">
+				<div class="_friend" layout="row" ng-repeat="user in me.data.list" ng-click="me.data.selectUser(user)">
+					<div class="c-pp -s30" flex="none" style="background-image:url('{{user.user_avatar_detail.avatar}}');background-color:{{user.user_avatar_detail.background_avatar}}"></div>
+					<div class="_username" flex ng-bind="user.user_display_name"></div>
+				</div>
+			</div>
+		</div>
+		<div class="_foot" flex="none">
+			<md-button flex class="md-raised md-primary -ciayo-button" toggle-modal="close" ng-click="me.close();"><ciayo translate="$cancel">Cancel</ciayo></md-button>
+			<md-button flex class="md-raised md-primary -ciayo-button" toggle-modal="close" ng-click="me.data.save();"><ciayo translate="$save">Save</ciayo></md-button>
+		</div>
+	</div>
+</div>

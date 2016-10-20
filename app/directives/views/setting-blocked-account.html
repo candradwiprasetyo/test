@@ -1,0 +1,34 @@
+
+                <h1 class="c-set-right-heading"><ciayo translate="$BLOCKED.ACCOUNT">BLOCKED ACCOUNT</ciayo></h1>
+                <div class="c-set-right-body">
+                  <div class="c-set-block">
+                    <div class="c-set-block-wrp">
+                    <div class="loading-detail" ng-hide="vm.list_block_users">
+		                <center><md-progress-circular md-mode="indeterminate" md-diameter="150"></md-progress-circular></center>
+	                </div>
+                    <ul class="c-set-block-list" ng-hide="!vm.list_block_users">
+                        <li ng-repeat="list in vm.list_block_users">
+                            <div class="c-set-block-list-item"><div class="c-pp -s40" style="background-image: url({{list.avatar}})"/><span ng-bind="list.user_display_name"></span><span ng-if="list.user_display_name == ''">&nbsp;</span><i class="ci-delete-2 s-12" ng-click="vm.unblockUser(list.id)"></i>
+                            </div>
+                        </li>
+                    </ul>
+                    </div>
+                    <hr/>
+                      <div class="c-set-block-dropup"><a href="javascript:void(0)" toggle-block-friend="toggle-block-friend" class="c-link-underline"><ciayo translate="$block.more.friend?">Block more friends?</ciayo></a>
+                      <div class="c-set-block-dropup-wrapper">
+                        <div class="c-set-block-dropup-head"><i class="ci-search"></i>
+                          <input type="text" placeholder="{{'$search.people...' | translate}}" ng-model="vm.keyword" ng-model-options="{ debounce: 700 }" ng-change="vm.searchUser()" />
+                        </div>
+                        <ul class="c-set-block-dropup-list">
+                            <li ng-repeat="users in vm.userList">
+                                <a href="javascript:void(0)" ng-click="vm.blockUser(users.user_id, $event)">
+                                    <div class="profile-image"><img ng-src="{{users.user_avatar_thumbnail}}"/></div><div class="profile-name"><span ng-bind="users.user_display_name"></span></div>
+                                </a>
+                            </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             

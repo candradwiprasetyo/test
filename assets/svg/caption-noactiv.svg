@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.7.2 (28276) - http://www.bohemiancoding.com/sketch -->
+    <title>caption 1</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="20" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="caption-1" fill="#000000">
+            <path d="M10,17 C10,17.552 9.551,18 9,18 L7,18 C6.449,18 6,17.552 6,17 L6,7 L5,7 L5,17 C5,18.101 5.9,19 7,19 L9,19 C10.1,19 11,18.101 11,17 L11,7 L10,7 L10,17 L10,17 Z" id="Fill-1"></path>
+            <path d="M15,5 C15,5.552 14.551,6 14,6 L2,6 C1.449,6 1,5.552 1,5 L1,3 C1,2.449 1.449,2 2,2 L14,2 C14.551,2 15,2.449 15,3 L15,5 Z M14,1 L2,1 C0.9,1 0,1.9 0,3 L0,5 C0,6.101 0.9,7 2,7 L5,7 L6,7 L10,7 L11,7 L14,7 C15.1,7 16,6.101 16,5 L16,3 C16,1.9 15.1,1 14,1 L14,1 Z" id="Fill-3"></path>
+            <polygon id="Fill-5" points="18 19 19 19 19 1 18 1"></polygon>
+            <polygon id="Fill-8" points="17 19 17 20 20 20 20 19 19 19 18 19"></polygon>
+            <polygon id="Fill-8" points="17 0 17 1 20 1 20 0 19 0 18 0"></polygon>
+        </g>
+    </g>
+</svg>

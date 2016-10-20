@@ -1,0 +1,635 @@
+/* ------------------------------------- Main Notification------------------------*/
+.c-notification {
+  width: 970px;
+  border: 1px solid #e6e6e6;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  margin-bottom: 20px;
+}
+
+/* ------------------------------------- Header Notification------------------------*/
+.c-notification .header {
+  width: 100%;
+  height: 50px;
+  background: #8CDCFB;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 0px;
+  -moz-margin-before: 0em;
+  -moz-margin-after: 0em;
+  -moz-margin-start: 0px;
+  -moz-margin-end: 0px;
+  -moz-padding-start: 0px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.c-notification .header li {
+  float: left;
+}
+
+.c-notification .header li:first-child {
+  margin-left: 24px;
+}
+
+.c-notification .header li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 15px 20px;
+  text-decoration: none;
+}
+
+.c-notification .header li .active {
+  background-color: #59BAE7;
+}
+
+/* ------------------------------------- list Notification------------------------*/
+.c-notification .content {
+  height: 488px;
+  overflow: auto;
+}
+
+.c-notification .content .loading{
+  width: 100%;
+}
+
+.c-notification .content .loading-empty{
+  text-align: center;
+  padding: 20px;
+}
+
+.c-notification .content .loading .loader {
+  width: 150px;
+  height: 150px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 100px;
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+}
+
+.c-notification .content .loading .loader img {
+  width: 100%;
+}
+
+
+.c-notification .scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+.c-notification .scrollbar::-webkit-scrollbar {
+  background: #CDE1EC;
+  width: 8px;
+  border-radius: 10px;
+}
+
+.c-notification .scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #02679E;
+}
+
+.c-notification .frame {
+  padding: 10px;
+  background: #fff;
+  border-bottom: 1px solid #e6e6e6;
+  min-height: 40px;
+  cursor: pointer;
+  outline: none;
+}
+
+.c-notification .loading_show_more .loader {
+  width: 50px;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.c-notification .frame:hover {
+  background: #D2EDF9;
+}
+.c-notification .frame .list {
+  min-height: 40px;
+  display: table;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.c-notification .active1 {
+  background: #EEF9FD;
+}
+
+.c-notification .active2 {
+  background: #D2EDF9;
+}
+
+.c-notification .frame .list .user_photo {
+  width: 40px;
+  height: 40px;
+  float: left;
+  border-radius: 3px;
+  background: #91DCE8;
+  overflow: hidden;
+}
+
+.c-notification .frame .list .user_photo img {
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.c-notification .frame .list .message {
+  color: #999;
+  font-size: 14px;
+  width: 500px;
+  display: table-cell;
+  vertical-align: middle;
+  padding-left: 16px;
+  outline: none;
+
+  img{
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+  }
+}
+
+.c-notification .frame .list .message .active {
+  color: #333;
+}
+
+.c-notification .frame .list .message .profile-name {
+  color: #333;
+}
+
+.c-notification .frame .list .message_time {
+  margin-left: 150px;
+  color: #999;
+  font-size: 14px;
+  display: table-cell;
+  vertical-align: middle;
+  width: 200px;
+  text-align: center;
+}
+
+.c-notification .frame .list .message_acivity {
+  width: 140px;
+  float: left;
+  text-align: right;
+  height: 40px;
+}
+
+.c-notification .frame .list .message_acivity img {
+  
+  width: 55px;
+  height: 40px;
+}
+
+.c-notification .frame .list .message_config {
+  width: 20px;
+  height: 20px;
+  padding-right: 10px;
+  float: right;
+  padding-top: 10px;
+}
+
+.c-notification .frame .list .message_config .icon1 .icon{
+  font-size: 14px;
+  vertical-align: top;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  outline: none;
+}
+
+
+/*-------------new canvas----------*/
+.c-notification md-tabs {
+  border-radius: 7px;
+}
+
+.c-notification md-tabs-wrapper {
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
+
+.c-notification md-tabs-canvas {
+  width: 100%;
+  height: 40px;
+  background: #59BAE7;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 0px;
+  -moz-margin-before: 0em;
+  -moz-margin-after: 0em;
+  -moz-margin-start: 0px;
+  -moz-margin-end: 0px;
+  -moz-padding-start: 0px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.c-notification md-tabs .md-tab.md-active {
+  color: #fff;
+  background: #229DD3;
+  border-bottom: 6px solid #1D85BF;
+}
+
+.c-notification md-tabs .md-tab.md-active:first-child {
+  margin-left: 24px;
+}
+
+.c-notification md-tabs .md-tab:first-child {
+  margin-left: 24px;
+}
+
+.c-notification md-tabs .md-tab {
+  color: #fff;
+  height: 40px;
+  font-weight: bold;
+}
+
+.c-notification md-pagination-wrapper {
+  height: 40px;
+  width: 100% !important;
+}
+
+.c-notification md-tabs md-ink-bar {
+  background: #59BAE7;
+}
+
+.c-notification md-tabs-wrapper {
+  height: 40px;
+}
+
+.c-notification{
+  .md-tab{
+    line-height: 20px;
+    padding: 10px 24px;
+  }
+}
+
+
+/* ---------------------- candra ---------------- */
+
+.c-notification-popup {
+  position: absolute;
+  top:48px;
+  left: -30px;
+  width: 430px;
+  margin-top: 2px;
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid #e6e6e6;
+  display: none;
+  z-index: 79;
+}
+
+
+
+.open-notification {
+
+}
+
+.c-notification-popup .header {
+  height: 40px;
+  line-height: 40px;
+  color: #333;
+  padding-left: 16px;
+  font-size: 14px;
+  border-bottom: 1px solid #e6e6e6;
+  text-align: left;
+}
+
+.c-notification-popup .header .title1 {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.c-notification-popup .header .title2 {
+  float: right;
+  padding-right: 36px;
+  font-size: 12px;
+  color: #026797;
+  cursor: pointer;
+  outline: none;
+}
+
+.c-notification-popup .header .noactive{
+  color: #999;
+  cursor: text;
+}
+
+.c-notification-popup .header .title2 a {
+  font-size: 12px;
+  color: #026797;
+  text-decoration: none;
+  width: 80px;
+}
+
+.c-notification-popup .header .title2 a:hover {
+  background: none;
+}
+
+.c-notification-popup .header .title3 {
+  float: right;
+  margin-right: 16px;
+  font-size: 12px;
+  color: #026797;
+  cursor: pointer;
+  outline: none;
+}
+
+.c-notification-popup .header .title3 a {
+  font-size: 12px;
+  color: #026797;
+  text-decoration: none;
+}
+
+.c-notification-popup .header .title3 a:hover {
+  background: none;
+}
+
+.c-notification-popup:before, .c-notification-popup:after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 100%;
+  border-top-width: 0;
+  width: 0;
+  height: 0;
+}
+
+.c-notification-popup:before {
+  left: 46px;
+  border: 8px solid transparent;
+  border-bottom-width: 10px;
+  border-bottom-color: #e6e6e6;
+}
+
+.c-notification-popup:after {
+  left: 48px;
+  border: 6px solid transparent;
+  border-bottom-width: 8px;
+  border-bottom-color: #fff;
+}
+
+.c-notification-popup ._lists {
+  list-style: none;
+  padding: 0;
+  max-height: 460px;
+  min-height: 0px;
+  overflow-x: hidden;
+}
+
+.c-notification-popup ._lists .loading-popup{
+  width: 100%;
+}
+
+.c-notification-popup ._lists .loading-empty{
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+}
+
+.c-notification-popup ._lists .loading-popup .loader {
+  width: 150px;
+  height: 150px;
+  margin-right: auto;
+  margin-left: auto;
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+}
+
+.c-notification-popup ._lists .loading-popup .loader md-progress-circular {
+  width: 100px;
+  height: 100px;
+}
+
+.c-notification-popup .scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+.c-notification-popup .scrollbar::-webkit-scrollbar {
+  background: #CDE1EC;
+  width: 8px;
+}
+
+.c-notification-popup .scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #02679E;
+}
+
+.c-notification-popup ._lists li {
+  background: #fff;
+  float: none;
+  padding-right: 0px;
+  border-bottom: 1px solid #e6e6e6;
+  position: relative;
+  overflow: hidden;
+  padding: 0px 0px;
+  text-align: left;
+	outline: none;
+  width: 432px;
+}
+
+.c-notification-popup ._lists .active {
+  background: #EEF9FD;
+}
+
+.c-notification-popup ._lists .active-update {
+  background: #FFF7FC;
+}
+
+
+/*.c-notification-popup ._lists li:nth-child(odd) {
+  background: #F9F9F9;
+}*/
+.c-notification-popup ._lists li a {
+  position: relative;
+  padding: 8px 16px 8px 16px;
+  color: inherit;
+  line-height: 20px;
+  text-decoration: none;
+  min-height: 36px;
+  width: 400px;
+  height: auto;
+  background: none;
+  overflow: hidden;
+  float: left;
+  cursor: pointer;
+}
+
+.c-notification-popup ._lists li a:hover {
+  background: #D2EDF9;
+}
+
+.c-notification-popup ._lists li a .photo-profile{
+  width: 40px;
+  height: 40px;
+  float: left;
+  background: #91DCE8;
+  border-radius: 3px;
+
+  overflow: hidden;
+}
+
+.c-notification-popup ._lists li a .photo-profile img {
+   width: 40px;
+  height: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.c-notification-popup ._lists li a .comment-group {
+  padding:0px;
+  padding-left: 16px;
+  font-size: 12px;
+  width: 250px;
+  color: #757575;
+  display: inline-block;
+  text-align: left;
+
+  img{
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+  }
+
+  .ci-notif-star{
+    position: absolute;
+    top: 5px;
+    left: 145px;
+    color: #EE4481;
+    background: #fff;
+    line-height: 12px;
+    width: 10px;
+    text-align: center;
+    border-radius: 50%;
+  }
+
+}
+
+.c-notification-popup ._lists li a .comment-group .profile-name {
+  color: #333;
+}
+
+.c-notification-popup ._lists li a .comment-group .clear {
+  clear: both;
+}
+
+.c-notification-popup ._lists li a .comment-group .message_icon {
+  width: 12px;
+  height: 12px;
+  float: left;
+}
+
+.c-notification-popup ._lists li a .comment-group .message_icon img {
+  width: 12px;
+  height: 12px;
+  position: relative;
+  left: 0px;
+  right: 7px;
+}
+
+.c-notification-popup ._lists li a .comment-group .message_date {
+  margin-left: 19px;
+}
+
+.c-notification-popup ._lists li a .activity_img {
+  width: 55px;
+  height: 40px;
+  float: right;
+  margin-right: 30px;
+}
+
+.c-notification-popup ._lists li a .activity_img .view-info{
+  color: #026797; text-align:center; padding-top:10px;
+}
+
+.c-notification-popup ._lists li a .activity_img img {
+  width: 100%;
+  top: 0px;
+  right: 16px;
+  position: inherit;
+  border-radius: 0px;
+}
+
+.c-notification-popup ._lists li .activity_config {
+  width: 10px;
+  height: 40px;
+  float: right;
+  padding-left: 8px;
+  padding-right: 15px;
+  position: absolute;
+  right: 10px;
+  outline: none;
+}
+
+.c-notification-popup ._lists li .activity_config .icon1 {
+  width: 10px;
+  height: 10px;
+  outline: none;
+}
+
+.c-notification-popup ._lists li .activity_config .icon1 md-icon{
+  top:-10px;
+}
+
+.c-notification-popup ._lists li .activity_config .icon1 img {
+  width: 8px;
+  height: 8px;
+  position: inherit;
+}
+
+.c-notification-popup ._lists li .activity_config .icon1 .icon {
+  width: 8px;
+  height: 8px;
+  font-size: 12px;
+}
+
+.c-notification-popup .footer {
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+}
+
+.c-notification-popup .footer .button {
+  width: 100%;
+  background: #02679E;
+  color: #fff;
+  text-align: center;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.c-notification-popup .footer a {
+  color: #fff;
+  text-decoration: none;
+  width: 100%;
+}
+
+
+
+

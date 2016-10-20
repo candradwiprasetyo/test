@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html html="en" ng-app="app" class="no-js">
+	<head>
+		<script>
+			
+			var isMobile = {
+				Android: function() {
+					return navigator.userAgent.match(/Android/i);
+				},
+				BlackBerry: function() {
+					return navigator.userAgent.match(/BlackBerry/i);
+				},
+				iOS: function() {
+					return navigator.userAgent.match(/iPhone|iPod/i);
+				},
+				Opera: function() {
+					return navigator.userAgent.match(/Opera Mini/i);
+				},
+				Windows: function() {
+					return navigator.userAgent.match(/IEMobile/i);
+				},
+				any: function() {
+					return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+				}
+			};
+
+			if(isMobile.any()) {
+				window.location = 'https://m.ciayo.com/'+window.location.hash;
+			}
+		
+		</script>
+		<base href="/">
+		<meta charset="UTF-8">
+		<title>CIAYO</title>
+		<meta name="description" content="CIAYO is a virtual social media platform where everything is expressed in digital illustrations. A place to build communities, find friends, and entering a new world where there are no too mundane activities to be posted.">
+		<link rel="shortcut icon" href="assets/img/favicon-ciayo-32px.ico" type="image/x-icon" />
+		<meta property="og:image" content="https://www.ciayo.com/assets/img/logo.jpg"/>
+		<meta property="og:image:secure_url" content="https://ciayo.com/assets/img/ciayo1000.png" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@ciayo.com" />
+		<meta name="twitter:creator" content="@ciayo.com" />
+		<!-- META FACEBOOK -->
+		<meta property="og:url" content="https://www.ciayo.com" />
+		<meta property="og:title" content="CIAYO" />
+		<meta property="og:description" content="CIAYO is a virtual social media platform where everything is expressed in digital illustrations. A place to build communities, find friends, and entering a new world where there are no too mundane activities to be posted." />
+		<meta property="og:type" content="website" />
+		<meta property="fb:app_id" content="1757098051179810" > 
+		<link href="assets/css/angular-material.css" rel="stylesheet">
+		<link href="assets/css/ciayo.min.css?v=1.6.3" rel="stylesheet">
+	</head>
+	<body>
+		<div ui-view class="c" ng-cloack></div>
+		<!-- Include Libs-->
+		<script src="assets/libs/modernizr-custom.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+		<script src="https://connect.facebook.net/en_US/sdk.js"></script>
+		<script src="build.jquery.js"></script>
+		<script src="build.angular.js"></script>
+		<script src="build.react.js"></script>
+		<script src="assets/libs/socket.js"></script>
+		
+		<!-- invite gmail-->
+		<script src="https://apis.google.com/js/client.js"></script>
+
+		<script src="app/environment.js?v=1.6.3"></script>
+		<script src="app/app.js?v=1.6.3"></script>
+		<script src="ciayo.js?v=1.6.3"></script>
+		<script>
+if(DEVELOPMENT==false){
+		 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		 })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		 ga('create', 'UA-82403808-1', 'auto');
+}
+		</script>
+		<script>
+			(function(d, s, id){
+				 var js, fjs = d.getElementsByTagName(s)[0];
+				 if (d.getElementById(id)) {return;}
+				 js = d.createElement(s); js.id = id;
+				 js.src = "https://connect.facebook.net/en_US/sdk.js";
+				 fjs.parentNode.insertBefore(js, fjs);
+			 }(document, 'script', 'facebook-jssdk'));
+		</script>
+	</body>
+</html>

@@ -1,0 +1,47 @@
+.c-deactivate {
+	text-align:center;
+	max-width:480px;
+	margin:0 auto;
+	padding-top:5%;
+
+	.cd-img {
+		img {
+			width:250px;
+			height:250px;
+		}
+	}
+	.cd-content {
+		h1 {
+			font-size:24px;
+			line-height: 31px;
+			margin:24px 0 16px;
+			color:#000;
+			font-weight:bold;
+		}
+		p {
+			font-size:16px;
+			color:#666;
+			line-height:20px;
+			margin:0 0 24px;
+		}
+
+		.cd-buttons {
+			margin:0 auto;
+			max-width:250px;
+			button.md-button {
+				display:block;
+				width:100%;
+				font-size:16px;
+				line-height:20px;
+				color:#fff;
+				margin:0 0 16px;
+				text-transform:none;
+				&#cd-login {
+					color:rgb(2,103,158);
+					border:1px solid rgb(2,103,158);
+					
+				}
+			}
+		}
+	}
+}

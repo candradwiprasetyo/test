@@ -1,0 +1,243 @@
+<div class="display_loading_avatar">
+		<div class="loader">
+				<md-progress-circular md-mode="indeterminate" md-diameter="150"></md-progress-circular>
+		</div>
+</div>
+<c-modal></c-modal>
+<div ng-class="vm.isModal?'modal-is-open':''" class="c-wizard-wrp">
+		<div ng-class="vm.step?vm.step:''" class="c-wizard-inner-wrp">
+
+				<div class="gender">
+						<div class="c-wrp c-wrp-lp">
+								<div class="c-rgs-gender-heading">
+										<h1><ciayo translate="$select.your.gender">select your gender</ciayo></h1>
+								</div>
+								<form name="gender" class="c-rgs-gender-wrp" n>
+										<div ng-class="vm.gender=='1'?'active':''" class="c-rgs-gender-male">
+												<label>
+														<input type="radio" name="gender" value="1" ng-model="vm.gender" />
+														<div class="c-rgs-gender-male-img"></div><span class="c-rgs-gender-male-text"><ciayo translate="$male">male</ciayo></span>
+												</label>
+										</div>
+										<div ng-class="vm.gender=='2'?'active':''" class="c-rgs-gender-female">
+												<label>
+														<input type="radio" name="gender" value="2" ng-model="vm.gender" />
+														<div class="c-rgs-gender-female-img"></div><span class="c-rgs-gender-female-text"><ciayo translate="$female"female</ciayo></span>
+												</label>
+										</div>
+										<div class="clear"></div>
+										<div class="c-rgs-gender-btn">
+												<md-button type="submit" class="md-raised md-primary" ng-disabled="!vm.gender" ng-click="vm.saveGender()">
+														<ciayo translate="$next">Next</ciayo>
+												</md-button>
+										</div>
+								</form>
+						</div>
+				</div>
+				<div class="name">
+						<div class="c-wrp c-wrp-lp">
+				<div class="c-rgs-intro-banner"><img src="assets/img/c-rgs-intro-banner.png"/></div>
+				<div class="c-rgs-intro-head"><ciayo translate="$hallo">Hallo</ciayo><span> <ciayo translate="$ciayo.friends...">Ciayo friends...</ciayo></span> <ciayo translate="$welcome.to.ciayo">Welcome to Ciayo World</ciayo></div>
+				<form name="nickname" ng-submit="vm.saveName()">
+					<div class="c-rgs-intro-wrap">
+						<div class="c-rgs-intro-left">
+							<h2><ciayo translate="$hi..">Hi..</ciayo></h2>
+												</div>
+												<div class="c-rgs-intro-nickname">
+														<input type="text" placeholder="{{'$fill.nickname' | translate}}" ng-model="vm.nickname" maxlength="30" />
+														<div class="c-rgs-caution">
+																<ciayo translate="$username.already.exist">Sorry, this username is already exist..!!</ciayo>
+														</div>
+												</div>
+												<div class="c-rgs-intro-right">
+														<h2>.!!</h2>
+												</div>
+												<div class="clear"></div>
+										</div>
+										<div class="c-rgs-intro-btn">
+												<md-button type="submit" class="md-raised md-primary" ng-click="vm.checkName()">
+														<ciayo translate="$next">Next</ciayo>
+												</md-button>
+										</div>
+								</form>
+						</div>
+				</div>
+				<div class="dob">
+						<div class="c-wrp c-wrp-lp">
+								<div class="c-rgs-born">
+										<h1 class="c-rgs-born-heading"><ciayo translate="$when.your.birth">WHEN YOUR BIRTH</ciayo></h1><img src="../assets/img/c-rgs-born-banner.png" class="c-rgs-born-banner" />
+										<div class="c-rgs-born-field-wrp">
+												<div class="c-rgs-born-dob-wrp">
+														<label class="c-rgs-born-dob-label">
+																<ciayo translate="$date.of.birth">Date of Birth</ciayo>
+														</label>
+														<input id="dob" type="text" placeholder="{{'$date/month/year' | translate}}" class="c-rgs-born-dob-field" ng-model="vm.dob" readonly="true">
+														<!--<div class="c-rgs-born-dob-icon" style="width:30px; height:30px; cursor:pointer">
+									<i class="ci-calendar s-16"></i>
+							</div>
+							-->
+
+												</div>
+												<div class="c-clear"></div>
+										</div>
+										<center>
+												<md-button class="md-raised md-button md-ink-ripple cancel" type="submit" ng-transclude="" aria-label="Back" ng-click="vm.step='name-wizard'"><span class="ng-scope"><ciayo translate="$back">Back</ciayo></span></md-button>
+												<md-button class="md-raised md-primary" ng-disabled="!vm.dob" ng-click="vm.saveDOB()">
+														<ciayo translate="$next">Next</ciayo>
+												</md-button>
+										</center>
+								</div>
+						</div>
+				</div>
+				<div class="avatar">
+						<div class="c-wrp c-wrp-lp">
+								<div class="c-cav">
+
+										<div class="c-cav-head">
+												<!-- +img('logo.png', '_logo')-->
+												<div class="_title">
+														<ciayo translate="$create.your.avatar">CREATE YOUR AVATAR</ciayo>
+												</div>
+												<a href="javascript:void(0)" ng-click="vm.skipAvatar()">
+														<span class="_skip">
+								<span>Skip</span>
+														<span class="cfi-forward"><i class="ci-skip"></i></span>
+														</span>
+												</a>
+												<!--a(href='javascript:void()' ng-click='vm.skipAvatar()')._skip
+						span Skip
+						span.cfi-forward
+
+						-->
+
+										</div>
+										<div class="c-cav-viewer">
+												<div class="display_loading">
+														<div class="loader">
+																<!--<img src="assets/img/create-avatar/loader.gif">-->
+																Please wait
+														</div>
+
+												</div>
+												<div class="_viewport" style="background: {{vm.bgAvaColor}}">
+														<a href="#" toggle-zoom="toggle-zoom" class="_zoom" data-name="avatar-zoom">
+																<i class="ci-zoom-out"></i></a>
+														<div class="_avatar">
+																<div style="background-image: url({{ vm.imgBack }})" class="_part"></div>
+																<div ng-repeat="part in vm.defaultAvatar" style="background-image: url({{ part.image }})" id="part_{{ part.filter_id }}" filter-id="{{ part.filter_id }}" filter-value="{{ part.asset_id }}" element-id="{{ part.element_type_id }}" variant-id="{{	part.variant_id }}" class="_part"></div>
+														</div>
+												</div>
+
+										</div>
+										<div class="c-cav-parts">
+												<h3 ng-bind="vm.elementSelected.element_name" class="_title"></h3>
+												<div class="_parts">
+												<div class="ciayo-tour"	data-name="select-element">
+														<div ng-repeat="tab in vm.init | orderBy:'ui_position'" ng-click="vm.switchTab(tab)" ng-if="tab.ui_position&& tab.element_id != 16" style="background-image: url({{tab.element_image_url}})" ng-class="vm.elementSelected.element_id==tab.element_id?'-active':''" idd="{{vm.elementSelected.element_id}}" iddd="{{tab.element_id}}" class="_item"></div>
+														<div class="_item" ng-class="vm.elementSelected.element_id==0?'-active':''" ng-click="vm.switchTab(vm.bgElement)">
+																<i class="ci-background"></i>
+														</div>
+														</div>
+												</div>
+										</div>
+										<!--<div class="image_loading">{{vm.image_loading}}</div>-->
+
+										<div class="new-carousel">
+												<div class="new-carousel-header"	 data-name="select-element-type">
+													<div class="frame">
+														<div ng-repeat="tab in vm.elementSelected.element_type" ng-if="tab.element_variation.length" label="{{ tab.element_type_name }}" ng-click="vm.selectElementVariation(tab);" class="_item" ng-class="tab.element_type_id==vm.elementIdSelected?'_active':''" style="cursor:pointer">
+															<div >{{ tab.element_type_name }}</div>
+														</div>
+													</div>
+												</div>
+
+												<div class="new-carousel-content">
+													<div class='arrow-left' ng-mousedown="vm.arrow_prev()" ng-hide="vm.element_variation.length < 9" ></div>
+													<div class="frame scrollbar">
+															<div class="_item" ng-if="!vm.elementSelected.required" ng-class="vm.elementSelected.element_id==vm.getFilterValue(vm.idItemSelected)?'_active':''">
+																<div style="height:60px;width:60px;background-size: 60px 60px;background-image: url(assets/img/icon/no-avatar.png);" ng-click="vm.removePart(vm.elementSelected.element_id)"></div>
+															</div>
+															<div ng-repeat="variant in vm.element_variation" class="_item" ng-if="!vm.inConstraints(variant.variant_id) && variant.variant_thumb_url" ng-class="variant.variant_id==vm.getVariantId()?'_active':''">
+																<div style="height:60px;width:60px;background-size: 60px 60px; background-image: url({{ variant.variant_thumb_url	}});background-color: {{vm.elementSelected.color_variant[vm.defaultElementColor['element_'+vm.elementSelected.element_id]].color_code}};" ng-click="vm.changePart(variant, vm.elementSelected.element_id)"></div>
+															</div>
+															<div class="_item" ng-repeat="variant in vm.element_variation" ng-if="vm.elementSelected.element_id==0" ng-class="variant==vm.variantSelected?'_active':''" ng-click="vm.changeBackground(variant)">
+																<div style="width:60px;height:60px;background:{{variant}};border-radius: 30px;"></div>
+															</div>
+													</div>
+													<div class='arrow-right' ng-mousedown="vm.arrow_next()" ng-hide="vm.element_variation.length < 9"></div>
+												</div>
+												<div class="c-cav-color" ng-hide="!vm.elementSelected.color_variant|| (vm.getFilterValue(vm.elementSelected.element_id) == '')">
+														<ul	data-name="select-variant-color">
+																<li ng-repeat="color in vm.elementSelected.color_variant" ng-class="vm.defaultElementColor['element_'+vm.elementSelected.element_id]==$index?'color_active':''">
+																		<a href="javascript:void(0)" style="background: {{ color.color_code }}" ng-click="vm.changePartColor(color.color_id, $index)" class="_color"></a>
+																</li>
+														</ul>
+												</div>
+												<div class="c-cav-next">
+														<md-button class="md-raised md-button md-ink-ripple cancel" type="submit" ng-transclude="" aria-label="Back" ng-click="vm.step='dob-wizard'"><span class="ng-scope"><ciayo translate="$back">Back</ciayo></span></md-button>
+														<md-button ng-click="vm.saveAvatar()" class="md-raised md-primary">
+																<ciayo translate="$next">Next</ciayo>
+														</md-button>
+												</div>
+										</div>
+								</div>
+						</div>
+
+				</div>
+				<div class="mascot">
+						<div class="c-rgs-mascot-heading">
+								<h1>select your mascot</h1>
+						</div>
+						<div class="c-rgs-mascot-paragraph">
+								<p>The Navajo Indians have their spirit animals, but here in the CIAYO World,
+										<br>we have our mascots. Pick one to accompany you along the way!</p>
+						</div>
+						<div class="c-rgs-mascot-form">
+								<div class="c-rgs-mascot-wrp">
+										<div ng-repeat="mascot in vm.dataMascot" ng-class="vm.mascot==mascot.id_image_mascot?'active':''" ng-click="vm.mascot=mascot.id_image_mascot" class="c-rgs-mascot-item">
+												<label>
+														<input type="radio" name="mascot" ng-value="mascot.name" />
+														<div class="c-rgs-mascot-img c-mascot-{{mascot.name | lowercase}}" style="background-color:#a9e0f5"></div><span class="c-rgs-mascot-name" ng-bind="mascot.name"></span>
+														<div class="c-mascot-char" ng-repeat="trait in mascot.mascot_trait">
+																<div class="char-wrp">
+																		<div class="text" ng-bind="trait.name"></div>
+																		<div class="trait.percent"></div>
+																		<div class="c-clear"></div>
+																</div>
+																<div class="char-bar">
+																		<div style="width: {{trait.percent}}%" class="{{'char-value'+($index+1)}}"></div>
+																</div>
+														</div>
+												</label>
+										</div>
+								</div>
+								<div class="clear"></div>
+								<div class="c-rgs-mascot-next-btn">
+										<md-button class="md-raised md-button md-ink-ripple cancel" type="submit" ng-transclude="" aria-label="Back" ng-click="vm.step='avatar-wizard'"><span class="ng-scope"><ciayo translate="$back">Back</ciayo></span></md-button>
+										<md-button class="md-raised md-primary" ng-click="vm.saveMascot()">Finish</md-button>
+								</div>
+						</div>
+				</div>
+		</div>
+
+		<script type="text/javascript">
+				$(document).ready(function() {
+						setTimeout(function() {
+								$("#dob").datepicker({
+										changeYear: true,
+										changeMonth: true,
+										dateFormat: 'dd/mm/yy',
+										yearRange: '-116:-11',
+										defaultDate: "-15y-m-d",
+										onChangeMonthYear: function(year, month, inst) {
+												var date = $("#dob").val();
+												if ($.trim(date) != "") {
+														var newDate = month + "/" + inst.currentDay + "/" + year;
+														$("#dob").val($.datepicker.formatDate('dd/mm/yy', new Date(newDate)));
+												}
+										}
+								});
+						}, 1);
+
+				});
+		</script>

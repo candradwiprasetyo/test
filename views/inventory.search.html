@@ -1,0 +1,15 @@
+
+<div layout="row">
+	<h3 flex="flex" class="c-store-title">Search Result for: <span ng-bind="vm.keyword"></span></h3>
+	<div flex="none" ng-hide="!vm.listSearchItem.length">
+		<md-button class="md-raised md-primary -ciayo-button" inventory-toggle-delete><ciayo translate="$delete.sticker">Delete Sticker</ciayo></md-button>
+	</div>
+</div>
+<div layout="row" layout-wrap="layout-wrap">
+	<div flex="none" ng-repeat="item in vm.listSearchItem">
+		<div class="c-store-item" ng-click="vm.viewDetail(item.id)"><img ng-src="{{item.image}}" class="_image"/>
+			<div class="_title" ng-bind="item.name"></div>
+			<button type="button" class="_button" md-ink-ripple="#02679E">Delete</button>
+		</div>
+	</div>
+</div>

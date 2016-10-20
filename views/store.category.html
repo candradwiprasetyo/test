@@ -1,0 +1,16 @@
+<div class="c-store-breadcumb">
+	<a href="#" ng-bind="vm.typeCat || '-'"></a>
+	<span>/</span>
+	<a href="#" ng-bind="vm.catCat || '-'"></a>
+</div>
+<div layout="row" layout-wrap="layout-wrap" ng-repeat="item in vm.listCategoryItem">
+	<div flex="none">
+		<div data-toggle="modal" class="c-store-item" ng-click="vm.viewDetail(item.product_id)"><img ng-src="{{item.image}}" class="_image"/>
+			<div class="_title" ng-bind="item.name"></div>
+			<div layout="row" layout-align="center center" class="_price">
+				<div class="_coin -caps"><img src="../assets/img/store/coin-caps.png"/><span ng-bind="item.price_1"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

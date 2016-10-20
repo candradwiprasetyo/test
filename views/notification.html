@@ -1,0 +1,298 @@
+<c-header type="notification"></c-header>
+<div class="c-animate">
+<div class="c-banner">
+	<ul class='c-banner-viewport'>
+		<li ng-repeat='banner in vm.banner' class='layer' data-depth='{{0.1+(0.20*(4-banner.speed))}}'>
+			<img ng-src='{{banner.image}}'>
+		</li>
+	</ul>
+</div>
+    <div class="c-wrp">
+      <div class="c-wrp-inner">
+        <div class="c-notification">
+          <md-tabs md-dynamic-height="md-dynamic-height" md-border-bottom="md-border-bottom" md-no-ink-bar>
+            
+            <md-tab label="{{'$all.people' | translate}}" class="header">
+              <md-content>
+
+                <div class="content" when-scroll-ends="vm.loadMoreRecords('all')">
+                  <div ng-if="vm.list_user_all.length==0 && vm.start_notification == true" class="loading-empty">
+                        Sorry, you dont have any notification
+                      </div>
+                  <div ng-if="vm.list_user_all.length==0 && vm.start_notification == false"" class="loading">
+                    <div class="loader">
+                      <md-progress-circular md-mode="indeterminate" md-diameter="150"></md-progress-circular>
+                    </div>
+                  </div>
+                          <div ng-repeat="user_all in vm.list_user_all" class="frame {{user_all.read_at?'':'active1'}}" >
+                            <div class="list" >
+
+                              <div class="user_photo" style="background: {{user_all.from_user_avatar.background_avatar}}"><img ng-src="{{user_all.from_user_avatar.avatar_crop}}" ng-click="vm.view_notification('all', $index)"/></div>
+                              <div class="message" ng-click="vm.view_notification('all', $index)">
+
+                                <span class="active" ng-show="user_all.type!='comment'&&user_all.type!='like'">{{user_all.from_user_display_name}}</span> 
+                                
+                                <span ng-bind-html="user_all.title"></span> 
+
+                                <span ng-switch="user_all.type" >
+                                  <span ng-switch-when="comment"><span class="active"> "{{user_all.activity_name}}"</span></span>
+                                  <span ng-switch-when="like"><span class="active"> "{{user_all.activity_name}}"</span></span>
+                                  <span ng-switch-when="tag"><span class="active"> "{{user_all.activity_name}}"</span></span>
+                                </span>
+                              </div>
+                              <div class="message_time" ng-click="vm.view_notification('all', $index)">{{user_all.created_at | formatdate}}</div>
+                              <div class="message_acivity" ng-click="vm.view_notification('all', $index)">
+                                <span ng-switch="user_all.type">
+                                  <span ng-switch-when="like">
+                                    <img ng-src="{{user_all.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="tag">
+                                    <img ng-src="{{user_all.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="comment">
+                                    <img ng-src="{{user_all.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="rate">
+                                    <img ng-src="{{user_all.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="ask_with">
+                                    <img ng-src="{{user_all.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="ask_place">
+                                    <img ng-src="{{user_all.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="response_with">
+                                    <img ng-src="{{user_all.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="response_place">
+                                    <img ng-src="{{user_all.activity_image}}"/>
+                                  </span>
+                                </span>
+                              </div>
+                              <div class="message_config">
+                                <div class="icon1">
+                                  <md-icon class="material-icons md-light md-18 icon" ng-click="vm.notification_delete(vm.list_user_all.indexOf(user_all), 'all')">clear</md-icon>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                           <div  class="loading_show_more" ng-show="vm.button_show_more_all">
+                            <div class="loader">
+                              <md-progress-circular md-mode="indeterminate" md-diameter="50"></md-progress-circular>
+                            </div>
+                          </div>
+
+                </div>
+              </md-content>
+            </md-tab>
+            <md-tab label="{{'$friends' | translate}}">
+              <md-content>
+                <div class="content" when-scroll-ends="vm.loadMoreRecords('fro')">
+                          <div ng-repeat="user_fro in vm.list_user_fro" class="frame {{user_fro.read_at?'':'active1'}}" >
+                            <div class="list" >
+                              <div class="user_photo" style="background: {{user_fro.from_user_avatar.background_avatar}}"><img ng-src="{{user_fro.from_user_avatar.avatar_crop}}" ng-click="vm.view_notification('fro', $index)"/></div>
+                              <div class="message" ng-click="vm.view_notification('fro', $index)">
+                                
+                                <span class="active" ng-show="user_fro.type!='comment'&&user_fro.type!='like'">{{user_fro.from_user_display_name}}</span> 
+                                
+                                <span ng-bind-html="user_fro.title"></span> 
+
+                              
+
+                                <span ng-switch="user_fro.type">
+                                  <span ng-switch-when="comment"><span class="active"> "{{user_fro.activity_name}}"</span></span>
+                                  <span ng-switch-when="like"><span class="active"> "{{user_fro.activity_name}}"</span></span>
+                                  <span ng-switch-when="tag"><span class="active"> "{{user_fro.activity_name}}"</span></span>
+                                </span>
+                              </div>
+                             <div class="message_time" ng-click="vm.view_notification('fro', $index)">{{user_fro.created_at | formatdate}}</div>
+                               <div class="message_acivity" ng-click="vm.view_notification('fro', $index)">
+                                <span ng-switch="user_fro.type">
+                                  <span ng-switch-when="like">
+                                    <img ng-src="{{user_fro.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="tag">
+                                    <img ng-src="{{user_fro.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="comment">
+                                    <img ng-src="{{user_fro.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="rate">
+                                    <img ng-src="{{user_fro.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="ask_with">
+                                    <img ng-src="{{user_fro.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="ask_place">
+                                    <img ng-src="{{user_fro.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="response_with">
+                                    <img ng-src="{{user_fro.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="response_place">
+                                    <img ng-src="{{user_fro.activity_image}}"/>
+                                </span>
+                              </div>
+
+                              <div class="message_config">
+                                <div class="icon1">
+                                  <md-icon class="material-icons md-light md-18 icon" ng-click="vm.notification_delete(vm.list_user_fro.indexOf(user_fro), 'fro')">clear</md-icon>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+
+                          <div  class="loading_show_more" ng-show="vm.button_show_more_fro">
+                            <div class="loader">
+                              <md-progress-circular md-mode="indeterminate" md-diameter="50"></md-progress-circular>
+                            </div>
+                          </div>
+                        
+                </div>
+              </md-content>
+            </md-tab>
+          
+            <md-tab label="{{'$following' | translate}}">
+              <md-content>
+                <div class="content" when-scroll-ends="vm.loadMoreRecords('foo')">
+                          <div ng-repeat="user_foo in vm.list_user_foo" class="frame {{user_foo.read_at?'':'active1'}}" >
+                            <div class="list" >
+                              <div class="user_photo" style="background: {{user_foo.from_user_avatar.background_avatar}}"><img ng-src="{{user_foo.from_user_avatar.avatar_crop}}" ng-click="vm.view_notification('foo', $index)"/></div>
+                              <div class="message" ng-click="vm.view_notification('foo', $index)">
+                                
+                                  <span class="active" ng-show="user_foo.type!='comment'&&user_foo.type!='like'">{{user_foo.from_user_display_name}}</span> 
+                                
+                                <span ng-bind-html="user_foo.title"></span> 
+
+
+                        
+
+                                <span ng-switch="user_foo.type">
+                                 <span ng-switch-when="comment"><span class="active"> "{{user_foo.activity_name}}"</span></span>
+                                  <span ng-switch-when="like"><span class="active"> "{{user_foo.activity_name}}"</span></span>
+                                  <span ng-switch-when="tag"><span class="active"> "{{user_foo.activity_name}}"</span></span>
+                                </span>
+                              </div>
+                              <div class="message_time" ng-click="vm.view_notification('foo', $index)">{{user_foo.created_at | formatdate}}</div>
+                               <div class="message_acivity" ng-click="vm.view_notification('foo', $index)">
+                                <span ng-switch="user_foo.type">
+                                  <span ng-switch-when="like">
+                                    <img ng-src="{{user_foo.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="tag">
+                                    <img ng-src="{{user_foo.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="comment">
+                                    <img ng-src="{{user_foo.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="rate">
+                                    <img ng-src="{{user_foo.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="ask_with">
+                                    <img ng-src="{{user_foo.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="ask_place">
+                                    <img ng-src="{{user_foo.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="response_with">
+                                    <img ng-src="{{user_foo.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="response_place">
+                                    <img ng-src="{{user_foo.activity_image}}"/>
+                                </span>
+                              </div>
+
+                              <div class="message_config">
+                                <div class="icon1">
+                                  <md-icon class="material-icons md-light md-18 icon" ng-click="vm.notification_delete(vm.list_user_foo.indexOf(user_foo), 'foo')">clear</md-icon>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                        
+                          <div  class="loading_show_more" ng-show="vm.button_show_more_foo">
+                            <div class="loader">
+                              <md-progress-circular md-mode="indeterminate" md-diameter="50"></md-progress-circular>
+                            </div>
+                          </div>
+
+                </div>
+              </md-content>
+            </md-tab>
+
+            <md-tab label="ciayo">
+              <md-content>
+                <div class="content" when-scroll-ends="vm.loadMoreRecords('cio')">
+                          <div ng-repeat="user_cio in vm.list_user_cio" class="frame {{user_cio.read_at?'':'active1'}}" >
+                            <div class="list" >
+                              <div class="user_photo" style="background: {{user_cio.from_user_avatar.background_avatar}}"><img ng-src="{{user_cio.from_user_avatar.avatar_crop}}" ng-click="vm.view_notification('cio', $index)"/></div>
+                              <div class="message" ng-click="vm.view_notification('cio', $index)">
+                                
+                                <span class="active" ng-show="user_cio.type!='comment'&&user_cio.type!='like'">{{user_cio.from_user_display_name}}</span> 
+                                
+                                <span ng-bind-html="user_cio.title"></span> 
+
+                              
+                                <span ng-switch="user_cio.type">
+                                   <span ng-switch-when="comment"><span class="active"> "{{user_cio.activity_name}}"</span></span>
+                                  <span ng-switch-when="like"><span class="active"> "{{user_cio.activity_name}}"</span></span>
+                                  <span ng-switch-when="tag"><span class="active"> "{{user_cio.activity_name}}"</span></span>
+                                </span>
+                              </div>
+                              <div class="message_time" ng-click="vm.view_notification('cio', $index)">{{user_cio.created_at | formatdate}}</div>
+                               <div class="message_acivity" ng-click="vm.view_notification('cio', $index)">
+                                <span ng-switch="user_cio.type">
+                                  <span ng-switch-when="like">
+                                    <img ng-src="{{user_cio.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="tag">
+                                    <img ng-src="{{user_cio.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="comment">
+                                    <img ng-src="{{user_cio.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="rate">
+                                    <img ng-src="{{user_cio.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="ask_with">
+                                    <img ng-src="{{user_cio.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="ask_place">
+                                    <img ng-src="{{user_cio.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="response_with">
+                                    <img ng-src="{{user_cio.activity_image}}"/>
+                                  </span>
+                                  <span ng-switch-when="response_place">
+                                    <img ng-src="{{user_cio.activity_image}}"/>
+                                </span>
+                              </div>
+
+                              <div class="message_config">
+                                <div class="icon1">
+                                  <md-icon class="material-icons md-light md-18 icon" ng-click="vm.notification_delete(vm.list_user_cio.indexOf(user_cio), 'cio')">clear</md-icon>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                        
+                          <div  class="loading_show_more" ng-show="vm.button_show_more_cio">
+                            <div class="loader">
+                              <md-progress-circular md-mode="indeterminate" md-diameter="50"></md-progress-circular>
+                            </div>
+                          </div>
+
+                </div>
+              </md-content>
+            </md-tab>
+            
+
+          </md-tabs>
+        </div>
+      </div>
+    </div>
+  </div>

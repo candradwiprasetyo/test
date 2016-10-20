@@ -1,0 +1,82 @@
+
+<div layout="row">
+	<h3 flex="flex" class="c-store-title"><ciayo translate="$transaction.history"></ciayo></h3>
+	<div flex="none">
+		<div layout="row" class="c-store-toolbar">
+			<div class="_bar">
+				<label class="_field">
+					<input type="hidden" id="startDateHidden">
+					<input type="text" placeholder="{{'$start.date' | translate}}" id="startDate"/>
+				</label>
+			</div>
+			<div class="_bar _text"><ciayo translate="$until">Until</ciayo></div>
+			<div class="_bar">
+				<label class="_field">
+					<input type="hidden" id="endDateHidden">
+					<input type="text" placeholder="{{'$end.date' | translate}}" id="endDate"/>
+				</label>
+			</div>
+			<div flex="none" class="_bar">
+				<md-button class="md-raised md-primary -ciayo-button" ng-click="vm.filterHistory()"><i class="ci-search s-16"></i>
+				</md-button>
+			</div>
+			<div flex="none" class="_bar">
+				<md-button class="md-raised md-primary -ciayo-button" ng-click="vm.clearFilter()"><i class="ci-reset s-16"></i>
+				</md-button>
+			</div>
+		</div>
+	</div>
+</div>
+<div ng-if="!vm.isToday">
+<div class="c-store-subheader">Today</div>
+<div class="c-store-hint"><ciayo translate="$not.yet.download.sticker">You’re not yet download any sticker today, wanna find some? </ciayo><a ui-sref="store.home"><ciayo translate="$find.now">Find now</ciayo></a></div>
+</div>
+<div ng-repeat="item in vm.listTrxHistory">
+	<div class="c-store-subheader"><span ng-bind="item.date"></span></div>
+	<div layout="row" layout-wrap="layout-wrap">
+		<div flex="none" ng-repeat="list in item.ciayo_products">
+			<div class="c-store-item-history"><img ng-src="{{list.image}}" class="_image"/>
+				<div class="_info">
+					<div class="_title" ng-bind="list.name"></div>
+					<div class="_date" ng-bind="item.date"></div>
+					<div class="_price"><img src="../assets/img/store/coin-caps.png"/><span ng-bind="list.price_1"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		setTimeout(function() {
+			$("#startDate, #endDate").datepicker({
+				changeYear: true,
+				changeMonth: true,
+				dateFormat: 'dd/mm/yy',
+				yearRange: '-50:+0',
+				onChangeMonthYear: function(year, month, inst) {
+					if($(this)[0].id == "startDate"){
+						var date = $("#startDate").val();
+						if ($.trim(date) != "") {
+							var newDate = month + "/" + inst.currentDay + "/" + year;
+							$("#startDate").val($.datepicker.formatDate('dd/mm/yy', new Date(newDate)));
+						}
+					} else {
+						var date = $("#endDate").val();
+						if ($.trim(date) != "") {
+							var newDate = month + "/" + inst.currentDay + "/" + year;
+							$("#endDate").val($.datepicker.formatDate('dd/mm/yy', new Date(newDate)));
+						}
+					}
+				},
+				altField: "#date-start-value",
+				altFormat: "dd M yy",
+				onSelect: function(date){
+					var newDate = date.split('/');
+					$('#'+$(this)[0].id+'Hidden').val($.datepicker.formatDate( "yy-mm-dd", new Date( newDate[2], newDate[1] - 1, newDate[0] ) ));
+				}
+			});
+		}, 1);
+
+});
+</script>

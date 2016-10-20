@@ -1,0 +1,33 @@
+
+<div layout="row" style="margin:-8px">
+	<div flex="none">
+		<div class="c-store-panel -priority">
+			<div class="_head"><ciayo translate="$set.priority.sticker">Set Your Priority Sticker</ciayo></div>
+			<div class="_body">
+				<ul id="sortable1" class="connectedSortable">
+					<li class="c-store-item-priority" ng-repeat="item in vm.listStickerCollection | orderBy:'order'" ng-if="item.order!=null" data-id="{{item.id}}" data-order="{{item.order}}">
+						<div class="_image"><img ng-src="{{item.image}}"/>
+						</div>
+						<div class="_title"><span ng-bind="item.name"></span></div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div flex="flex">
+		<div class="c-store-panel -stack">
+			<div class="_head">
+				<center><ciayo translate="$my.sticker">My Sticker</ciayo></center>
+			</div>
+			<div class="_body">
+				<ul id="sortable2" class="connectedSortable">
+					<li class="c-store-item-priority" ng-repeat="item in vm.listStickerCollection" ng-if="item.order==null" data-id="{{item.id}}">
+						<div class="_image"><img ng-src="{{item.image}}"/>
+						</div>
+						<div class="_title"><span ng-bind="item.name"></span></div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

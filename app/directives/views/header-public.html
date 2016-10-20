@@ -1,0 +1,247 @@
+<div>
+	<div class="c-mn-hdr">
+		<div class="c-header-wrp">
+			<a ui-sref="/">
+				<div class="c-mn-logo"></div>
+			</a>
+			<span class="title">Welcome to Ciayo World</span>
+				
+			<div class="c-mn-pfl-public">
+				<div class="button" ng-class="(button_state=='1')?'button-active':''" ng-click="action_button_state(1)" click-outside="close_panel()" outside-if-not="login-button, register-button, login-panel, register-panel, login_first1, login_first2, login_first3" id="login-button">Register</div>
+				<div class="button" ng-class="(button_state=='2')?'button-active':''" ng-click="action_button_state(2)" click-outside="close_panel()" outside-if-not="login-button, register-button, login-panel, register-panel, login_first1, login_first2, login_first3" id="register-button">Login</div>
+
+	<div class="c-lp-panels-public -login" ng-class="(button_state=='2')?'panel-active':''" id="login-panel">
+		<div ng-class="vm.errMsg ? 'active' : ''" class="c-lp-alert">
+				<div class="c-alert"><a href="javascript:void(0)" ng-click="vm.errMsg=null" class="c-lp-alert-close"><i class="ci-delete-2"></i></a><span class="text" ng-bind="vm.errMsg"></span></div>
+			</div>
+		<div class="c-lp-pane" id="c-lp-pane-login">
+				<div class="c-lp-panel-item c-lp-panel-bottom">
+					
+					<div class="c-lp-panel-inner">
+						
+						<div class="c-lp-panel-content " ng-class="vm.loginForm ? 'active' : ''">
+
+							<div class="c-lp-double" ng-class="vm.loginForm ? 'active' : ''">
+									<div class="c-lp-double-item c-lp-double-left" ng-class="vm.showPCL?'active':''">
+										
+										
+									
+										<div class="c-lp-form">
+											<form name="login" ng-submit="vm.login()">
+												<md-tabs md-dynamic-height="md-dynamic-height" md-border-bottom="md-border-bottom" md-center-tabs="true" md-stretch-tabs="always">
+													<md-tab md-on-select="vm.loginType='email'">
+														<md-tab-label>
+															<i class="ci-email"></i>Email
+														</md-tab-label>
+														<md-tab-body>
+															<md-content class="md-padding">
+																<input type="text" name="logEmail" placeholder="{{'$your.email' | translate}}" ng-model="vm.logEmail" class="c-lp-input c-lp-input-txt"/>
+																<div class="c-lp-pass-wrp">
+																	<input type="{{ vm.showPass ? 'text' : 'password' }}" placeholder="{{'$your.password' | translate}}" name="logEPass" ng-model="vm.logEPass" class="c-lp-input c-lp-input-pass"/><a ng-class="vm.showPass ? 'active' : ''" href="javascript:void(0)" ng-click="vm.showPass=!vm.showPass" class="c-lp-pass-eye"><i class="ci-eye"></i></a>
+																	<div title="Your capslock is On" class="c-lp-capslock"><i class="ci-uppercase"></i>
+																	</div>
+																</div>
+															</md-content>
+														</md-tab-body>
+													</md-tab>
+													<md-tab md-on-select="vm.loginType='phone'">
+														<md-tab-label>
+															<i class="ci-phone"></i><span translate="$phone">Phone</span>
+														</md-tab-label>
+														<md-tab-body>
+															<md-content class="md-padding custom">
+																<div class="c-lp-phone-wrp" ng-class="vm.showPCL?'active':''">
+																<div class="c-lp-code-region login" ng-init="vm.logPC='62'" ng-click="vm.showPCL=!vm.showPCL"><span ng-bind="'+'+vm.logPC"></span><i class="ci-dropdown"></i>
+																</div>
+																<input type="text" name="logPhone" placeholder="{{'$your.phone.number' | translate}}" ng-model="vm.logPhone" ng-blur="vm.validatePhone('logPhone', vm.logPhone)" class="c-lp-input c-lp-input-phone" onkeypress='return numberOnly(this, event)'/>
+															</div>
+																<div class="c-lp-pass-wrp">
+																	<input type="{{ vm.showPass ? 'text' : 'password' }}" placeholder="{{'$your.password' | translate}}" name="logPPass" ng-model="vm.logPPass" class="c-lp-input c-lp-input-pass"/><a ng-class="vm.showPass ? 'active' : ''" href="javascript:void(0)" ng-click="vm.showPass=!vm.showPass" class="c-lp-pass-eye"><i class="ci-eye"></i></a>
+																	<div title="Your capslock is On" class="c-lp-capslock"><i class="ci-uppercase"></i>
+																	</div>
+																</div>
+															</md-content>
+														</md-tab-body>
+													</md-tab>
+												</md-tabs>
+												<md-button type="submit" class="md-raised md-primary c-lp-sb" ng-disabled="vm.showLoading">
+													<ciayo translate="$enter">Enter</ciayo>
+													<span class="submit-loader"><img class="loader" src="assets/img/loader-32.gif"></span>
+												</md-button>
+												<p class="_forgot"><a href="javascript:void(0)" ng-click="vm.loginForm=!vm.loginForm;" class="c-lp-fp tab-link"><ciayo translate="$forgot.password?">Forgot password?</ciayo></a></p>
+											</form>
+										</div>
+									</div>
+									<div class="c-lp-double-item c-lp-double-right" ng-class="vm.showPCF?'active':''">
+										<div class="list-code-region forgot" click-outside="vm.showPCF=false" outside-if-not="c-lp-code-region">
+											<ul class="recent">
+												<li ng-click="vm.fpPC='62';vm.showPCF=!vm.showPCF"><b>Indonesia</b><span>+62</span></li>
+											</ul>
+											<ul class="list-all">
+												<li ng-repeat="list in vm.listPhoneCode | orderBy: 'country_name'" ng-if="list.phone_code&&list.image" ng-click="vm.fpPC=list.phone_code;vm.showPCF=!vm.showPCF">{{list.country_name}}<span ng-bind="'+'+list.phone_code"></span></li>
+											</ul>
+										</div>
+										<div class="c-lp-btn-back">
+											<md-button ng-click="vm.loginForm=!vm.loginForm;" class="md-raised md-primary c-lp-sb tab-link"><ciayo translate="$back.to.login">Back to login</ciayo></md-button>
+										</div>
+										
+										
+										<div class="c-lp-form" style="padding-top:60px;">
+											<form name="forgotPassword" ng-submit="vm.forgotPassword()">
+												<md-tabs md-dynamic-height="md-dynamic-height" md-border-bottom="md-border-bottom" md-center-tabs="true" md-stretch-tabs="always">
+													<md-tab md-on-select="vm.forPassType='email'">
+														<md-tab-label>
+															<i class="ci-email"></i><span translate="$email">Email</span>
+														</md-tab-label>
+														<md-tab-body>
+															<md-content class="md-padding">
+																<input name='fpEmail' type="text" placeholder="{{'$your.email' | translate}}" ng-model="vm.forPassEmail" class="c-lp-input c-lp-input-txt"/>
+															</md-content>
+														</md-tab-body>
+													</md-tab>
+													<md-tab md-on-select="vm.forPassType='phone'">
+														<md-tab-label>
+															<i class="ci-phone"></i><span translate="$phone">Phone</span>
+														</md-tab-label>
+														<md-tab-body>
+															<md-content class="md-padding custom">
+																<div class="c-lp-phone-wrp" ng-class="vm.showPCF?'active':''">
+																<div class="c-lp-code-region forgot" ng-init="vm.fpPC='62'" ng-click="vm.showPCF=!vm.showPCF"><span ng-bind="'+'+vm.fpPC"></span><i class="ci-dropdown"></i>
+																</div>
+																
+																<input name='fpPhone' type="text" placeholder="{{'$your.phone.number' | translate}}" ng-model="vm.fpPhone" ng-blur="vm.validatePhone('fpPhone', vm.fpPhone)" class="c-lp-input c-lp-input-phone" onkeypress='return numberOnly(this, event)'/>
+															</div>
+															</md-content>
+														</md-tab-body>
+													</md-tab>
+												</md-tabs>
+												<md-button type="submit" class="md-raised md-primary c-lp-sb" ng-disabled="vm.showLoading">Submit</md-button>
+												
+											</form>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> 
+
+		<div class="c-lp-panels-public -login" ng-class="(button_state=='1')?'panel-active':''" id="register-panel">
+
+			<div ng-class="vm.errMsg ? 'active' : ''" class="c-lp-alert">
+				<div class="c-alert"><a href="javascript:void(0)" ng-click="vm.errMsg=null" class="c-lp-alert-close"><i class="ci-delete-2"></i></a><span class="text" ng-bind="vm.errMsg"></span></div>
+			</div>
+
+		<div class="c-lp-pane" id="c-lp-pane-login">
+				<div class="c-lp-panel-item c-lp-panel-bottom">
+					
+					<div class="c-lp-panel-inner">
+						
+						<div class="c-lp-panel-content " ng-class="vm.loginForm ? 'active' : ''">
+
+							<div class="c-lp-double" ng-class="vm.loginForm ? 'active' : ''">
+									<div class="c-lp-double-item c-lp-double-left" ng-class="vm.showPCL?'active':''">
+										<div class="list-code-region login" click-outside="vm.showPCL=false" outside-if-not="c-lp-code-region">
+											<ul class="recent">
+												<li ng-click="vm.logPC='62';vm.showPCL=!vm.showPCL"><b>Indonesia</b><span>+62</span></li>
+											</ul>
+											<ul class="list-all">
+												<li ng-repeat="list in vm.listPhoneCode | orderBy: 'country_name'" ng-if="list.phone_code&&list.image" ng-click="vm.logPC=list.phone_code;vm.showPCL=!vm.showPCL">{{list.country_name}}<span ng-bind="'+'+list.phone_code"></span></li>
+											</ul>
+										</div>
+										
+									
+										<div class="c-lp-form">
+											<form name="register" ng-submit="vm.register()">
+									<md-tabs md-dynamic-height="md-dynamic-height" md-border-bottom="md-border-bottom" md-center-tabs="true" md-stretch-tabs="always">
+										<md-tab md-on-select="vm.registerType='email'">
+											<md-tab-label>
+												<i class="ci-email"></i><span translate="$email">Email</span>
+											</md-tab-label>
+											<md-tab-body>
+												<md-content class="md-padding">
+													<input type="text" name="regEmail" placeholder="{{'$your.email' | translate}}" ng-model="vm.regEmail" ng-blur="vm.validateEmail('regEmail', vm.regEmail)" class="c-lp-input c-lp-input-txt"/>
+													<div class="c-lp-pass-wrp">
+														<input type="{{ vm.showPass ? 'text' : 'password' }}" placeholder="{{'$create.password' | translate}}" name="regEPass" ng-model="vm.regEPass" ng-focus="vm.showTooltipEmail=!vm.showTooltipEmail" ng-blur="vm.showTooltipEmail=!vm.showTooltipEmail;vm.checkPassword('regEPass')" ng-change="vm.validatePassword('regPassEmail')" class="c-lp-input c-lp-input-pass" ng-trim="false" /><a ng-class="vm.showPass ? 'active' : ''" href="javascript:void(0)" ng-click="vm.showPass=!vm.showPass" class="c-lp-pass-eye"><i class="ci-eye"></i></a>
+														<div title="Your capslock is On" class="c-lp-capslock"><i class="ci-uppercase"></i>
+														</div>
+													</div>
+												</md-content>
+											</md-tab-body>
+										</md-tab>
+										<md-tab md-on-select="vm.registerType='phone'">
+											<md-tab-label>
+												<i class="ci-phone"></i><span translate="$phone">Phone</span>
+											</md-tab-label>
+											<md-tab-body>
+												<md-content class="md-padding custom">
+													<div class="c-lp-phone-wrp" ng-class="vm.showPC?'active':''">
+														<div class="c-lp-code-region" ng-init="vm.regPC='62'" ng-click="vm.showPC=!vm.showPC"><span ng-bind="'+'+vm.regPC"></span><i class="ci-dropdown"></i>
+														</div>
+														<input type="text" name="regPhone" placeholder="{{'$your.phone.number' | translate}}" ng-model="vm.regPhone" ng-blur="vm.validatePhone('regPhone', vm.regPhone)" class="c-lp-input c-lp-input-phone" onkeypress="return numberOnly(this, event)">
+													</div>
+													<div class="c-lp-pass-wrp">
+														<input type="{{ vm.showPass ? 'text' : 'password' }}" placeholder="{{'$create.password' | translate}}" name="regPPass" ng-model="vm.regPPass" ng-focus="vm.showTooltip=!vm.showTooltip" ng-blur="vm.showTooltip=!vm.showTooltip;vm.checkPassword('regPPass');" ng-change="vm.validatePassword('regPassPhone')" class="c-lp-input c-lp-input-pass" ng-trim="false"/><a ng-class="vm.showPass ? 'active' : ''" href="javascript:void(0)" ng-click="vm.showPass=!vm.showPass" class="c-lp-pass-eye"><i class="ci-eye"></i></a>
+														<div title="Your capslock is On" class="c-lp-capslock"><i class="ci-uppercase"></i>
+														</div>
+													</div>
+												</md-content>
+											</md-tab-body>
+										</md-tab>
+									</md-tabs>
+									<md-button type="submit" class="md-raised md-primary c-lp-sb" ng-disabled="vm.showLoading">
+										<ciayo translate="$register">Register</ciayo>
+										<span class="submit-loader"><img class="loader" src="assets/img/loader-32.gif"></span>
+									</md-button>
+								</form>
+								<p class="_terms"><ciayo translate="$term.policy" translate-values="{terms: '/terms-and-conditions', data_policy: '/privacy-and-policy', cookie_use: '/cookie-use'}">By clicking Register, you agree to our <a target="_blank" href="#">Terms</a>and that you have read our <a href="#" target="_blank">Data Policy</a>, including our <a href="#" target="_blank">Cookie Use</a></ciayo></p>
+										</div>
+									</div>								
+							</div>					
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+
+
+			
+			</div>
+			<div class="c-clear">	
+			</div>
+		</div>
+		<c-modal></c-modal>
+
+	</div>
+
+
+	<script type="text/javascript">
+	
+	function numberOnly(myfield, e, dec){
+		var key;
+		var keychar;
+		if (window.event) {
+			key = window.event.keyCode; 
+		} else if (e) {
+			key = e.which; 
+		} else {
+			return true;
+		}
+
+		keychar = String.fromCharCode(key);
+
+		if ((key==null) || (key==0) || (key==8) || (key==9) || (key==13) || (key==27) ) {
+			return true;
+		} else if ((("0123456789").indexOf(keychar) > -1)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+</script>
+</div>
+
+

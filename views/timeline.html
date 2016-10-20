@@ -1,0 +1,35 @@
+<!--<style type="text/css">
+body, html{
+	overflow:hidden;
+}	
+</style>-->
+<c-header type="timeline"></c-header>
+<div class="c-animate">
+	<div class="c-wrp-timeline" when-scroll-ends="vm.loadData(vm.js_timeline.length)" id="c-wrp-timeline">
+		<div class="c-wrp">
+			<div class="c-tml">
+				<div class="_new-post" ng-class="{'-active':vm.new_post_count>0}" ng-click="vm.loadNewPost()"><img src="../assets/svg/new-post.svg"/>New Post..</div>
+				<c-post post=vm.js_timeline></c-post>
+				<c-card post="{view:'loading'}" ng-if="vm.new_post_loading==true"></c-card>
+				<c-card ng-repeat="(key,js_timeline) in vm.js_timeline" post="js_timeline" index="$index"></c-card>
+				<c-card post="{view:'loading'}" ng-if="vm.load_more==true"></c-card>
+			</div>
+		</div>
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+			timelineResize();
+		});
+		window.onresize = function(event) {
+			timelineResize();
+		}
+		 function timelineResize(){
+			var new_height = window.innerHeight;
+			document.getElementById("c-wrp-timeline").style.height = new_height+'px';
+		}
+
+
+		</script>
+	</div>
+</div>
+

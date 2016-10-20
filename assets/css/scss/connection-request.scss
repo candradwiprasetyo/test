@@ -1,0 +1,190 @@
+.c-con-req-wrp {
+  width: 970px;
+}
+
+.c-con-req-family-head {
+  height: 40px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  padding-left: 16px;
+  padding-right: 30px;
+  line-height: 40px;
+  color: #fff;
+  font-family: ciayo;
+  font-size: 16px;
+  background: #59c1ee;
+}
+
+.c-con-req-family-content,
+.c-con-req-friend-content {
+  width: 970px;
+  background: #fff;
+}
+
+.c-con-req-friend-head {
+  height: 40px;
+  padding-left: 16px;
+  padding-right: 30px;
+  line-height: 40px;
+  color: #fff;
+  font-family: ciayo;
+  font-size: 16px;
+  background: #59c1ee;
+}
+
+.c-con-req-item-wrp {
+  transition: all ease 0.25s;
+}
+
+.c-con-req-item-wrp.active {
+  background: #f1f9ec;
+}
+
+.c-con-req-item-wrp.blocked {
+  background: #fff3f4;
+}
+
+.c-con-req-item-wrp:hover {
+  background: #d8ecf3;
+}
+
+.c-con-req-item {
+  height: 76px;
+  margin-left: 16px;
+  margin-right: 30px;
+  border-bottom: 1px solid #e6e6e6;
+  transition: height 300ms ease;
+  overflow: hidden;
+}
+
+.c-con-req-item .left {
+  height: 76px;
+  float: left;
+}
+
+.c-con-req-item .left img {
+  width: 60px;
+  height: 60px;
+  float: left;
+  margin: 8px 16px 8px 0;
+}
+
+.c-con-req-item .left .user-desc {
+  float: left;
+  height: 60px;
+  margin-top: 8px;
+  padding: 0;
+}
+
+.c-con-req-item .left .user-desc h3 {
+  margin: 0;
+  padding-top: 10px;
+  color: #02679e;
+  font-family: ciayo;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.c-con-req-item .left .user-desc p {
+  margin: 0;
+  padding-top: 4px;
+  color: #666;
+  font-family: ciayo;
+  font-size: 12px;
+}
+
+.c-con-req-item .left .user-desc a {
+  color: #026797;
+}
+
+.c-con-req-item .right {
+  height: 30px;
+  float: right;
+  padding: 23px 0;
+}
+
+.c-con-req-item .right div {
+  float: left;
+}
+
+.c-con-req-item .right .user-action button {
+  margin-top: -4px;
+  vertical-align: middle;
+  text-transform: capitalize;
+}
+
+.c-con-req-item .right .user-action {
+  margin-left: 8px;
+}
+
+.c-con-req-item .right .user-action button md-icon {
+  font-size: 20px;
+}
+
+.c-con-req-item .right .user-action.after button.chat {
+  width: 135px;
+}
+
+.c-con-req-item .right .user-action.after button.delete {
+  min-width: 0;
+  width: 40px;
+}
+
+.c-con-req-item .right .user-cme {
+  width: 90px;
+  height: 30px;
+  text-align: center;
+  border-right: 1px solid #e6e6e6;
+  border-left: 1px solid #e6e6e6;
+  margin-right: 14px;
+}
+
+.c-con-req-item .right .show-info {
+  width: 80px;
+  height: 30px;
+  margin-right: 30px;
+  line-height: 30px;
+}
+
+.c-con-req-item .right .show-info a {
+  color: #026797;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.c-con-req-item .right .show-info a md-icon {
+  position: absolute;
+  margin-top: 4px;
+}
+
+.c-con-req-hideinfo,
+.c-con-req-showinfo.active {
+  display: none;
+}
+
+.c-con-req-showinfo,
+.c-con-req-hideinfo.active {
+  display: block;
+}
+
+.c-con-req-item-detail {
+  color: #666;
+}
+
+.c-con-req-item-detail ul {
+  padding: 0;
+  margin-top: 12px;
+}
+
+.c-con-req-item-detail ul li {
+  font-family: ciayo;
+  font-size: 12px;
+  list-style: none;
+  padding-top: 3px;
+}
+
+.c-con-req-item-detail ul li md-icon {
+  font-size: 15px;
+  height: 18px;
+  width: 20px;
+}

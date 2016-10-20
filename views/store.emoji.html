@@ -1,0 +1,15 @@
+<div layout="row" layout-wrap="layout-wrap" lazy-load="vm.loadList('emoji')">
+	<div flex="none" ng-repeat="item in vm.listEmoji">
+		<div data-toggle="modal" class="c-store-item" ng-click="vm.viewDetail(item.product_id, 'emoji')"><img ng-src="{{item.image}}" class="_image"/>
+			<div class="_title" ng-bind="item.name"></div>
+			<div layout="row" layout-align="center center" class="_price">
+				<div class="_coin -caps"><img src="../assets/img/store/coin-caps.png"/><span ng-bind="item.price_1" ng-if="item.price_1"></span>
+				<span ng-if="item.price_1==0"><ciayo translate="$free">FREE</ciayo></span>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<center>
+<button ng-if="!vm.listLoadMore[4] && !vm.isLoading[4]" class="md-raised md-primary md-button md-ink-ripple" ng-click="vm.loadList('emoji')">Load More</button></center>

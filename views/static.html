@@ -1,0 +1,90 @@
+<div class="c-header-static">
+	<div class="c-hs-wrp">
+		<div class="c-hs-logo">
+			<a href="/" ui-sref="/">
+				<img src="assets/img/ciayo-50-white.png" alt="CIAYO">
+			</a>
+		</div>
+		<div class="c-hs-menu">
+			<div class="c-hs-set-menu">
+				<ul class="c-hs-set-menu-ul">
+					<li ng-class="vm.menu==1?'active':''">
+						<a ui-sref="about-us">
+							<ciayo translate="$about.us">About Us</ciayo>
+						</a>
+					</li>
+					<li ng-class="vm.menu==3?'active':''">
+						<a ui-sref="privacy-and-policy">
+							<ciayo translate="$privacy.and.policy">Privacy and Policy</ciayo>
+						</a>
+					</li>
+					<li ng-class="vm.menu==2?'active':''">
+						<a ui-sref="terms-and-conditions">
+							<ciayo translate="$terms.and.conditions">Terms and Conditions</ciayo>
+						</a>
+					</li>
+<!--
+					<li ng-class="vm.menu==6?'active':''">
+						<a ui-sref="faq">
+							<ciayo translate="$FAQ">FAQ</ciayo>
+						</a>
+					</li>
+-->
+				</ul>
+			</div>
+			<div class="c-hs-lang">
+				<label for="">Language: </label>
+				<div class="c-hs-sel-lang">
+					<span class="selected"><span class="text" ng-bind="vm.lang_text">English</span> <i class="ci-dropdown"></i></span>
+					<div class="lang-sel">
+						<ul class="lang-sel-ul">
+							<li class="active"><a href="javascript:void(0)" ng-click="vm.changeLang(1)" data-lang="English">English</a></li>
+							<li><a href="javascript:void(0)" ng-click="vm.changeLang(2)" data-lang="Bahasa Indonesia">Bahasa Indonesia</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="c-animate">
+	<div class="c-wrp c-wrp-static">
+		<div class="c-wrp-inner">
+
+		<!-- content -->
+			<h1 ng-bind-html="vm.title"></h1>
+			<div ng-bind-html="vm.content"></div>
+		<!-- content -->
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+<script>
+	$(document).ready(function(e){
+		$('a.right').on('click', function(e){
+			e.preventDefault();
+			var id = $(this).attr('href');
+			$('html, body').animate({
+				scrollTop: $(id).offset().top
+			}, 2000);
+		});
+		$('.c-hs-sel-lang .selected').on('click', function(e){
+			$('.c-hs-sel-lang').toggleClass('active');
+		})
+		$('.lang-sel-ul li a').on('click', function(e){
+			e.preventDefault();
+			if(!$(this).parent('li').hasClass('active')) {
+				$('.lang-sel-ul li').removeClass('active');
+				$(this).parent('li').addClass('active');
+				var lang = $(this).data('lang');
+				$('.c-hs-sel-lang .selected .text').text(lang);
+			}
+			$('.c-hs-sel-lang').removeClass('active');
+		})
+		$('body').on('click', function(e){
+			if ($(e.target).closest('.c-hs-sel-lang').length === 0) {
+				$('.c-hs-sel-lang').removeClass('active');
+			}
+		})
+	});
+</script>

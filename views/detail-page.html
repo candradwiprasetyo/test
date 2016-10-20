@@ -1,0 +1,11 @@
+<c-header ng-if="vm.token!=undefined"></c-header>
+<c-header-public ng-if="vm.token==undefined"></c-header-public>
+<div class="c-animate">
+<div class="c-wrp">
+	<div class="c-wrp-inner">
+		<div class="c-tml">
+			<c-card ng-if="vm.js_timeline" post="vm.js_timeline" detail=true></c-card>
+		</div>
+	</div>
+</div>
+</div>

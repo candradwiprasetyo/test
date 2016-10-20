@@ -1,0 +1,179 @@
+@font-face {
+	font-family: 'ciayofonts';
+	src: url('../fonts/ciayofonts.eot?24060486');
+	src: url('../fonts/ciayofonts.eot?24060486#iefix') format('embedded-opentype'),
+			 url('../fonts/ciayofonts.woff2?24060486') format('woff2'),
+			 url('../fonts/ciayofonts.woff?24060486') format('woff'),
+			 url('../fonts/ciayofonts.ttf?24060486') format('truetype'),
+			 url('../fonts/ciayofonts.svg?24060486#ciayofonts') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+ i[class^="ci-"]{
+	display: inline-block;
+	vertical-align: middle; 
+	
+		&.s-8:before {font-size: 8px }
+		&.s-10:before{font-size: 10px}
+		&.s-12:before{font-size: 12px}
+		&.s-16:before{font-size: 16px}
+		&.s-20:before{font-size: 20px}
+		&.s-24:before{font-size: 24px}
+		&.s-30:before{font-size: 30px}
+		&.s-42:before{font-size: 42px}
+	} 
+ 
+ i[class^="ci-"]:before, 
+ i[class*=" ci-"]:before {
+	font-family: "ciayofonts";
+	font-style: normal;
+	font-weight: normal;
+	speak: none;
+ 
+	display: inline-block;
+	text-decoration: inherit;
+	width:auto;
+	text-align: center;
+	/* opacity: .8; */
+ 
+	/* For safety - reset parent styles, that can break glyph codes*/
+	font-variant: normal;
+	text-transform: none;
+ 
+	/* fix buttons height, for twitter bootstrap */
+	line-height: 1;
+ 
+	/* Animation center compensation - margins should be symmetric */
+	/* remove if not needed */
+ 
+	/* you can be more comfortable with increased icons size */
+	/* font-size: 120%; */
+ 
+	/* Font smoothing. That was taken from TWBS */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+ 
+	/* Uncomment for 3D effect */
+	/* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+ 
+.ci-accept:before { content: '\e800'; } /* '' */
+.ci-accesories:before { content: '\e801'; } /* '' */
+.ci-add-item:before { content: '\e802'; } /* '' */
+.ci-add-place:before { content: '\e803'; } /* '' */
+.ci-add-with-people:before { content: '\e804'; } /* '' */
+.ci-ascending:before { content: '\e805'; } /* '' */
+.ci-background:before { content: '\e806'; } /* '' */
+.ci-birthday:before { content: '\e807'; } /* '' */
+.ci-box-caption:before { content: '\e808'; } /* '' */
+.ci-bubble-caption:before { content: '\e809'; } /* '' */
+.ci-buy:before { content: '\e80a'; } /* '' */
+.ci-c-button:before { content: '\e80b'; } /* '' */
+.ci-calendar:before { content: '\e80c'; } /* '' */
+.ci-check-1:before { content: '\e80d'; } /* '' */
+.ci-check-2:before { content: '\e80e'; } /* '' */
+.ci-cimotion:before { content: '\e80f'; } /* '' */
+.ci-close:before { content: '\e810'; } /* '' */
+.ci-comment:before { content: '\e811'; } /* '' */
+.ci-currency-cans:before { content: '\e812'; } /* '' */
+.ci-currency-caps:before { content: '\e813'; } /* '' */
+.ci-delete-2:before { content: '\e814'; } /* '' */
+.ci-delete:before { content: '\e815'; } /* '' */
+.ci-descending:before { content: '\e816'; } /* '' */
+.ci-dislike:before { content: '\e817'; } /* '' */
+.ci-down-loginpage:before { content: '\e818'; } /* '' */
+.ci-download:before { content: '\e819'; } /* '' */
+.ci-dropdown:before { content: '\e81a'; } /* '' */
+.ci-edit:before { content: '\e81b'; } /* '' */
+.ci-email:before { content: '\e81c'; } /* '' */
+.ci-etc-fill:before { content: '\e81d'; } /* '' */
+.ci-etc-outline:before { content: '\e81e'; } /* '' */
+.ci-eye:before { content: '\e81f'; } /* '' */
+.ci-eyebrow:before { content: '\e820'; } /* '' */
+.ci-face:before { content: '\e821'; } /* '' */
+.ci-facebook:before { content: '\e822'; } /* '' */
+.ci-facialhair:before { content: '\e823'; } /* '' */
+.ci-female:before { content: '\e824'; } /* '' */
+.ci-femalehair:before { content: '\e825'; } /* '' */
+.ci-follower:before { content: '\e826'; } /* '' */
+.ci-friends:before { content: '\e827'; } /* '' */
+.ci-fullname:before { content: '\e828'; } /* '' */
+.ci-hi-lo:before { content: '\e829'; } /* '' */
+.ci-hide-password:before { content: '\e82a'; } /* '' */
+.ci-instagram:before { content: '\e82b'; } /* '' */
+.ci-kebab:before { content: '\e82c'; } /* '' */
+.ci-like:before { content: '\e82d'; } /* '' */
+.ci-lips:before { content: '\e82e'; } /* '' */
+.ci-lo-hi:before { content: '\e82f'; } /* '' */
+.ci-login-page-down-arrow-16:before { content: '\e830'; } /* '' */
+.ci-male:before { content: '\e831'; } /* '' */
+.ci-malehair:before { content: '\e832'; } /* '' */
+.ci-meatball:before { content: '\e833'; } /* '' */
+.ci-mobile-achievement-default-36:before { content: '\e834'; } /* '' */
+.ci-mobile-setting-default-36:before { content: '\e835'; } /* '' */
+.ci-mobile-store-default-36:before { content: '\e836'; } /* '' */
+.ci-mobile-trend-default-36:before { content: '\e837'; } /* '' */
+.ci-mood-happy:before { content: '\e838'; } /* '' */
+.ci-mood-normal:before { content: '\e839'; } /* '' */
+.ci-mood-sad:before { content: '\e83a'; } /* '' */
+.ci-nationality:before { content: '\e83b'; } /* '' */
+.ci-next-2:before { content: '\e83c'; } /* '' */
+.ci-next:before { content: '\e83d'; } /* '' */
+.ci-nose:before { content: '\e83e'; } /* '' */
+.ci-notif-comment:before { content: '\e83f'; } /* '' */
+.ci-notif-dislike:before { content: '\e840'; } /* '' */
+.ci-notif-like:before { content: '\e841'; } /* '' */
+.ci-notif-star:before { content: '\e842'; } /* '' */
+.ci-only-me:before { content: '\e843'; } /* '' */
+.ci-phone:before { content: '\e844'; } /* '' */
+.ci-pinterest:before { content: '\e845'; } /* '' */
+.ci-place-activ:before { content: '\e846'; } /* '' */
+.ci-place-noactiv:before { content: '\e847'; } /* '' */
+.ci-prev:before { content: '\e848'; } /* '' */
+.ci-previous:before { content: '\e849'; } /* '' */
+.ci-reply:before { content: '\e84a'; } /* '' */
+.ci-reset:before { content: '\e84b'; } /* '' */
+.ci-search:before { content: '\e84c'; } /* '' */
+.ci-share:before { content: '\e84d'; } /* '' */
+.ci-show:before { content: '\e84e'; } /* '' */
+.ci-skip:before { content: '\e84f'; } /* '' */
+.ci-sticker-button:before { content: '\e850'; } /* '' */
+.ci-title:before { content: '\e851'; } /* '' */
+.ci-trend-activity:before { content: '\e853'; } /* '' */
+.ci-trend-people:before { content: '\e854'; } /* '' */
+.ci-trend-place:before { content: '\e855'; } /* '' */
+.ci-trend-posting:before { content: '\e856'; } /* '' */
+.ci-tumblr:before { content: '\e857'; } /* '' */
+.ci-twitter:before { content: '\e858'; } /* '' */
+.ci-uppercase:before { content: '\e859'; } /* '' */
+.ci-warning:before { content: '\e85a'; } /* '' */
+.ci-with:before { content: '\e85b'; } /* '' */
+.ci-zoom-in:before { content: '\e85c'; } /* '' */
+.ci-zoom-out:before { content: '\e85d'; } /* '' */
+.ci-star:before { content: '\e85e'; } /* '' */
+.ci-delete-3:before { content: '\e85f'; } /* '' */
+.ci-check-3:before { content: '\e860'; } /* '' */
+.ci-setting-change-password:before { content: '\e861'; } /* '' */
+.ci-setting-logout:before { content: '\e862'; } /* '' */
+.ci-item-blank:before { content: '\e863'; } /* '' */
+.ci-place-blank:before { content: '\e864'; } /* '' */
+.ci-with-friends-blank:before { content: '\e865'; } /* '' */
+.ci-website:before { content: '\e866'; } /* '' */
+.ci-public:before { content: '\e867'; } /* '' */
+.ci-setting-socmed-setting:before { content: '\e868'; } /* '' */
+.ci-setting-privacy-setting:before { content: '\e869'; } /* '' */
+.ci-setting-term-condition:before { content: '\e86a'; } /* '' */
+.ci-setting-privacy-policy:before { content: '\e86b'; } /* '' */
+.ci-setting-information:before { content: '\e86c'; } /* '' */
+.ci-setting-general-setting:before { content: '\e86d'; } /* '' */
+.ci-setting-edit-account:before { content: '\e86e'; } /* '' */
+.ci-with-secret:before { content: '\e86f'; } /* '' */
+.ci-place-secret:before { content: '\e870'; } /* '' */
+.ci-icon-with-side:before { content: '\e871'; } /* '' */
+.ci-icon-place-side:before { content: '\e872'; } /* '' */
+.ci-icon-balon:before { content: '\e873'; } /* '' */
+.ci-add-with-people-1:before { content: '\e875'; } /* '' */
+.ci-path-01:before { content: '\e877'; } /* '' */
+.ci-add-place-1:before { content: '\e878'; } /* '' */
+.ci-trash:before { content: '\e879'; } /* '' */

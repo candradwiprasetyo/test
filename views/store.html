@@ -1,0 +1,94 @@
+<c-header type="store"></c-header>
+<div class="c-animate">
+<div class="c-wrp">
+	<div class="c-wrp-inner">
+		<div class="c-store">
+			<div class="c-store-head layout-row layout-align-center-center">
+				<div class="_goto -store flex-none layout-row layout-align center-start">
+					<div class="_image"><img src="../assets/img/store/left-head.png"/>
+					</div>
+					<div class="_parag">
+						<h3><ciayo translate="$store">Store</ciayo></h3>
+						<p><ciayo translate="$store.description">Donec sed odio dui Dones nulla non metus auctor</ciayo></p>
+						<md-button class="md-raised md-primary -ciayo-button"><ciayo translate="$shop.now">Shop Now</ciayo></md-button>
+					</div>
+				</div>
+				<div class="_search flex layout-row layout-align-center-center">
+					<div class="_field">
+						<input type="text" placeholder="{{'$search.sticker' | translate}}" ng-model="vm.keyword" ng-enter="vm.searchItem()"/><i class="ci-search s-16" ng-click="vm.searchItem()"></i>
+					</div>
+				</div>
+				<div class="_goto -inventory -inactive flex-none layout-row layout-align-center-start">
+					<div class="_parag">
+						<h3><ciayo translate="$inventory">Inventory</ciayo></h3>
+						<p><ciayo translate="$inventory.description">Donec sed odio dui Dones nulla non metus auctor</ciayo></p>
+						<md-button class="md-raised md-primary -ciayo-button" ui-sref="inventory.home"><ciayo translate="$check.now">Check Now</ciayo></md-button>
+					</div>
+					<div class="_image"><img src="../assets/img/store/right-head.png"/>
+					</div>
+				</div>
+			</div>
+			<div class="c-store-wrap">
+				<div class="c-store-nav layout-row layout-align-center-center">
+					<div class="_menu flex layout-row"><a ui-sref="store.home" md-ink-ripple="#000000" class="_menu-link flex-none" ui-sref-active="-active" ng-click="vm.setflickity()"><ciayo translate="$home" style="text-transform:uppercase">HOME</ciayo></a><a ui-sref=".premium({category:''})" flex="none" md-ink-ripple="#000000" class="_menu-link" ui-sref-active="-active"><ciayo translate="$premium" style="text-transform:uppercase">PREMIUM</ciayo></a><a ui-sref=".contributor({category:''})" flex="none" md-ink-ripple="#000000" class="_menu-link" ui-sref-active="-active"><ciayo translate="$contributor" style="text-transform:uppercase">CONTRIBUTOR</ciayo></a><a ui-sref=".free" flex="none" md-ink-ripple="#000000" class="_menu-link" ui-sref-active="-active"><ciayo translate="$free" style="text-transform:uppercase">FREE</ciayo></a><a ui-sref=".emoji" flex="none" md-ink-ripple="#000000" class="_menu-link" ui-sref-active="-active">EMOJI</a></div>
+					<div class="_coin-title flex-none"><span translate="$deposit">Deposit</span>:</div>
+					<div class="_coin-caps flex-none"><img src="../assets/img/store/coin-caps.png"/><span ng-bind="'Caps '+vm.cash"></span>
+					</div>
+					<!--<div flex="none" class="_coin-cans"><img src="../assets/img/store/coin-cans.png"/><span ng-bind="'Cans '+vm.coin"></span>
+					</div>-->
+				</div>
+				<div class="c-store-body" ui-view>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="c-modal store layout-column layout-align-center-center">
+		<div data-toggle="modal-close" class="c-modal-backdrop"></div>
+		<div class="div" ng-hide="vm.itemDetail">
+			<md-progress-circular md-mode="indeterminate" md-diameter="150"></md-progress-circular>
+		</div>
+		<div class="c-modal-wrapper c-store-modal layout-row" ng-hide="!vm.itemDetail">
+			<div data-toggle="modal-close" class="_close"><i class="ci-delete-2 s-10"></i>
+			</div>
+			<div class="flex-none layout-column">
+				<div class="flex-none layout-row">
+					<div class="_thumb flex">
+						<img ng-src="{{vm.itemDetail.image}}">
+					</div>
+					<div class="flex">
+						<div class="_title" ng-bind="vm.itemDetail.name || '...'"></div>
+						<div class="_publisher" ng-bind="vm.itemDetail.author.username || '...'"></div>
+						<div class="_pricenbuy layout-row layout-align-start-center">
+							<div class="_price" ng-hide="vm.itemDetail.price_1==0&&vm.itemDetail.price_2==0">
+								<div class="_coin -caps flex-none"><img src="../assets/img/store/coin-caps.png"/><b ng-bind="vm.itemDetail.price_1 || '-'"></b>
+								</div>
+							</div>
+							<div class="_free" ng-hide="vm.itemDetail.price_1!=0||vm.itemDetail.price_2!=0">
+								<span class="free" style="color:#EE4481;"><ciayo translate="$free">FREE</ciayo></span>
+							</div>
+							<div class="_buy">
+								<md-button class="md-raised md-primary -ciayo-button" ng-click="vm.buySticker()" ng-disabled="vm.itemDetail.bought"><ciayo translate="$buy">Buy</ciayo></md-button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="_sticker-wrp flex">
+					<div class="_desc" ng-bind="vm.itemDetail.description || '...'"></div>
+					<div class="_hint"><ciayo translate="$click.sticker.preview">Click sticker for preview</ciayo></div>
+					<div class="_stickers">
+						<div class="_overlay_wrapper" ng-hide="!vm.preview">
+							<div class="_overlay" ng-click="vm.preview=!vm.preview">
+							</div>
+							<div class="img_preview">
+								<img ng-src="{{vm.stickerPreview}}">
+							</div>
+						</div>
+						<div class="_sticker" ng-repeat="item in vm.itemDetail.sticker_item" ng-click="vm.stickerPreview=item.image_detail;vm.preview=!vm.preview"><img ng-src="{{item.image}}"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>

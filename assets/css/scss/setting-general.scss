@@ -1,0 +1,70 @@
+.c-set-gen{
+	margin-bottom: 26px;
+}
+
+.c-set-gen-list{
+	outline: none;
+	height: 50px;
+	transition: height 300ms ease;
+	overflow: hidden;
+	
+	._toggler{
+		line-height: 50px;
+		height: 50px;
+		box-sizing: border-box;
+		border-bottom: 1px solid #e6e6e6;
+		padding-right: (34px + 16px);
+		position: relative;
+		cursor: pointer;
+		outline: none;
+		
+		._title{
+			color: #999;
+		}
+		
+		i{
+			position: absolute;
+			top: 0;
+			right: 20px;
+			&.active {
+			 	transform: rotate(180deg);
+			}
+		}
+	}
+	
+	._pane{
+		padding-left: 28px;
+	}
+	
+	&.-open{
+		._toggler{
+			border-bottom-color: #000;
+				
+			._title{
+				color: #333;
+			}
+		}
+	}
+}
+
+.c-set-gen-list-item{
+	line-height: 20px;
+	padding: 15px 16px 15px 0;
+	border-bottom: 1px solid #e6e6e6;
+	
+	select{
+		-webkit-appearance: none;
+		height: 30px;
+		padding: 0 16px;
+		border: 1px solid #e6e6e6;
+		border-radius: 4px;
+		background: #fff;
+		outline: none;
+	}
+	._parallax-info{
+				    font-size: 12px;
+				    width: 200px;
+				    margin: -10px 7px;
+				    line-height: 1.2;
+			}
+}

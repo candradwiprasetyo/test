@@ -1,0 +1,16 @@
+<div class="c-modal-wrapper -invite -email">
+	<div ng-model="hideEmail" ng-hide="me.data.hideEmail==true">
+		<div class="_heading">
+			<div class="_heading-text">Enter Friends email</div>
+			<div class="_heading-button" ng-click="me.close()"><i class="ci-delete-2"></i></div>
+		</div>
+		<div class="_content">
+			<input type="text" class="_input" placeholder="xxx@example.com" ng-model="me.data.i_email" required>
+			<span class="_hint">*Use comma (,) to add another email</span>
+			<textarea class="_input" readonly="readonly">Hey, I’m waiting you at CIAYO. Let’s play!</textarea>
+			<div class="_content-line"></div>
+			<div class="_content-button"><md-button class="md-raised md-primary" ng-click="me.data.actionSendInvitation()">Next</md-button></div>
+		</div>
+	</div>
+	<div class="_content -success" ng-if="me.data.hideEmail==true"><i class="ci-check-1 s-10"></i>Your message has been sent</div>
+</div>                                                                                                           

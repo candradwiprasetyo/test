@@ -1,0 +1,177 @@
+
+<c-header type="achievement"></c-header>
+<div class="c-animate">
+	<div class="c-banner">
+		<ul class='c-banner-viewport'>
+			<li ng-repeat='banner in vm.banner' class='layer' data-depth='{{0.1+(0.20*(4-banner.speed))}}'>
+				<img ng-src='{{banner.image}}'>
+			</li>
+		</ul>
+	</div>
+	<div class="c-wrp">
+	<div class="c-wrp-inner">
+	<div class="c-achv-badge">
+		<div class="c-achv-badge-head"><ciayo translate="$badges">BADGE</ciayo></div>
+		<div class="c-achv-badge-body">
+		<div class="c-achv-badge-item">
+			<span ng-hide="vm.listBadge.length || vm.listBadgeEmpty" class="loading-achievement"><md-progress-circular md-mode="indeterminate" md-diameter="75"></md-progress-circular></span>
+			<ul>
+			<li ng-repeat="item in vm.listBadge">
+				<!--<a href="#" data-toggle="modal">-->
+					<img ng-src="{{item.image}}"/><span ng-bind="item.name"></span>
+				<!--</a>-->
+			</li>
+			</ul>
+		</div>
+		</div>
+	</div>
+	<div class="c-achv-achievement">
+		<div class="c-achv-achievement-title"><ciayo translate="$achievement">ACHIEVEMENT</ciayo></div>
+		<div class="c-achv-achievement-search">
+			<input type="text" placeholder="{{'$search.achievement' | translate}}" ng-model="vm.keyword" ng-enter="vm.changeAchievement(vm.tabSelected, 1)"/>
+			<button ng-click="vm.changeAchievement(vm.tabSelected, 1)">
+				<i class="ci-search s14"></i>
+			</button>
+		</div>
+		<div class="c-achv-achievement-sort">
+			<div class="text"><ciayo translate="$sort">Sort</ciayo></div>
+			<div ng-click="me.ddActive=!me.ddActive" md-ink-ripple="#000000" class="c-achv-option">
+					<span><i class="ci-hi-lo"></i></span>
+					<span><i class="ci-dropdown" ng-class="me.ddActive?'active':''"></i></span>
+			</div>
+			<div id="c-achv-dropdownlist" class="c-achv-dropdownlist" ng-class="me.ddActive?'active':''" click-outside="me.ddActive=false" outside-if-not="c-achv-option">
+				<div class="dropdown-option">
+					<label md-ink-ripple="#000000" class="_radio" ng-click="me.ddActive=false;vm.changeOrder('name','asc');">
+						<input type="radio" name="radio-sort" checked/><i class="ci-ascending"></i><span><ciayo translate="$ascending(a-z)">Ascending (A-Z)</ciayo></span>
+					</label>
+					<label md-ink-ripple="#000000" class="_radio" ng-click="me.ddActive=false;vm.changeOrder('name','desc');">
+						<input type="radio" name="radio-sort"/><i class="ci-descending"></i><span><ciayo translate="$descending(z-a)">Descending (Z-A)</ciayo></span>
+					</label>
+					<label md-ink-ripple="#000000" class="_radio" ng-click="me.ddActive=false;vm.changeOrder('score','desc');" ng-hide="vm.tabSelected=='/completed'">
+						<input type="radio" name="radio-sort"/><i class="ci-hi-lo"></i><span><ciayo translate="$highest.to.lowest">Highest to Lowest</ciayo></span>
+					</label>
+					<label md-ink-ripple="#000000" class="_radio" ng-click="me.ddActive=false;vm.changeOrder('score','asc');" ng-hide="vm.tabSelected=='/completed'">
+						<input type="radio" name="radio-sort"/><i class="ci-lo-hi"></i><span><ciayo translate="$lowest.to.high">Lowest to High</ciayo></span>
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="ng-cloak">
+		<md-content>
+			<md-tabs md-dynamic-height="md-dynamic-height" md-border-bottom="md-border-bottom">
+			<md-tab label="{{'$all'| translate}}" md-on-select="vm.changeAchievement('/all', 1);">
+				<md-content>
+				<div class="c-achv-achievement-item">
+					<span ng-hide="vm.listAchievement.length || vm.listAchievementEmpty" class="loading-achievement"><md-progress-circular md-mode="indeterminate" md-diameter="75"></md-progress-circular></span>
+					<ul>
+					<li ng-repeat="item in vm.listAchievement"><a href="javascript:void(0)" data-toggle="modal" ng-click="vm.viewDetail(item.id)"><img ng-src="{{ item.image }}"/>
+						<canvas data-pct-start="0" data-pct-end="{{item.percent}}" data-show-text="true" data-radius="70" width="140" height="140" achievement-item></canvas><span ng-bind="item.name"></span></a></li>
+					</ul>
+					<div class="pagination-text" ng-hide="!vm.allItem">
+						<ciayo translate="$showing.achievement">Showing achievement number</ciayo><strong><span ng-bind="vm.thisOffset"></span>-<span ng-bind="vm.thisEnd"></span></strong> <ciayo translate="$of">of</ciayo> <strong ng-bind="vm.allItem"></strong>
+					</div>
+					<pagination change-page="vm.pageGoTo" total="vm.allItem" re-pagination="vm.rePagination" page="vm.curPage"></pagination>
+				</div>
+				</md-content>
+			</md-tab>
+			<md-tab label="{{'$on.going'| translate}}" md-on-select="vm.changeAchievement('/progress',1);">
+				<md-content>
+				<div class="c-achv-achievement-item">
+					<span ng-hide="vm.listProgress.length || vm.listProgressEmpty" class="loading-achievement"><md-progress-circular md-mode="indeterminate" md-diameter="75"></md-progress-circular></span>
+					<ul>
+					<li ng-repeat="item in vm.listProgress"><a href="javascript:void(0)" data-toggle="modal" ng-click="vm.viewDetail(item.id)"><img ng-src="{{ item.image }}"/>
+						<canvas data-pct-start="0" data-pct-end="{{item.percent}}" data-show-text="true" data-radius="70" width="140" height="140" achievement-item></canvas><span ng-bind="item.name"></span></a></li>
+					</ul>
+					<div class="pagination-text" ng-hide="!vm.allItem">
+						<ciayo translate="$showing.achievement">Showing achievement number</ciayo> <strong><span ng-bind="vm.thisOffset"></span>-<span ng-bind="vm.thisEnd"></span></strong> <ciayo translate="$of">of</ciayo> <strong ng-bind="vm.allItem"></strong>
+					</div>
+					<pagination change-page="vm.pageGoTo" total="vm.allItem" re-pagination="vm.rePagination" page="vm.curPage"></pagination>
+				</div>
+				</md-content>
+			</md-tab>
+			<md-tab label="{{'$completed'| translate}}" md-on-select="vm.changeAchievement('/completed', 1);">
+				<md-content>
+				<div class="c-achv-achievement-item">
+					<span ng-hide="vm.listCompleted.length || vm.listCompletedEmpty" class="loading-achievement"><md-progress-circular md-mode="indeterminate" md-diameter="75"></md-progress-circular></span>
+					<ul>
+					<li ng-repeat="item in vm.listCompleted"><a href="javascript:void(0)" data-toggle="modal" ng-click="vm.viewDetail(item.id)"><img ng-src="{{ item.image }}"/>
+						<canvas data-pct-start="0" data-pct-end="{{item.percent}}" data-show-text="true" data-radius="70" width="140" height="140" achievement-item></canvas><span ng-bind="item.name"></span></a></li>
+					</ul>
+					<div class="pagination-text" ng-hide="!vm.allItem">
+						<ciayo translate="$showing.achievement">Showing achievement number</ciayo> <strong><span ng-bind="vm.thisOffset"></span>-<span ng-bind="vm.thisEnd"></span></strong> <ciayo translate="$of">of</ciayo> <strong ng-bind="vm.allItem"></strong>
+					</div>
+					<pagination change-page="vm.pageGoTo" total="vm.allItem" re-pagination="vm.rePagination" page="vm.curPage"></pagination>
+				</div>
+				</md-content>
+			</md-tab>
+			</md-tabs>
+		</md-content>
+		</div>
+	</div>
+	<div class="clear"></div>
+	</div>
+
+
+	<div class="c-modal achievement">
+	<div data-toggle="modal-close" class="c-modal-backdrop" ng-click="vm.closeDetail()"></div>
+	<div class="c-modal-wrapper c-achv-pop">
+		<div data-toggle="modal-close" class="c-achv-pop-close" ng-click="vm.closeDetail()"><i class="ci-close"></i>
+		</div>
+		<div class="loading-detail" ng-hide="vm.itemDetail">
+			<md-progress-circular md-mode="indeterminate" md-diameter="150"></md-progress-circular>
+		</div>
+		<div ng-if="vm.itemDetail">
+			<div class="c-achv-pop-item">
+				<img ng-src="{{ vm.itemDetail.image }}"/>
+				<canvas data-pct-start="0" data-pct-end="{{ vm.itemDetail.percent }}" data-show-text="true" data-radius="120" width="240" height="240" achievement-item></canvas>
+			</div>
+			<div class="c-achp-pop-info">
+				<div class="header">
+					<span ng-bind="vm.itemDetail.name"></span>
+					<i class="ci-title s-20" ng-if="vm.itemDetail.title"></i>
+					<md-button ng-if="vm.itemDetail.title && vm.itemDetail.percent==100" type="title" ng-transclude="" class="md-raised md-primary -ciayo-button" ng-click="vm.setTitle(vm.itemDetail.name);"><span class="ng-scope"><ciayo translate="$use.as.title">Use as title</ciayo></span></md-button>
+				</div>
+				<p ng-bind="vm.itemDetail.description"></p>
+				<div class="c-achp-pop-addinfo">
+					<div class="reward">
+						<div ng-if="vm.itemDetail.reward_type=='point'">
+							Reward: <img src="../assets/img/store/coin-caps.png"/> <span ng-bind="vm.itemDetail.reward"></span>
+						</div>
+						<div class="_reward-sticker" ng-if="vm.itemDetail.reward_type=='sticker'">
+							<div class="_reward">Reward:</div>
+							<div class="_stickerss">
+								<img ng-src="{{vm.itemDetail.reward}}">
+								<p>
+									<strong>Sticker</strong>
+									{{vm.itemDetail.name_sticker}}
+								</p>
+							</div>
+							<div style="clear:both;"></div>
+						</div>
+					</div>
+					<div class="share" ng-if="vm.itemDetail.percent===100">
+						<ciayo translate="$share.to:">Share to:</ciayo> &nbsp;
+						<i class="ci-facebook s-24" ng-click="vm.shareFB(vm.itemDetail.id_achievement,vm.itemDetail.id)" ng-class="vm.isFB?'-active':''"></i> 
+						<!--<i class="ci-twitter s-24"></i>-->
+					</div>
+				</div>
+			</div>
+			<div class="c-achv-pop-update" ng-show="vm.itemDetail.percent==100">
+				<ciayo translate="$updated.on">Updated on</ciayo> {{vm.itemDetail.date_get}}
+			</div>
+			
+		</div>
+			<div class="c-achv-pop-progress" ng-if="vm.threshold.length>1">
+				<h4><ciayo translate="$achieve.em.all">Achieve â€˜em all:</ciayo></h4>
+				<div class="c-achv-evo-wrapper">
+					<ul>
+						<li ng-repeat="item in vm.threshold" ng-class="vm.itemDetail.id == item.id?'-current':''" ng-click="vm.viewDetail(item.id)"><img ng-src="{{ item.image }}"/>
+						<canvas data-pct-start="0" data-pct-end="{{ ((parseInt(vm.itemDetail.achievement.count)/parseInt(item.value))*100).toFixed(2) }}" data-radius="50" class="c" width="100" height="100" achievement-item></canvas>
+						</li>
+					</ul>
+				</div>
+			</div>
+	</div>
+	</div>
+	</div>
+</div>

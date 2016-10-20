@@ -1,0 +1,781 @@
+.c-friend-connection {
+  width: 442px;
+  height: 100px;
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+  float: left;
+  margin-bottom: 16px;
+  background: #F8F8F8;
+  position: relative;
+}
+
+.c-friend-connection .frame-hidden{
+
+}
+
+.c-friend-connection .frame{
+  width: 442px;
+  height: 100px;
+  
+  border-radius: 4px;
+  float: left;
+  margin-bottom: 16px;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.c-friend-connection-hidden {
+  width: 442px;
+  height: 100px;
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+  float: left;
+  margin-bottom: 16px;
+  background: #F8F8F8;
+  position: absolute;
+}
+
+.c-friend-connection:nth-child(odd) {
+  margin-right: 20px;
+}
+
+.c-friend-connection .photo-profile {
+  width: 100px;
+  height: 100px;
+  float: left;
+  background: #91DCE8;
+  overflow: hidden;
+}
+
+.c-friend-connection .photo-profile img {
+  width: 370px;
+  height: 264.2px;
+  position: relative;
+  top: -25px;
+  left: -135px;
+}
+
+.c-friend-connection .profile {
+  width: 270px;
+  height: 100px;
+  float: left;
+  padding-left: 16px;
+  padding-top: 12px;
+}
+
+.c-friend-connection .profile .nickname {
+  font-size: 18px;
+  color: #333;
+  font-weight: bold;
+}
+
+.c-friend-connection .profile .fullname {
+  font-size: 14px;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.c-friend-connection .profile .gender {
+  height: 20px;
+  color: #666;
+  line-height: 20px;
+  font-size: 12px;
+}
+
+.c-friend-connection .profile .gender .icon-gender {
+  font-size: 12px;
+  height: 20px;
+  line-height: 18px;
+}
+
+.c-friend-connection .profile .gender img {
+  margin-top: 5px;
+}
+
+.c-friend-connection .profile .mutual-friend {
+  color: #02679E;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.c-friend-connection .button-action {
+  width: 50px;
+  height: 100px;
+  float: right;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+}
+
+.c-friend-connection .button-action img {
+  width: 24px;
+  height: 24px;
+  margin-left: auto;
+  margin-right: auto;
+  top: 36px;
+  position: relative;
+}
+
+.c-friend-connection .action {
+  width: 322px;
+  height: 100px;
+  margin-bottom: 16px;
+  background: #F8F8F8;
+  position: absolute;
+  right: -442px;
+  transition: right 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+  padding-right: 20px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.c-friend-connection .action .close-button {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 36px;
+  left: 304px;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid #999;
+  border-radius: 50%;
+  outline: none;
+  color: #999;
+  font-size: 9px;
+  line-height: 18px;
+  padding-left: 0px;
+}
+
+.c-friend-connection .action .icon-group {
+  width: 100px;
+  height: 100px;
+  float: left;
+  text-align: center;
+  padding-top: 22px;
+}
+
+.c-friend-connection .icon-response{
+  width: 110px;
+  height: 40px;
+  background: #f8f8f8;
+  position: absolute;
+  left: 200px;  
+  top: 15px;
+  z-index: 9999;
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+  margin-left: 15px;
+}
+
+.c-friend-connection .icon-response .item{ 
+  width: 28px;
+  height: 28px;
+  margin-right: auto;
+  margin-left: auto;
+  float: left;
+  border: 1px solid #455C65;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+  line-height: 28px;
+  text-align: center; 
+  margin-left: 4px;
+  margin-top: 8px;
+}
+
+.c-friend-connection .icon-response_fr{
+  width: 110px;
+  height: 80px;
+  background: #f8f8f8;
+  position: absolute;
+  left: 95px;  
+  top: 15px;
+  z-index: 9999;
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.c-friend-connection .icon-response_fr .ci-close
+ {
+  width: 12px;
+  height: 13px;
+  position: absolute;
+  margin-left: 0px;
+  margin-top: 0px;
+  color: #EE4881;
+  margin-left: 8px;
+  font-size: 16px;
+ }
+
+.c-friend-connection .icon-response_fr .item{ 
+  width: 30px;
+  height: 30px;
+  margin-right: auto;
+  margin-left: auto;
+  cursor: pointer;
+  outline: none;
+  line-height: 30px;
+  text-align: center; 
+  margin-top: 7px;
+}
+
+.c-friend-connection .icon-response_fr .item img{
+  width: 100%;
+}
+
+.c-friend-connection .icon-response_fr .text{
+  color:#666;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.c-friend-connection .icon-response .item md-icon{
+  text-align: center;
+  padding-left: 1px;
+} 
+
+.c-friend-connection .icon-response .item:first-child{
+  display: none;
+} 
+
+.c-friend-connection .icon-response .item:hover{ 
+  background: #f2f2f2 
+}
+
+.c-friend-connection .icon-response .item .icon{
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.c-friend-connection .icon-response .item:first-child{ 
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.c-friend-connection .action .icon-group .icon,
+.c-friend-connection .action .icon-group .icon_action
+ {
+  width: 30px;
+  height: 30px;
+  margin-right: auto;
+  margin-left: auto;
+  outline: none;
+  cursor: pointer;
+}
+
+.c-friend-connection .action .icon-group .icon_action .ci-check-3
+ {
+  width: 12px;
+  height: 13px;
+  position: absolute;
+  margin-left: 24px;
+  margin-top: -5px;
+  color: #00A14E;
+ }
+
+ .c-friend-connection .action .icon-group .icon .ci-close
+ {
+  width: 12px;
+  height: 13px;
+  position: absolute;
+  margin-left: 24px;
+  margin-top: -5px;
+  color: #EE4881;
+ }
+
+
+
+.c-friend-connection .action .icon-group .icon img,
+.c-friend-connection .action .icon-group .icon_action img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.c-friend-connection .action .icon-group .name,
+.c-friend-connection .action .icon-group .name_action {
+  height: 20px;
+  color: #666666;
+  font-size: 14px;
+  margin-top: 8px;
+  outline: none;
+}
+
+.c-friend-connection .action .icon-group .active{
+  cursor: pointer;
+  outline: none;
+}
+
+
+
+.open .action {
+  right: 0px;
+}
+
+.icon-group.tengah .ci-check-3{
+  display: block;
+}
+.icon-group.tengah .ci-close{
+  display: none;
+}
+.icon-group.tengah:hover .ci-close{
+  display: block;
+  width: 12px;
+  height: 13px;
+  position: absolute;
+  margin-top: -5px;
+  color: #EE4881;
+  margin-left: 24px;
+  font-size: 16px;
+
+}
+.icon-group.tengah:hover .ci-check-3{
+  display: none;
+}
+
+.icon-group.tengah .name_action .title1{
+  display: inline;
+
+}
+
+.icon-group.tengah .name_action .title2{
+  display: none;
+}
+
+.icon-group.tengah:hover .name_action .title1{
+  display: none;
+  cursor: pointer;
+}
+
+.icon-group.tengah:hover .name_action .title2{
+  display: inline;
+  cursor: pointer;
+  outline: none;
+}
+
+
+.icon-group.tengah_follow .ci-check-3{
+  display: block;
+}
+.icon-group.tengah_follow .ci-close{
+  display: none;
+}
+.icon-group.tengah_follow:hover .ci-close{
+  display: block;
+  width: 12px;
+  height: 13px;
+  position: absolute;
+  margin-top: -5px;
+  color: #EE4881;
+  margin-left: 24px;
+  font-size: 16px;
+
+}
+.icon-group.tengah_follow:hover .ci-check-3{
+  display: none;
+}
+
+.icon-group.tengah_follow .name_action .title1{
+  display: inline;
+
+}
+
+.icon-group.tengah_follow .name_action .title2{
+  display: none;
+}
+
+.icon-group.tengah_follow:hover .name_action .title1{
+  display: none;
+  cursor: pointer;
+}
+
+.icon-group.tengah_follow:hover .name_action .title2{
+  display: inline;
+  cursor: pointer;
+  outline: none;
+}
+
+.c-friend-connection-timeline {
+  width: 100%;
+  height: 100px;
+  position: relative;
+}
+
+.c-friend-connection-timeline .frame{
+  width: 442px;
+  height: 100px;
+  
+  border-radius: 4px;
+  float: left;
+  margin-bottom: 16px;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.c-friend-connection-timeline .action {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 16px;
+  background: #F8F8F8;
+  transition: right 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  margin-top: 20px;
+}
+
+.c-friend-connection-timeline .action .icon-group {
+  width: 120px;
+  height: 90px;
+  float: left;
+  text-align: center;
+  padding-top: 30px;
+}
+
+.c-friend-connection-timeline .action .icon-group:active {
+  background: #D2EDF9;
+  border-radius: 50%;
+}
+
+.c-friend-connection-timeline .icon-response{
+  width: 110px;
+  height: 40px;
+  background: #f8f8f8;
+  position: absolute;
+  left: 130px;  
+  top: 20px;
+  z-index: 9999;
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+  margin-left: 15px;
+}
+
+.c-friend-connection-timeline .icon-response .item{ 
+  width: 28px;
+  height: 28px;
+  margin-right: auto;
+  margin-left: auto;
+  float: left;
+  border: 1px solid #455C65;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+  line-height: 28px;
+  text-align: center; 
+  margin-left: 4px;
+  margin-top: 8px;
+}
+
+.c-friend-connection-timeline .icon-response_fr{
+  width: 110px;
+  height: 80px;
+  background: #f8f8f8;
+  position: absolute;
+  left: 95px;  
+  top: 15px;
+  z-index: 9999;
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.c-friend-connection-timeline .icon-response_fr .ci-close
+ {
+  width: 12px;
+  height: 13px;
+  position: absolute;
+  margin-left: 0px;
+  margin-top: 0px;
+  color: #EE4881;
+  margin-left: 8px;
+  font-size: 16px;
+ }
+
+.c-friend-connection-timeline .icon-response_fr .item{ 
+  width: 30px;
+  height: 30px;
+  margin-right: auto;
+  margin-left: auto;
+  cursor: pointer;
+  outline: none;
+  line-height: 30px;
+  text-align: center; 
+  margin-top: 7px;
+}
+
+.c-friend-connection-timeline .icon-response_fr .item img{
+  width: 100%;
+}
+
+.c-friend-connection-timeline .icon-response_fr .text{
+  color:#666;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.c-friend-connection-timeline .icon-response .item md-icon{
+  text-align: center;
+  padding-left: 1px;
+} 
+
+.c-friend-connection-timeline .icon-response .item:first-child{
+  display: none;
+} 
+
+.c-friend-connection-timeline .icon-response .item:hover{ 
+  background: #f2f2f2 
+}
+
+.c-friend-connection-timeline .icon-response .item .icon{
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.c-friend-connection-timeline .icon-response .item:first-child{ 
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.c-friend-connection-timeline .action .icon-group .icon,
+.c-friend-connection-timeline .action .icon-group .icon_action
+ {
+  width: 30px;
+  height: 30px;
+  margin-right: auto;
+  margin-left: auto;
+  outline: none;
+  cursor: pointer;
+}
+
+.c-friend-connection-timeline .action .icon-group .icon_action .ci-check-3
+ {
+  width: 12px;
+  height: 13px;
+  position: absolute;
+  margin-left: 24px;
+  margin-top: -5px;
+  color: #00A14E;
+ }
+
+ .c-friend-connection-timeline .action .icon-group .icon .ci-close
+ {
+  width: 12px;
+  height: 13px;
+  position: absolute;
+  margin-left: 24px;
+  margin-top: -5px;
+  color: #EE4881;
+ }
+
+
+
+.c-friend-connection-timeline .action .icon-group .icon img,
+.c-friend-connection-timeline .action .icon-group .icon_action img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.c-friend-connection-timeline .action .icon-group .name,
+.c-friend-connection-timeline .action .icon-group .name_action {
+  height: 20px;
+  color: #666666;
+  font-size: 14px;
+  margin-top: 8px;
+  outline: none;
+}
+
+.c-friend-connection-timeline .action .icon-group .active{
+  cursor: pointer;
+  outline: none;
+}
+
+.c-friend-connection-profile {
+  width: 100%;
+  position: relative;
+}
+
+.c-friend-connection-profile .frame{
+  width: 442px;
+  height: 100px;
+  
+  border-radius: 4px;
+  float: left;
+  margin-bottom: 16px;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.c-friend-connection-profile .action {
+  width: 100%;
+  transition: right 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.c-friend-connection-profile .action .icon-group {
+  width: 120px;
+  float: left;
+  text-align: center;
+  padding-top: 12px;
+}
+
+.c-friend-connection-profile .icon-response{
+  width: 110px;
+  background: #f8f8f8;
+  position: absolute;
+  left: 10px;  
+  top: 5px;
+  z-index: 9999;
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+  margin-left: 15px;
+}
+
+.c-friend-connection-profile .icon-response .item{ 
+  width: 28px;
+  height: 28px;
+  margin-right: auto;
+  margin-left: auto;
+  float: left;
+  border: 1px solid #455C65;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+  line-height: 28px;
+  text-align: center; 
+  margin-left: 4px;
+  margin-top: 8px;
+}
+
+.c-friend-connection-profile .icon-response_fr{
+  width: 110px;
+  height: 80px;
+  background: #f8f8f8;
+  position: absolute;
+  left: 95px;  
+  top: 15px;
+  z-index: 9999;
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.c-friend-connection-profile .icon-response_fr .ci-close
+ {
+  width: 12px;
+  height: 13px;
+  position: absolute;
+  margin-left: 0px;
+  margin-top: 0px;
+  color: #EE4881;
+  margin-left: 8px;
+  font-size: 16px;
+ }
+
+.c-friend-connection-profile .icon-response_fr .item{ 
+  width: 30px;
+  height: 30px;
+  margin-right: auto;
+  margin-left: auto;
+  cursor: pointer;
+  outline: none;
+  line-height: 30px;
+  text-align: center; 
+  margin-top: 7px;
+}
+
+.c-friend-connection-profile .icon-response_fr .item img{
+  width: 100%;
+}
+
+.c-friend-connection-profile .icon-response_fr .text{
+  color:#666;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.c-friend-connection-profile .icon-response .item md-icon{
+  text-align: center;
+  padding-left: 1px;
+} 
+
+.c-friend-connection-profile .icon-response .item:first-child{
+  display: none;
+} 
+
+.c-friend-connection-profile .icon-response .item:hover{ 
+  background: #f2f2f2 
+}
+
+.c-friend-connection-profile .icon-response .item .icon{
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.c-friend-connection-profile .icon-response .item:first-child{ 
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.c-friend-connection-profile .action .icon-group .icon,
+.c-friend-connection-profile .action .icon-group .icon_action
+ {
+  width: 30px;
+  height: 30px;
+  margin-right: auto;
+  margin-left: auto;
+  outline: none;
+  cursor: pointer;
+}
+
+.c-friend-connection-profile .action .icon-group .icon_action .ci-check-3
+ {
+  width: 12px;
+  height: 13px;
+  position: absolute;
+  margin-left: 24px;
+  margin-top: -5px;
+  color: #00A14E;
+ }
+
+ .c-friend-connection-profile .action .icon-group .icon .ci-close
+ {
+  width: 12px;
+  height: 13px;
+  position: absolute;
+  margin-left: 24px;
+  margin-top: -5px;
+  color: #EE4881;
+ }
+
+.c-friend-connection-profile .action .icon-group .icon img,
+.c-friend-connection-profile .action .icon-group .icon_action img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.c-friend-connection-profile .action .icon-group .name,
+.c-friend-connection-profile .action .icon-group .name_action {
+  color: #666666;
+  font-size: 14px;
+  margin-top: 8px;
+  outline: none;
+}
+
+.c-friend-connection-profile .action .icon-group .active{
+  cursor: pointer;
+  outline: none;
+}
+
+.c-button-disabled{
+  pointer-events: none;
+  opacity: 0.3;
+}

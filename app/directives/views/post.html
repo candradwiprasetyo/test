@@ -1,0 +1,304 @@
+<div class="c-tml-row -post">
+	<div flex="none" class="c-tml-datetime" ng-if="time">
+		<div class="_time" ng-class="('$now'|translate)!='Now'?'-small':''"><ciayo translate="$now">Now</ciayo></div>
+		<div class="_date">{{me.cur_time |date:'d MMM yyyy'}}</div>
+	</div>
+	<div style="height: auto; min-height: 100px" class="c-tml-pc {{time?'':'on-profile'}}" data-name="search-activity">
+		<div class="c-tml-puc" id="c-tmp-pct-input">
+			<label class="c-tml-lpct" for="labelpost" ng-hide="me.post.activity_id || (me.prop.activity.isActive && me.activity.list.length>0)"></label>
+			<div class="c-tml-pct">
+				<!--<div id="labelpost" placeholder="{{'$what.areyou.doing?' | translate}}" class="post-text" type="text" name="inpt-srch-act" maxlength="150" ng-model="me.prop.activity.text" ng-keydown="me.keypressActivity($event)" ng-change="me.searchActivity()" ng-model-options="{debounce: 150}" ng-set-focus="me.prop.activity.isFocus" ng-readonly="me.post.activity_id" ng-click="me.prop.activity.text!='' && me.post.activity_id==null?me.searchActivity():''" contenteditable="true"></div>-->
+				<input id="labelpost" placeholder="{{'$what.areyou.doing?' | translate}}" class="post-text" type="text" name="inpt-srch-act" maxlength="150" ng-model="me.prop.activity.text" ng-keydown="me.keypressActivity($event)" ng-change="me.searchActivity()" ng-model-options="{debounce: 150}" ng-set-focus="me.prop.activity.isFocus" ng-readonly="me.post.activity_id" ng-click="me.prop.activity.text!='' && me.post.activity_id==null?me.searchActivity(1):''"/>
+
+				<span ng-if="me.loading_activity" class="c-tml-cb"><img class="search-loader" src="assets/img/loader-16.gif"></span>
+				<span ng-show="me.prop.activity.text && !me.loading_activity" ng-click="me.resetActivity();me.initPost();" class="c-tml-cb"><i class="ci-delete-2"></i></span>
+			</div>
+			<!--search activity list-->
+			<div ng-show="me.prop.activity.isActive && me.activity.list.length>0" class="c-tml-alc" id="listActivity" click-outside="me.activity.list=[];" outside-if-not="c-tmp-pct-input">
+				<ul>
+					<li ng-repeat="list in me.activity.list" ng-class="{selected : me.activity.selectedIndex===$index,_new:list.activity_new==true}" ng-mouseover="me.activity.selectedIndex=$index" ng-click="me.selectActivity($index)" id="#activity_{{$index}}"  data-name="activity_{{$index}}">
+						<div class="c-tml-ai"><img ng-src="{{ list.activity_thumbnail }}" alt="{{ list.activity_name }}"/></div>
+						<div class="c-tml-at"><span ng-bind="list.activity_name "></span></div>
+						<div class="c-tml-al"><ciayo translate="$new"></ciayo></div>
+					</li>
+				</ul>
+			</div>
+			<!--activity-->
+			<div id="posting-activity" ng-show="me.post.activity_id" ng-class="{{ me.activity.waiting?'loading':''}}">
+				<div class="c-tml-cob">
+					<div class="c-tml-cib" data-name="input-caption">
+						<input type="text" name="pst-captions" placeholder="{{'$write.your.caption' | translate}}" ng-model="me.post.caption" style="box-sizing:border-box" id="txt-post-act" ng-set-focus="me.prop.caption.isFocus" limit-to="50"/>
+						<span class="_counter" ng-bind="me.post.caption.length" ng-if="me.post.caption.length>0"></span>
+					</div>
+					<div ng-class="me.post.bubble==true ? 'c-tml-cobb selected' : 'c-tml-cobb'" ng-click="me.post.bubble=true"><i class="ci-bubble-caption"></i>
+					</div>
+					<div ng-class="me.post.bubble==false ? 'c-tml-cobb selected' : 'c-tml-cobb'" ng-click="me.post.bubble=false"><i class="ci-box-caption"></i>
+					</div>
+				</div>
+				<div class="c-clear"></div>
+				<!--MOOD-->
+				<div class="c-tml-mab" data-name="select-mood">
+					<div class="c-tml-mac" ng-repeat="mood in me.mood.list" ng-click="me.selectMood($index)" ng-class="$index == me.mood.selectedIndex ? ' selected' : ''">
+						<div class="c-tml-mai"><i ng-show="mood.mood_id==2" class="ci-mood-happy"></i><i ng-show="mood.mood_id==1" class="ci-mood-normal"></i><i ng-show="mood.mood_id==3" class="ci-mood-sad"></i></div>
+						<div class="c-tml-mad">{{ mood.name }}</div>
+					</div>
+				</div>
+				<!--Parallax-->
+				<div class="c-tml-acb">
+					<div class="c-tml-act">
+						<!--img(ng-src='{{ selectedAct.img[moodSelected] }}', alt='{{ selectedAct.name }}')-->
+						<parallax ng-repeat=" plx in me.activity_detail" plx="plx"></parallax>
+						<div ng-if="me.loading_detail" class="parallax-loading" layout="column" layout-align="center center"><md-progress-circular md-diameter="150"></md-progress-circular></div>
+						<card-activity-caption ng-if="me.post.bubble==false && (me.post.caption!=''&& me.post.caption!=null)">
+							<span ng-bind="me.post.caption"></span>
+						</card-activity-caption>
+					</div>
+					<!--ITEM-->
+					<div class="row">
+						<div ng-repeat="item in me.item.selectedItem" class="c-tml-aitem" data-name="item-{{$index}}">
+							<!--Button Edit-->
+							<div ng-hide="!item.item_name" layout="column" layout-align="center center" ng-click="me.item.openEdit($index)" class="c-tml-items"><img ng-src="{{ item.item_image_thumbnail }}" alt="{{ item.item_name }}"/>
+								<div class="edit"><i class="ci-edit"></i>edit
+								</div>
+							</div>
+							<!--Item +-->
+							<div ng-hide="item.item_image_thumbnail" ng-click="me.item.open($index);" class="c-tml-titem">
+								<div class="item-icon"><i class="ci-add-item"></i>
+								</div>
+								<div class="item-name">Item {{$index+1}}</div>
+							</div>
+							<!--find edit-->
+							<div layout="column" ng-class="me.item.edit==$index?'active':''" class="c-tml-items-popup" ng-show="me.item.edit==$index">
+								<div ng-click="me.item.edit=-1" class="items-close"><i class="ci-login-page-down-arrow-16"></i>
+								</div>
+								<div flex="none" class="items-wrp">
+									<div class="img"><img ng-src="{{ item.item_image_detail }}" alt="{{ item.item_name }}" width="200px"/></div>
+									<div class="name">{{item.item_name}}</div>
+									<div class="action">
+										<div ng-click="me.item.open($index)" class="c-post-edit-replace"><i class="ci-edit"></i><ciayo translate="$replace"></ciayo>
+										</div>
+										<div ng-click="me.item.remove(item)" class="c-post-edit-delete"><i class="ci-trash"></i><ciayo translate="$remove"></ciayo>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--find add-->
+							<div class="c-tml-titem-popup" layout="column" ng-class="me.item.position==$index?'active':''" ng-show="me.item.position==$index">
+								<div ng-click="me.item.position=-1" class="aitem-close"><i class="ci-login-page-down-arrow-16"></i>
+								</div>
+								<div flex="none" class="head">Add Item {{$index+1}}</div>
+								<!--<div flex="none" layout="row" class="c-tml-sic">
+									<div class="c-tml-sbtn"><i class="ci-search"></i></div>
+									<div flex="flex" class="c-tml-sitz">
+										<input type="text" name="pst-sic" placeholder="{{'$search.items' | translate}}" ng-model="me.prop.item.text" ng-model-options="{debounce: 150}" ng-keydown="me.keypressItem($event,$index)" ng-change="me.searchItem($index)" id="txt-post-item-{{$index}}" ng-set-focus="me.prop.item.isFocus==$index"/>
+									</div>
+									<div ng-hide="!itemSelected.img" ng-click="itemSelected=null" flex="none" class="c-tml-cb10"></div>
+								</div>-->
+								<div class="c-tml-sic">
+									<i class="ci-search"></i>
+									<div class="input-wrp">
+										<input type="text" name="pst-sic" placeholder="{{'$search.items' | translate}}" ng-model="me.prop.item.text" ng-model-options="{debounce: 150}" ng-keydown="me.keypressItem($event,$index)" ng-change="me.searchItem($index)" id="txt-post-item-{{$index}}" ng-set-focus="me.prop.item.isFocus==$index"/>
+									</div>
+									<i ng-hide="!itemSelected.img" ng-click="itemSelected=null" class="ci-delete-2"></i>
+								</div>
+								<div ng-hide="!me.prop.item.text" class="c-tml-ilc">
+									<ul>
+										<li ng-repeat="item in me.item.search_list.list" ng-class="{selected : me.item.search_list.selectedIndex===$index,_new:item.item_new==true}" ng-mouseover="me.item.search_list.setSelectedIndex($index,'.c-tml-ilc',60)" ng-click="me.selectItem($parent.$index)">
+											<div class="c-tml-iiol"><img ng-src="{{ item.item_image_thumbnail }}" alt="{{ item.item_name }}"/></div>
+											<div ng-class="inListItemSelected(item) ? 'c-tml-inol selected' : 'c-tml-inol'">{{ item.item_name }}</div>
+											<div class="_new-label">New</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!--WITH-->
+						<div class="c-tml-aitem" data-name="with-user">
+							<!--edit-->
+							<div ng-hide="me.post.with_users.length===0" ng-click="me.with.open()" class="c-tml-items-with">
+								<div class="with-text"><ciayo translate="$with">with</ciayo></div>
+								<div ng-bind="me.post.with_users.length" class="with-length"></div>
+								<div class="with-icon"><i class="ci-with"></i>
+								</div>
+								<div class="edit"><i class="ci-edit"></i>edit
+								</div>
+							</div>
+							<!--add-->
+							<div ng-hide="me.post.with_users.length" ng-click="me.with.open();me.setFocus('with',$index);" class="c-tml-titem">
+								<div class="with-icon"><i class="ci-with"></i>
+								</div>
+								<div class="with-text"><ciayo translate="$with">with</ciayo>?</div>
+							</div>
+							<!--modal-->
+							<div layout="column" ng-class="me.with.isActive?'c-tml-titem-popup active':'c-tml-titem-popup'" ng-show="me.with.isActive">
+								<div ng-click="me.with.isActive=false" class="aitem-close"><i class="ci-login-page-down-arrow-16"></i>
+								</div>
+								<div flex="none" class="head"><ciayo translate="$who.with.you?"></ciayo></div>
+								<!--<div layout="row" layout-wrap="layout-wrap" flex="none" class="c-tml-sic with">
+									<div class="c-tml-sbtn"><i class="ci-search"></i>
+									</div>
+									<div ng-repeat="user in me.post.with_users" class="c-tml-cfnc">
+										<div class="c-tml-cfn">{{ user.username }}<span ng-click="me.removeWith(user);" class="c-tml-frb"><i class="ci-delete-2 s-8"></i></span></div>
+									</div>
+									<div flex="flex" class="c-tml-sitz">
+										<input type="search" name="pst-sfc" placeholder="{{'$tag.someone' | translate}}" ng-model="me.with.text" ng-keydown="me.keypressWith($event,$index)" ng-change="me.searchWith()" ng-set-focus="me.prop.with.isFocus" class="c-tml-input-with"/>
+									</div>
+									.c-tml-cb10(ng-hide='listFriendSelected.length===0', ng-click='resetFriend()' flex='2')
+									<div class="c-clear"></div>
+								</div>-->
+								<div class="c-tml-sic">
+									<i class="ci-search"></i>
+									<div ng-repeat="user in me.post.with_users" class="tag" ng-click="me.removeWith(user);">{{ user.username }}<i class="ci-delete-2 s-8"></i></div>
+									<div class="input-wrp">
+										<input type="search" name="pst-sfc" placeholder="{{'$tag.someone' | translate}}" ng-model="me.with.text" ng-keydown="me.keypressWith($event,$index)" ng-model-options="{debounce: 150}" ng-change="me.searchWith()" ng-set-focus="me.prop.with.isFocus"/>
+									</div>
+									<div class="c-clear"></div>
+									<i ng-hide="me.with.text==''||me.post.with_users.length==0" ng-click="me.with.text='';me.post.with_users.length=[]" class="ci-delete-2"></i>
+								</div>
+								<div ng-hide="!me.with.text" flex="flex" class="c-tml-flc">
+									<ul>
+										<li ng-repeat="friend in me.with.search_list.list" ng-class="{selected : me.with.search_list.selectedIndex===$index}" ng-mouseover="me.with.search_list.selectedIndex=$index" ng-click="me.selectWith($index)">
+											<div class="c-tml-fat"><div class="c-pp -s30" style="background-image: url({{ friend.user_avatar_thumbnail.avatar }});background-color:{{friend.user_avatar_thumbnail.avatar_background}}"></div></div>
+											<div ng-class="inListFriendSelected(friend) ? 'c-tml-fnol selected' : 'c-tml-fnol'">{{ friend.user_display_name }}</div>
+											<div ng-hide="!inListFriendSelected(friend)" class="c-tml-cli12"></div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!--PLACE-->
+						<div class="c-tml-aitem" data-name="add-place">
+							<!--edit-->
+							<div ng-hide="!me.post.place_id" ng-click="me.place.open()" class="c-tml-items-place">
+								<div class="with-icon"><i class="ci-edit"></i>
+								</div>
+								<div class="with-img"><img ng-src="{{ me.prop.place.selected.place_thumbnail }}" alt="{{ me.prop.place.selected.name }}"/></div>
+								<div class="edit"><i class="ci-edit"></i>edit
+								</div>
+							</div>
+							<!--add-->
+							<div ng-hide="me.prop.place.selected.place_thumbnail" ng-click="me.place.open()" class="c-tml-titem">
+								<div class="place-icon"><i class="ci-trend-place"></i>
+								</div>
+								<div class="place-text">place</div>
+							</div>
+							<!--modal-->
+							<div layout="column" ng-class="me.place.isActive?'c-tml-titem-popup active':'c-tml-titem-popup'" ng-show="me.place.isActive">
+								<div ng-hide="me.prop.place.selected.place_thumbnail">
+									<div ng-click="me.place.isActive=false" class="aitem-close"><i class="ci-login-page-down-arrow-16"></i></div>
+									<div flex="none" class="head"><ciayo translate="$where.are.you?">Where are you?</ciayo></div>
+									<!--<div flex="none" layout="row" class="c-tml-sic">
+										<div class="c-tml-sbtn"><i class="ci-search"></i>
+										</div>
+										<div flex="flex" class="c-tml-sitz">
+											<input type="text" name="pst-spc" placeholder="{{'$where.are.you?' | translate}}" ng-model="me.place.text" ng-keydown="me.keypressPlace($event,$index)" ng-change="me.searchPlace()" ng-model-options="{debounce: 150}"/>
+										</div>
+										<div ng-hide="!me.prop.place.selected.place_thumbnail" ng-click="me.post.place_id=null" flex="none" class="c-tml-cb10"></div>
+									</div>-->
+									<div class="c-tml-sic">
+										<i class="ci-search"></i>
+										<div class="input-wrp">
+											<input type="text" name="pst-spc" placeholder="{{'$where.are.you?' | translate}}" ng-model="me.place.text" ng-keydown="me.keypressPlace($event,$index)" ng-change="me.searchPlace()" ng-model-options="{debounce: 150}"/>
+										</div>
+										<i ng-hide="me.place.text==''" class="ci-delete-2" ng-click="me.place.text='';me.prop.place.selected=null;me.post.place_id=null"></i>
+									</div>
+									<div ng-hide="!me.place.text" flex="none" class="c-tml-ilc">
+										<ul>
+											<li class="title" style="display:none">Suggestion Places</li>
+											<li ng-repeat="place in me.place.search_list.list" ng-class="{selected : me.place.search_list.selectedIndex===$index,_new:place.place_new==true}" ng-mouseover="me.place.search_list.selectedIndex=$index" ng-click="me.selectPlace(place)">
+												<div class="c-tml-iiol"><img ng-src="{{ place.place_main_image }}" alt="{{ place.name }}"/></div>
+												<div class="c-tml-inol">{{ place.name }}</div>
+												<div class="c-tml-ptype">{{ place.type }}</div>
+												<div class="_new-label">New</div>
+											</li>
+										</ul>
+										
+									</div>
+									<div flex="none" class="c-tml-ilc" ng-if="me.nearby_place.length>0 && me.place.text==''">
+										<ul>
+											<li class="title">Suggestion Places</li>
+											<li ng-repeat="place in me.nearby_place" ng-click="me.selectPlace(place)">
+												<div class="c-tml-iiol"><img ng-src="{{ place.place_main_image }}" alt="{{ place.name }}"/></div>
+												<div class="c-tml-inol">{{ place.name }}</div>
+												<div class="c-tml-ptype">{{ place.type }}</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+								<div ng-show="me.prop.place.selected.place_thumbnail" class="c-tml-pst-plc">
+									<div ng-click="me.place.isActive=false" class="aitem-close"><i class="ci-login-page-down-arrow-16"></i></div>
+									<div flex="none" class="head">Place</div>
+									<div class="place">
+										<img ng-src="{{me.prop.place.selected.place_main_image}}" alt="">
+										<div class="info">
+											<div class="info-name" ng-bind="me.prop.place.selected.name"></div>
+											<div class="info-address" ng-bind="me.prop.place.selected.address"></div>
+										</div>
+										<i ng-hide="me.place.text==''" class="ci-delete-2" ng-click="me.place.text='';me.prop.place.selected=null;me.post.place_id=null;me.place.search_list.list=[]"></i>
+									</div>
+									<div class="map">
+										<img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{me.prop.place.selected.location.lat}},{{me.prop.place.selected.location.lon}}&zoom=15&size=436x312&key=AIzaSyAp_OxlQ8w6fayEK51b-6mpupMi-wbdOwc" class="map-image"/>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="c-tml-aitem-background"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Bottom-->
+		<div class="c-tml-pbc">
+			<div ng-click="me.category.toggle()" ng-class="me.category.isActive ? 'c-tml-ptsb' : 'c-tml-ptsb'" md-ink-ripple="#000000" class="c-tml-ptsb">
+			<span class="c-tml-pi"><i class="ci-{{me.category.list[me.category.selectedIndex].icon}} s-16"></i></span><span id="c-tml-pt" class="c-tml-pt" ng-bind="(me.category.list[me.category.selectedIndex].name|translate)"></span><span class="c-tml-ab7"><i class="ci-dropdown s-12"></i></span>
+				
+			</div>
+				<div id="c-tml-ptlsc" ng-class="me.category.isActive ? 'c-tml-ptlsc active' : 'c-tml-ptlsc'" click-outside="me.category.isActive=false" outside-if-not="c-tml-ptsb">
+					<div class="c-tml-ptsrc"><span class="c-tml-ptstt"><ciayo translate="$who.see.this?">Who should see this?</ciayo></span></div>
+					<div class="c-tml-pst-set">
+						<label md-ink-ripple="#000000" ng-repeat="opt in me.category.list" ng-click="me.selectCategory($index)" class="_radio">
+							<input type="radio" name="radio-post" ng-model="me.category.selectedIndex" ng-value="$index"/><i class="ci-{{opt.icon}}"></i><span ng-bind="(opt.name|translate)"></span>
+						</label>
+					</div>
+				</div>
+			<div class="c-tml-pb">
+				<md-button ng-click="me.createPost();" name="pst-bttn" class="md-raised md-primary post-btn"><ciayo translate="$post">post</ciayo></md-button>
+			</div>
+		</div>
+	</div>
+		<div class="c-tml-as">
+			<div class="kepobox">
+				<img ng-src="{{::me.kepobox_image}}">
+<!--
+				<img class="morning" src="assets/img/kepobox/kepobox_morning.jpg">
+				<img class="day" src="assets/img/kepobox/kepobox_day.jpg">
+				<img class="afternoon" src="assets/img/kepobox/kepobox_afternoon.jpg">
+				<img class="night" src="assets/img/kepobox/kepobox_night.jpg">
+-->
+			</div>
+		</div>
+	<div class="c-clear"></div>
+	
+<style>
+	.c-tml-as {position: relative;background: #eee}
+	.kepobox img {
+		position: absolute;
+		top:0;
+		left:0;
+		width: 397px;
+/*		display: none;*/
+	}
+	#posting-activity.loading div.on-loading{
+		display: block;
+	}
+	#posting-activity div.on-loading{
+		display: none;
+		background: white;
+		margin-top: 1px;
+		width: 100%;
+		height: 100%;
+		z-index: 100;
+	}
+</style>
+</div>

@@ -1,0 +1,38 @@
+<div class="c-modal-wrapper -invite -gmail">
+	<div ng-model="hideGmail" ng-hide="me.data.hideGmail">
+		<div class="_heading">
+			<div class="_heading-text">Enter Friends email</div>
+			<div class="_heading-button" ng-click="me.close()"><i class="ci-delete-2"></i></div>
+		</div>
+		<div class="_content" ng-model="hideGmailSeach" ng-hide="me.data.hideGmailSearch">
+			<div class="item_load" ng-click="me.data.open_modal()" ng-if="me.data.load_email==false">Load Email</div>
+			<div class="fill_email" ng-show="me.data.fill_email">Please select email first</div>
+			<span ng-if="me.data.load_email==true">
+				<div class="_search">
+					<i class="ci-search s-16"></i>
+					<input type="text" class="_input" placeholder="xxx@example.com" ng-model="i_search">
+				</div>
+				<div class="_lists">
+				
+					<div class="_list" ng-repeat="email in me.data.email_list | filter:i_search">
+						<input ng-model="email.value" ng-if="email.value" type="checkbox" value="{{email.address}}" bgcolor="red" checked style="transition: initial">
+	          			<input ng-model="email.value" ng-if="!email.value" type="checkbox" value="{{email.address}}" bgcolor="red" style="transition: initial">
+	          			{{email.address}}
+					</div>
+					
+				</div>
+				<div class="_content-button"><md-button class="md-raised md-primary" ng-click="me.data.next_load()">Next</md-button></div>
+			</span>
+		</div>
+		<div class="_content" ng-show="me.data.hideGmailSearch">
+			<div class="_invited">
+
+				<div class="_invited-friend" ng-repeat="email_next in me.data.email_list_next">{{email_next.address}}</div>
+
+			</div>
+			<textarea class="_input" readonly="readonly">Hey, I’m waiting you at CIAYO. Let’s play!</textarea>
+			<div class="_content-button"><md-button class="md-raised md-primary" ng-click="me.data.sentInvitationGmail()">Send Invitation</md-button></div>
+		</div>
+	</div>
+	<div class="_content -success" ng-show="me.data.hideGmail"><i class="ci-check-1 s-10"></i>Your message has been sent</div>
+</div>

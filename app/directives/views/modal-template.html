@@ -1,0 +1,13 @@
+<div class="c-modal {{me.isOpen}} {{me.class}}">
+	<div ng-if="me.template">
+		<div class="c-modal-backdrop" toggle-modal="close" ng-click="me.close()"></div>
+		<div ng-include="me.template"></div>
+	</div>
+	<div ng-if="me.template==''">
+		<div class="c-modal-backdrop" toggle-modal="close" ng-click="me.close()"></div>
+		<div class="c-modal-wrapper c-modal-500">
+			<i class="ci-warning"></i>
+			<span>Gagal koneksi ke server</span>
+		</div>
+	</div>
+</div>

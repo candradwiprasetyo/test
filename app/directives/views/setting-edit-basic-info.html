@@ -1,0 +1,57 @@
+
+								<h1 class="c-set-right-heading"><ciayo translate="$EDIT.BASIC.INFO">EDIT BASIC INFO</ciayo></h1>
+                                <div style="float:right" ng-hide="vm.user_avatar">
+		                            <md-progress-circular md-mode="indeterminate" md-diameter="30"></md-progress-circular>
+	                            </div>
+								<div class="c-set-right-body">
+									<div class="c-set-eprof">
+										<div class="c-set-eprof-avatar">
+											<div class="c-set-eprof-avatar-img c-pp -s100" style="background-image: url({{ vm.user_avatar }}); background-color: {{vm.avatar_background}}"></div>
+											<h5><ciayo translate="$profile.picture">Profile Picture</ciayo></h5>
+											<p><ciayo translate="$edit.avatar.explanation">Penjelasan tentang edit avatar, agar user ngedit avatarnya sesuai dengan yang sesungguhnya</ciayo></p><a ui-sref="edit-avatar"><i class="ci-edit s-10"></i><ciayo translate="$edit.avatar.filter">Edit Avatar in Filter</ciayo></a>
+										</div>
+										<div class="c-set-eprof-name">
+											<h5><ciayo translate="$screen.name">Screen Name</ciayo></h5>
+											<div class="c-set-eprof-name-screen">
+													<input type="text" class="c-set-input" ng-model="vm.screen_name" ng-model-options="{ debounce: 700 }" ng-change="vm.updateScreenName($event)" placeholder="{{'$screen.name' | translate}}" /><span>(<ciayo translate="$display.as.ciayo">will display as your CIAYO’s account</ciayo>)</span>
+											</div>
+											<h5><ciayo translate="$full.name">Full Name</ciayo></h5>
+											<div class="c-set-eprof-name-full">
+												<ul>
+													<li>
+														<input type="text" class="c-set-input" ng-model="vm.first_name" placeholder="{{'$first.name' | translate}}"/>
+													</li>
+													<li>
+														<input type="text" class="c-set-input" ng-model="vm.middle_name" placeholder="{{'$middle.name' | translate}}"/>
+													</li>
+													<li>
+														<input type="text" class="c-set-input" ng-model="vm.last_name" placeholder="{{'$last.name' | translate}}"/>
+													</li>
+												</ul>
+											</div>
+										</div>
+										<div layout="row" class="c-set-eprof-date">
+											<div flex="flex">
+												<h5><ciayo translate="$place.of.birth">Place of Birth</ciayo></h5>
+												<input type="text" class="c-set-input" ng-model="vm.place_of_birth" placeholder="{{'$place.of.birth' | translate}}"/>
+											</div>
+											<div flex="none" class="_date">
+												<h5><ciayo translate="$date.of.birth">Date of Birth</ciayo></h5>
+												<input type="text" class="c-set-input" ng-model="vm.date_of_birth" placeholder="{{'$date.of.birth' | translate}}" ui-datepicker="ui-datepicker" ng-ng-blur="vm.datePickerOff()"/>
+											</div>
+										</div>
+										<div class="c-set-eprof-nationality">
+											<h5><ciayo translate="$nationality">Nationality</ciayo></h5>
+											<div class="c-dropdown">
+												<button data-toggle="dropdown"><img ng-src="{{vm.nationality_image}}" width="32" height="22"/><span ng-bind="vm.nationality">Indonesia</span><i class="ci-keyboard_arrow_down"></i>
+												</button>
+												<ul class="c-dropdown-menu list-nationality">
+													<li ng-repeat="list in vm.list_nationality | orderBy:'country_name'"> 
+                                                        <a href="javascript:void(0)" ng-click="vm.setNationality(list.country_name, list.image)" ng-if="list.phone_code && list.image"><img ng-src="{{list.image}}" width="20" height="16" style="vertical-align: middle"/> &nbsp;<span ng-bind="list.country_name"></span></a>
+                                                    </li>
+												</ul>
+											</div>
+										</div><a href="javascript:void(0)" ng-click="vm.restoreDefaultSetting()" class="c-link-underline"><ciayo translate="$restore.default.setting">Restore Default Setting</ciayo></a>
+									</div>
+								</div>
+						</div>

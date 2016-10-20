@@ -1,0 +1,69 @@
+<c-header type="setting"></c-header>
+<div class="c-animate">
+  <div class="c-wrp">
+      <div class="c-wrp-inner">
+        <div class="c-set-left">
+          <h2 class="c-set-left-heading">SETTINGS</h2>
+          <ul class="c-set-menu">
+            <li ng-class="{active: active == 'edit-profile'}">
+              <a href="javascript:void(0)" ng-click="menu('edit-profile')" md-ink-ripple="#000000">
+                <i class="ci-setting-edit-account"></i>
+                <ciayo translate="$edit.account">Edit Account</ciayo>
+              </a>
+            </li>
+            <li ng-class="{active: active == 'change-password'}">
+              <a href="javascript:void(0)" ng-click="menu('change-password')" md-ink-ripple="#000000">
+                <i class="ci-setting-change-password"></i>
+                <ciayo translate="$change.password">Change Password</ciayo>
+              </a>
+            </li>
+            <!-- <li ng-class="{active: active == 'privacy-setting'}">
+              <a href="javascript:void(0)" ng-click="menu('privacy-setting')">
+                <i class="ci-setting-privacy-setting"></i>
+                <ciayo translate="$privacy.setting">Privacy Setting</ciayo>
+              </a>
+            </li> -->
+            <li ng-class="{active: active == 'general'}">
+              <a href="javascript:void(0)" ng-click="menu('general')" md-ink-ripple="#000000">
+                <i class="ci-setting-general-setting"></i>
+                <ciayo translate="$general.settings">General Settings</ciayo>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" ng-click="vm.logout()">
+                <i class="ci-setting-logout"></i>
+                <ciayo translate="$logout">Logout</ciayo>
+              </a>
+            </li>
+          </ul>
+        </div>
+          <div class="c-set-right">
+              <c-setting></c-setting>
+          </div>
+        <div class="clear"></div>
+      </div>
+  </div>
+  <div class="c-set-footer">
+    <div class="c-footer-wrp">
+      <div class="c-footer-left">
+      <ul>
+        <li><a>2016 CIAYO. <ciayo translate="$all.rights.reserved">All rights reserved</ciayo></a></li>
+      </ul>
+      </div>
+      <div class="c-footer-right">
+      <ul>
+        <li>
+          <a ui-sref="about-us"><ciayo translate="$about.us">About Ciayo</ciayo></a></li>
+          <li>
+          <a ui-sref="privacy-and-policy"><ciayo translate="$privacy.and.policy">Privacy and Policy</ciayo></a></li>
+        <li>
+          <a ui-sref="terms-and-conditions"><ciayo translate="$terms.and.conditions">Terms</ciayo></a></li>
+        
+          
+        <li><a href="javascript:void(0)" ng-click="vm.changeLang(2)">Bahasa Indonesia</a></li>
+        <li><a href="javascript:void(0)" ng-click="vm.changeLang(1)">English (UK)</a></li>
+      </ul>
+      </div>
+    </div>
+  </div>
+</div>

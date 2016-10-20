@@ -1,0 +1,136 @@
+.c-updates {
+	._updates-wrp {
+		width: 970px;
+		padding: 50px 0;
+		margin: 0 auto;
+		box-sizing: border-box;
+		background: #f8f8f8;
+
+		._head {
+			position: relative;
+			width: 970px;
+			height: 200px;
+			background: url("../img/ciayo-updates.png");
+			background-size: cover;
+			> img {
+				position: absolute;
+				top: 40px;
+				right: 40px;
+				width: 120px;
+				height: 120px;
+			}
+		}
+		._content {
+			margin-top: 25px;
+			padding: 0 24px;
+			> ._title {
+				position: relative;
+				color: #333;
+				font-size: 20px;
+				font-weight: bold;
+				> span {
+					position: absolute;
+					right: 0;
+					color: #666;
+					font-size: 16px;
+					font-weight: normal;
+				}
+			}
+			> ._text {
+				padding: 24px 0 40px 0;
+				color: #666;
+				font-size: 14px;
+				border-bottom: 1px solid #e6e6e6;
+			}
+			> ._list {
+				._title {
+					margin-top: 16px;
+					color: #333;
+					font-size: 14px;
+					font-weight: bold;
+				}
+				._text {
+					padding: 24px 0 16px 0;
+					color: #666;
+					font-size: 14px;
+					border-bottom: 1px solid #e6e6e6;
+					> span {
+						color: #D0021B;
+					}
+				}
+			}
+			> ._end {
+				margin-top: 16px;
+				color: #333;
+				font-size: 14px;
+			}
+
+			> h1 {
+				color: #333;
+				font-size: 20px;
+				> b {
+					margin: 0 24px;
+					color: #666
+				}
+				> small {
+					color: #666;
+					font-size: 20px;
+					font-weight: normal;
+				}
+			}
+			> h2 {
+				color: #333;
+				font-size: 19px;
+			}
+			> h3 {
+				color: #333;
+				font-size: 18px;
+			}
+			> h4 {
+				color: #333;
+				font-size: 17px;
+			}
+			> h5 {
+				color: #333;
+				font-size: 16px;
+			}
+			> p {
+				color: #666;
+				font-size: 14px;
+			}
+			> p:last-child {
+				font-style: italic;
+			}
+		}
+		table tbody {
+			tr th {
+				font-weight: normal;
+				text-align: left;
+				color: #666;
+				font-size: 14px;
+				ul {
+					padding-left: 24px;
+				}
+			}
+			tr td {
+				color: #666;
+				font-size: 14px;
+				> p {
+					font-size: 12px;
+				}
+				> h3 {
+					color: #333;
+					font-size: 14px;
+				}
+			}
+		}
+		._footer {
+			margin: 194px 20px 0 20px;
+			padding-top: 8px;
+			color: #666;
+			font-size: 10px;
+			text-align: center;
+			border-top: 1px solid #e6e6e6;
+		}
+	}
+}

@@ -1,0 +1,73 @@
+
+.c-mn-src-list {
+  position: relative;
+  list-style-type: none;
+  top: -8px;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  position: relative;
+}
+
+.c-mn-src-list li {
+  padding: 5px;
+  padding-left: 8px;
+  background: #fff;
+  color: #969696;
+  height: 30px;
+  border-left: 1px solid #e6e6e6;
+  border-right: 1px solid #e6e6e6;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  outline: none;
+}
+
+.c-mn-src-list li:first-child {
+  border-top: 1px solid #e6e6e6;
+}
+
+.c-mn-src-list li:last-child {
+  border-bottom: 1px solid #e6e6e6;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.c-mn-src-list li:nth-child(odd) {
+  background: #fff;
+}
+
+.c-mn-src-list li:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.c-mn-src-list li .photo-profile {
+  width: 30px;
+  height: 30px;
+  float: left;
+  background: #91DCE8;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.c-mn-src-list li .photo-profile img {
+  width: 30px;
+  height: 30px;
+  position: relative;
+}
+
+.c-mn-src-list li .name {
+  padding-left: 46px;
+  color: #666;
+  height: 30px;
+  line-height: 30px;
+}
+
+/*.c-mn-src-list li:hover {
+  background: #ebeef4;
+}*/
+
+.c-mn-src-list li:active,
+.c-mn-src-list li.active {
+  background: #ebeef4;
+}

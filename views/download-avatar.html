@@ -1,0 +1,18 @@
+
+<div class="c-rgs-auvatar">
+	<h1 class="c-rgs-auvatar-heading"><ciayo translate="$YOUR.AVATAR">YOUR AVATAR</ciayo></h1><b><ciayo translate="$you.look.great!">You look's great!</ciayo></b>
+	<p class="c-rgs-uavatar-paragraph"><ciayo translate="$enter.ciayo.world">Now continue	to take your first step entering CIAYO world</ciayo></p>
+	<div class="c-rgs-uavatar-img" id="img" url="{{ vm.imgAva }}" style="background: {{ vm.imgColor }} url({{ vm.imgAva }}) no-repeat center; background-size: cover;">
+		<md-progress-circular md-mode="indeterminate" md-diameter="128" ng-hide="vm.imgAva" class="loading-ava"></md-progress-circular>
+</div>
+	<div>
+		<form id="form" method="post">
+			<input id="avaData" type="hidden" name="c">
+			<md-button class="md-primary" type="submit" ng-hide="!vm.imgAva"><i class="cfi-file_download"></i>&nbsp <ciayo translate="$download.avatar">Download Avatar</ciayo>
+			</md-button>
+		</form>
+	</div>
+	<div>
+		<md-button ng-click="vm.next()" class="md-raised md-primary"><ciayo>Done</ciayo></md-button>
+	</div>
+</div>

@@ -1,0 +1,349 @@
+<div>
+
+<div ng-if="type=='timeline'">
+<div class="c-friend-connection-timeline">
+
+  <div class="frame-hidden">
+                <div class="icon-response" ng-show="user.icon_action_response" click-outside="vm.closeActionResponse(user);">
+                  
+                    <div class="item" ng-click="vm.action_response_accept(user)">
+                      <md-icon class="material-icons md-light md-8 icon">done</md-icon>
+                    </div>
+                     <div class="item" ng-click="vm.action_response_accept(user)">
+                      <md-icon class="material-icons md-light md-8 icon">done</md-icon>
+                    </div>
+                    <div class="item" ng-click="vm.action_response_delete(user)">
+                      <md-icon class="material-icons md-light md-8 icon">clear</md-icon>
+                    </div>
+                </div>
+      </div>
+
+
+      <div class="action">
+            
+                 <!--  <div class="icon-response_fr" ng-show="user.icon_action_response_fr" click-outside="vm.closeActionResponseFr($index);" id="icon-response_fr" outside-if-not="icon-response_fr">
+                    <i class="ci-close" id="ci-sent"></i>
+                     <div class="item"><img src="../assets/svg/c-button_addfriends-noactiv.svg"></div>
+                     <div class="text">Cancel friend request</div>
+                  </div> -->
+
+                <div class="icon-group">
+                  <div class="icon active" ng-click="vm.action_check_me(user.username)"> 
+                    <img src="../assets/svg/c-button_checkme-activ.svg">
+                  </div>
+                  <div class="name active" ng-click="vm.action_check_me(user.username)"><ciayo translate="$check.me">Check Me</ciayo></div>
+                </div>
+
+                <div class="icon-group" ng-class="(user.icon_self==1) ? '':'tengah'" ng-if="user.self=='false'">
+                  <div class="icon_action" ng-hide="user.icon_addfriend" ng-click="user.checklist_addfriend==true?vm.cancel_friend_request(user):''" ng-class="(user.cancel_disabled)?'c-button-disabled':''"> 
+                    <i class="ci-check-3" id="ci-sent" ng-show="user.ci_check&&user.status.friend.approve==false"></i>
+                    <i class="ci-close" id="ci-sent" ng-show="user.status.friend.approve==false"></i>
+                      <img src="../assets/svg/c-button-friend.svg" ng-if="user.status.friend.approve==true" >
+                      <img src="../assets/svg/c-button_addfriends-noactiv.svg" ng-if="user.status.friend.approve==false" >
+                  </div>
+                  
+                      <div class="icon active" ng-show="user.icon_addfriend" ng-click="user.icon_self==0?vm.action_addfriend(user):vm.action_response(user)" ng-class="(user.addfriend_disabled)?'c-button-disabled':''">
+                       <i class="ci-close" id="ci-sent" ng-show="user.ci_star"></i>
+                        <img src="../assets/svg/c-button_addfriends-activ.svg">
+                      </div>
+
+                  <div class="name_action" ng-hide="user.name_addfriend" >
+                    <div class="title1" ng-bind="user.checklist_addfriend==true?('$friend.request.sent' | translate):('$friends' | translate)"></div> 
+                    <div class="title2" ng-click="user.checklist_addfriend==true?vm.cancel_friend_request(user):''" ng-bind="user.checklist_addfriend==true?('$cancel.friend.request' | translate):('$friends' | translate)" ng-hide="user.hide_approve==true" ng-class="(user.cancel_disabled)?'c-button-disabled':''"></div>  
+                  </div>
+
+                  <div class="name active" ng-show="user.name_addfriend" ng-click="user.icon_self==0?vm.action_addfriend(user):vm.action_response(user)" ng-bind="user.icon_self==0? ('$add.friend' | translate) : ('$respond.friend.request' | translate)" ng-class="(user.addfriend_disabled)?'c-button-disabled':''"></div>
+                </div>
+                <div class="icon-group tengah_follow" ng-if="user.self=='false'">
+                  <div class="icon_action" ng-hide="user.icon_follow" ng-click="vm.action_unfollow(user)" ng-class="(user.follow_disabled)?'c-button-disabled':''"> 
+                    <i class="ci-check-3" id="ci-sent"></i>
+                    <i class="ci-close" id="ci-sent"></i>
+                    <img src="../assets/svg/c-button_follow-noactiv.svg">
+                  </div>
+                  <div class="icon active" ng-show="user.icon_follow" ng-click="vm.action_follow(user)" ng-class="(user.follow_disabled)?'c-button-disabled':''"> 
+                    <img src="../assets/svg/c-button_follow-activ.svg">
+                  </div>
+                  <div class="name_action" ng-hide="user.name_follow" ng-click="vm.action_unfollow(user)" ng-class="(user.follow_disabled)?'c-button-disabled':''">
+                    <div class="title1"><ciayo translate="$following">Following</ciayo></div>
+                    <div class="title2"><ciayo translate="$unfollow">Unfollow</ciayo></div>
+                    
+                  </div>
+                  <div class="name active" ng-show="user.name_follow" ng-click="vm.action_follow(user)" ng-class="(user.follow_disabled)?'c-button-disabled':''"><ciayo translate="$follow">Follow</ciayo></div>
+                </div>
+               
+              </div>
+  
+            </div>
+</div>
+
+<div ng-if="type=='profile'">
+<div class="c-friend-connection-profile">
+
+  <div class="frame-hidden">
+                <div class="icon-response" ng-show="user.icon_action_response" click-outside="vm.closeActionResponse(user);">
+                  
+                    <div class="item" ng-click="vm.action_response_accept(user)">
+                      <md-icon class="material-icons md-light md-8 icon">done</md-icon>
+                    </div>
+                     <div class="item" ng-click="vm.action_response_accept(user)">
+                      <md-icon class="material-icons md-light md-8 icon">done</md-icon>
+                    </div>
+                    <div class="item" ng-click="vm.action_response_delete(user)">
+                      <md-icon class="material-icons md-light md-8 icon">clear</md-icon>
+                    </div>
+                </div>
+      </div>
+
+          <div class="action">
+
+              <span ng-if="user.user_id!=1">
+                <div class="icon-group" ng-class="(user.icon_self==1) ? '':'tengah_follow'" ng-if="user.self=='false'">
+                  <div class="icon_action" ng-hide="user.icon_addfriend" ng-click="user.checklist_addfriend==true?vm.cancel_friend_request(user):vm.action_deletefriend(user)" ng-class="(user.cancel_disabled)?'c-button-disabled':''"> 
+                    <i class="ci-check-3" id="ci-sent" ng-show="user.ci_check&&user.status.friend.approve==false"></i>
+                    <i class="ci-close" id="ci-sent" ng-show="user.status.friend.approve==false"></i>
+                      <i class="ci-close" id="ci-sent" ng-show="user.status.friend.approve==true&&user.success_add!=true"></i>
+                      <img src="../assets/svg/c-button-friend.svg" ng-if="user.status.friend.approve==true" >
+                      <img src="../assets/svg/c-button_addfriends-noactiv.svg" ng-if="user.status.friend.approve==false" >
+                  </div>            
+                      <div class="icon active" ng-show="user.icon_addfriend" ng-click="user.icon_self==0?vm.action_addfriend(user):vm.action_response(user)" ng-class="(user.addfriend_disabled)?'c-button-disabled':''">
+                       <i class="ci-close" id="ci-sent" ng-show="user.ci_star"></i>
+                        <img src="../assets/svg/c-button_addfriends-activ.svg">
+                      </div>
+                  <div class="name_action" ng-hide="user.name_addfriend" >
+                    <div class="title1" ng-bind="user.checklist_addfriend==true?('$friend.request.sent' | translate) : ('$friends' | translate)"></div>
+                    <div class="title2" ng-click="user.checklist_addfriend==true?vm.cancel_friend_request(user):vm.action_deletefriend(user)" ng-bind="user.checklist_addfriend==true?('$cancel.friend.request' | translate): 'Delete Friend'" ng-hide="user.hide_approve==true" ng-class="(user.cancel_disabled)?'c-button-disabled':''"></div>
+                  </div>
+                  <div class="name active" ng-show="user.name_addfriend" ng-click="user.icon_self==0?vm.action_addfriend(user):vm.action_response(user)" ng-bind="user.icon_self==0?('$add.friend' | translate) : ('$respond.friend.request' | translate)" ng-class="(user.addfriend_disabled)?'c-button-disabled':''"></div>
+                </div>
+                </span>
+
+
+                <div class="icon-group tengah_follow" ng-if="user.self=='false'">
+                  <div class="icon_action" ng-hide="user.icon_follow" ng-click="vm.action_unfollow(user)" ng-class="(user.follow_disabled)?'c-button-disabled':''"> 
+                    <i class="ci-check-3" id="ci-sent"></i>
+                    <i class="ci-close" id="ci-sent"></i>
+                    <img src="../assets/svg/c-button_follow-noactiv.svg">
+                  </div>
+                  <div class="icon active" ng-show="user.icon_follow" ng-click="vm.action_follow(user)" ng-class="(user.follow_disabled)?'c-button-disabled':''"> 
+                    <img src="../assets/svg/c-button_follow-activ.svg">
+                  </div>
+                  <div class="name_action" ng-hide="user.name_follow" ng-click="vm.action_unfollow(user)" ng-class="(user.follow_disabled)?'c-button-disabled':''">
+                    <div class="title1"><ciayo translate="$following">Following</ciayo></div>
+                    <div class="title2"><ciayo translate="$unfollow">Unfollow</ciayo></div>
+                    
+                  </div>
+                  <div class="name active" ng-show="user.name_follow" ng-click="vm.action_follow(user)" ng-class="(user.follow_disabled)?'c-button-disabled':''"><ciayo translate="$follow">Follow</ciayo></div>
+                </div>
+                <div class="c-clear"></div>
+              </div>
+            </div>
+</div>
+
+<div ng-if="type=='trending'">
+
+           
+              <div layout="row" class="_item">
+                <div class="_ribbon -potrait">{{user.people_trending_number}}</div>
+                <div flex="none">
+                  <div style="background-image: url();background-color: {{user.user_avatar.background_avatar}}" class="c-pp -s130" ui-sref="profile({'user':user.username})">
+                      <img ng-src="{{user.user_avatar.avatar}}">
+                  </div>
+                </div>
+                <div flex="flex" layout="column" class="_right" ng-class="user.open_action==true?'open':''">
+
+                  <div class="icon-response" ng-show="user.icon_action_response" click-outside="vm.closeActionResponse(user);">
+                    <div class="item" ng-click="vm.action_response_accept(user)">
+                      <md-icon class="material-icons md-light md-8 icon">done</md-icon> 
+                    </div>
+                    <div class="item" ng-click="vm.action_response_delete(user)">
+                      <md-icon class="material-icons md-light md-8 icon">clear</md-icon> 
+                    </div>
+                  </div>
+
+                  <div flex="flex" layout="row" class="_info">
+                    <div flex="flex">
+                      <div class="_username" ui-sref="profile({'user':user.username})">{{user.user_display_name}}</div>
+                      <div class="_name">{{user.user_full_name.replace('-','')}}</div>
+                      <div layout="row" class="_genre"><i class="{{user.user_gender==1?'ci-male':'ci-female'}} s-12"></i><span ng-bind="user.user_gender==1?('$male' | translate) : ('$female' | translate)"></span>
+                      </div>
+                    </div>
+
+                    <div flex="none" layout="column" layout-align="top center" class="_button" ng-click="vm.show_frame(user)" ng-show="user.button_self==false">
+                      <i class="ci-c-button s-24"></i>
+                    </div>
+                  </div>
+                  <div flex="none" layout="row" class="_stat"><span flex="none">
+                      <div class="_stat-title"><ciayo translate="$follower">Follower</ciayo></div>
+                      <div class="_stat-number">{{(user.followers==0)?'0':'+'+user.followers}}</div></span><span flex="none">
+                      <div class="_stat-title">Posting</div>
+                      <div class="_stat-number">{{(user.posts==0)?'0':'+'+user.posts}}</div></span>
+                  </div>
+                  
+                  
+                  <div class="action">
+            
+                 <!--  <div class="icon-response_fr" ng-show="user.icon_action_response_fr" click-outside="vm.closeActionResponseFr($index);" id="icon-response_fr" outside-if-not="icon-response_fr">
+                    <i class="ci-close" id="ci-sent"></i>
+                     <div class="item"><img src="../assets/svg/c-button_addfriends-noactiv.svg"></div>
+                     <div class="text">Cancel friend request</div>
+                  </div> -->
+
+                <div class="icon-group">
+                  <div class="icon active" ng-click="vm.action_check_me(user.username)"> 
+                    <img src="../assets/svg/c-button_checkme-activ.svg">
+                  </div>
+                  <div class="name active" ng-click="vm.action_check_me(user.username)"><ciayo translate="$check.me">Check Me</ciayo></div>
+                </div>
+                <div class="icon-group" ng-class="(user.icon_self==1) ? '':'tengah'">
+                  <div class="icon_action" ng-hide="user.icon_addfriend" ng-click="user.checklist_addfriend==true?vm.cancel_friend_request(user):''" ng-class="(user.cancel_disabled)?'c-button-disabled':''"> 
+                    <i class="ci-check-3" id="ci-sent" ng-show="user.ci_check&&user.status.friend.approve==false"></i>
+                    <i class="ci-close" id="ci-sent" ng-show="user.status.friend.approve==false"></i>
+                      <img src="../assets/svg/c-button-friend.svg" ng-if="user.status.friend.approve==true" >
+                      <img src="../assets/svg/c-button_addfriends-noactiv.svg" ng-if="user.status.friend.approve==false" >
+                  </div>
+                  
+                      <div class="icon active" ng-show="user.icon_addfriend" ng-click="user.icon_self==0?vm.action_addfriend(user):vm.action_response(user)" ng-class="(user.addfriend_disabled)?'c-button-disabled':''">
+                       <i class="ci-close" id="ci-sent" ng-show="user.ci_star"></i>
+                        <img src="../assets/svg/c-button_addfriends-activ.svg">
+                      </div>
+
+                  <div class="name_action" ng-hide="user.name_addfriend" >
+                    <div class="title1" ng-bind="user.checklist_addfriend==true?('$friend.request.sent' | translate):('$friends' | translate)"></div> 
+                    <div class="title2" ng-click="user.checklist_addfriend==true?vm.cancel_friend_request(user):''" ng-bind="user.checklist_addfriend==true?('$cancel.friend.request' | translate):('$friends' | translate)" ng-hide="user.hide_approve==true" ng-class="(user.cancel_disabled)?'c-button-disabled':''"></div>  
+                  </div>
+
+                  <div class="name active" ng-show="user.name_addfriend" ng-click="user.icon_self==0?vm.action_addfriend(user):vm.action_response(user)" ng-bind="user.icon_self==0? ('$add.friend' | translate) : ('$respond.friend.request' | translate)" ng-class="(user.addfriend_disabled)?'c-button-disabled':''"></div>
+                </div>
+                <div class="icon-group tengah_follow">
+                  <div class="icon_action" ng-hide="user.icon_follow" ng-click="vm.action_unfollow(user)" ng-class="(user.follow_disabled)?'c-button-disabled':''"> 
+                    <i class="ci-check-3" id="ci-sent"></i>
+                    <i class="ci-close" id="ci-sent"></i>
+                    <img src="../assets/svg/c-button_follow-noactiv.svg">
+                  </div>
+                  <div class="icon active" ng-show="user.icon_follow" ng-click="vm.action_follow(user)" ng-class="(user.follow_disabled)?'c-button-disabled':''"> 
+                    <img src="../assets/svg/c-button_follow-activ.svg">
+                  </div>
+                  <div class="name_action" ng-hide="user.name_follow" ng-click="vm.action_unfollow(user)" ng-class="(user.follow_disabled)?'c-button-disabled':''">
+                    <div class="title1"><ciayo translate="$following">Following</ciayo></div>
+                    <div class="title2"><ciayo translate="$unfollow">Unfollow</ciayo></div>
+                    
+                  </div>
+                  <div class="name active" ng-show="user.name_follow" ng-click="vm.action_follow(user)" ng-class="(user.follow_disabled)?'c-button-disabled':''"><ciayo translate="$follow">Follow</ciayo></div>
+                </div>
+                <div md-ink-ripple="#fff" ng-click="vm.close_frame(user)" class="close-button"><i class="ci-delete-2"></i></div>
+              </div>
+                  
+
+                </div>
+             
+</div>
+
+
+          
+         
+
+</div>
+
+
+
+<div ng-if="!type">
+<div class="c-friend-connection">
+              <div class="frame-hidden">
+                <div class="icon-response" ng-show="user.icon_action_response" click-outside="vm.closeActionResponse(user);">
+                  
+                    <div class="item" ng-click="vm.action_response_accept(user)">
+                      <md-icon class="material-icons md-light md-8 icon">done</md-icon>
+                    </div>
+                     <div class="item" ng-click="vm.action_response_accept(user)">
+                      <md-icon class="material-icons md-light md-8 icon">done</md-icon>
+                    </div>
+                    <div class="item" ng-click="vm.action_response_delete(user)">
+                      <md-icon class="material-icons md-light md-8 icon">clear</md-icon>
+                    </div>
+                </div>
+
+
+              </div>
+
+            <div class="frame" ng-class="user.open_action==true?'open':''">
+              <div class="photo-profile" style="background: {{ user.user_avatar_detail.background_avatar }}"><img ng-src="{{ user.user_avatar_detail.avatar }}" ui-sref="profile({'user':user.username})"/></div>
+              <div class="profile">
+                <div class="nickname" ui-sref="profile({'user':user.username})">{{user.user_display_name ? user.user_display_name : '-' }}</div>
+                <div class="fullname">{{user.user_full_name.replace('-','').replace('-','').replace('-','')+'&nbsp;'}}</div>
+                <div class="gender"><i class="{{user.user_gender == '1'?'ci-male':'ci-female'}} s-12"></i>&nbsp; {{user.gender_name}}</div>
+                <div class="mutual-friend" ng-show="user.button_self==false">
+                   <c-mutual-friend user-id="user.user_id" mutual-friend-count="user.total_mutual_friend"></c-mutual-friend>
+                </div>
+
+              </div>
+              <div md-ink-ripple="#fff" ng-click="vm.show_frame(user)" class="button-action md-ink-ripple" ng-show="user.button_self==false">
+                <img src="../assets/img/search-result/button-action2.png">
+              </div>
+
+              <div class="action">
+            
+                 <!--  <div class="icon-response_fr" ng-show="user.icon_action_response_fr" click-outside="vm.closeActionResponseFr($index);" id="icon-response_fr" outside-if-not="icon-response_fr">
+                    <i class="ci-close" id="ci-sent"></i>
+                     <div class="item"><img src="../assets/svg/c-button_addfriends-noactiv.svg"></div>
+                     <div class="text">Cancel friend request</div>
+                  </div> -->
+
+                <div class="icon-group">
+                  <div class="icon active" ng-click="vm.action_check_me(user.username)"> 
+                    <img src="../assets/svg/c-button_checkme-activ.svg">
+                  </div>
+                  <div class="name active" ng-click="vm.action_check_me(user.username)"><ciayo translate="$check.me">Check Me</ciayo></div>
+                </div>
+                <div class="icon-group" ng-class="(user.icon_self==1) ? '':'tengah'">
+                  <div class="icon_action" ng-hide="user.icon_addfriend" ng-click="user.checklist_addfriend==true?vm.cancel_friend_request(user):''" ng-class="(user.cancel_disabled)?'c-button-disabled':''"> 
+                    <i class="ci-check-3" id="ci-sent" ng-show="user.ci_check&&user.status.friend.approve==false"></i>
+                    <i class="ci-close" id="ci-sent" ng-show="user.status.friend.approve==false"></i>
+                      <img src="../assets/svg/c-button-friend.svg" ng-if="user.status.friend.approve==true" >
+                      <img src="../assets/svg/c-button_addfriends-noactiv.svg" ng-if="user.status.friend.approve==false" >
+                  </div>
+                  
+                      <div class="icon active" ng-show="user.icon_addfriend" ng-click="user.icon_self==0?vm.action_addfriend(user):vm.action_response(user)" ng-class="(user.addfriend_disabled)?'c-button-disabled':''">
+                       <i class="ci-close" id="ci-sent" ng-show="user.ci_star"></i>
+                        <img src="../assets/svg/c-button_addfriends-activ.svg">
+                      </div>
+
+                  <div class="name_action" ng-hide="user.name_addfriend" >
+                    <div class="title1" ng-bind="user.checklist_addfriend==true?('$friend.request.sent' | translate):('$friends' | translate)"></div> 
+                    <div class="title2" ng-click="user.checklist_addfriend==true?vm.cancel_friend_request(user):''" ng-bind="user.checklist_addfriend==true?('$cancel.friend.request' | translate):('$friends' | translate)" ng-hide="user.hide_approve==true" ng-class="(user.cancel_disabled)?'c-button-disabled':''"></div>  
+                  </div>
+
+                  <div class="name active" ng-show="user.name_addfriend" ng-click="user.icon_self==0?vm.action_addfriend(user):vm.action_response(user)" ng-bind="user.icon_self==0? ('$add.friend' | translate) : ('$respond.friend.request' | translate)" ng-class="(user.addfriend_disabled)?'c-button-disabled':''"></div>
+                </div>
+                <div class="icon-group tengah_follow">
+                  <div class="icon_action" ng-hide="user.icon_follow" ng-click="vm.action_unfollow(user)" ng-class="(user.follow_disabled)?'c-button-disabled':''"> 
+                    <i class="ci-check-3" id="ci-sent"></i>
+                    <i class="ci-close" id="ci-sent"></i>
+                    <img src="../assets/svg/c-button_follow-noactiv.svg">
+                  </div>
+                  <div class="icon active" ng-show="user.icon_follow" ng-click="vm.action_follow(user)" ng-class="(user.follow_disabled)?'c-button-disabled':''"> 
+                    <img src="../assets/svg/c-button_follow-activ.svg">
+                  </div>
+                  <div class="name_action" ng-hide="user.name_follow" ng-click="vm.action_unfollow(user)" ng-class="(user.follow_disabled)?'c-button-disabled':''">
+                  	<div class="title1"><ciayo translate="$following">Following</ciayo></div>
+                    <div class="title2"><ciayo translate="$unfollow">Unfollow</ciayo></div>
+                  	
+                  </div>
+                  <div class="name active" ng-show="user.name_follow" ng-click="vm.action_follow(user)" ng-class="(user.follow_disabled)?'c-button-disabled':''"><ciayo translate="$follow">Follow</ciayo></div>
+                </div>
+                <div md-ink-ripple="#fff" ng-click="vm.close_frame(user)" class="close-button"><i class="ci-delete-2"></i></div>
+              </div>
+
+
+              </div>
+
+            </div>
+
+</div>
+
+
+</div>
+
+
+
+
+

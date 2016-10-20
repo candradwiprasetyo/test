@@ -1,0 +1,30 @@
+
+<h3 class="c-store-title"><ciayo translate="$most.popular">Most Popular</ciayo></h3>
+<div class="store-banner">
+	<div class="_container">
+	<div ng-repeat="banner in vm.listBannerPremium" class="_item" style="background-image: url({{banner.image.desktop}})" ng-click="vm.viewDetail(banner.product_id)">
+		</div>
+	</div>
+	<div class="_prev">
+		<i class="ci-prev"></i>
+	</div>
+	<div class="_next">
+		<i class="ci-next"></i>
+	</div>
+</div>
+<hr class="c-store-lines"/>
+<h3 class="c-store-title"><ciayo translate="$premium.newest">Premium - Newest</ciayo></h3>
+<div layout="row" layout-wrap="layout-wrap" lazy-load="vm.loadList('premium')">
+	<div flex="none" ng-repeat="item in vm.listPremiumNew">
+		<div data-toggle="modal" class="c-store-item" ng-click="vm.viewDetail(item.product_id)"><img ng-src="{{item.image}}" class="_image"/>
+			<div class="_title" ng-bind="item.name"></div>
+			<div layout="row" layout-align="center center" class="_price">
+				<div class="_coin -caps"><img src="../assets/img/store/coin-caps.png"/><span ng-bind="item.price_1"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<center>
+<button ng-if="!vm.listLoadMore[1] && !vm.isLoading[1]" class="md-raised md-primary md-button md-ink-ripple" ng-click="vm.loadList('premium')">Load More</button></center>

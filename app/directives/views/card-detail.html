@@ -1,0 +1,167 @@
+<card class="c-detail-page layout-row">
+	<div class="c-detail-left flex-none" ng-class="(post.open_with)?'open-with':(post.open_place)?'open-place':''">
+		<div class="c-detail-act-img">
+
+			<div class="item-hidden" ng-class="(post.item_hidden_frame)?'-active':''">
+				
+			</div>
+			<div class="item-hidden" ng-repeat="item_hidden in post.items_detail.items" ng-class="(post.item_hidden_selected==$index)?'-active':''">
+
+				<img ng-src="{{item_hidden.image_detail}}" class="img-hidden">
+				<div class="item-title">{{item_hidden.name}}</div>
+			</div>
+			<div class="close" ng-click="close_item_hidden()" ng-if="post.item_hidden_close"><i class="ci-delete-2 -s10"></i></div>
+			
+			<card-activity-parallax class="flex-none" style="width:436px;height:312px;">
+<!--				<parallax plx="post.activity_detail" ng-if="post.activity_detail"></parallax>-->
+				<img ng-if="!post.loadingImage&&post.activity_detail.preview && !post.loading_preload" ng-src="{{post.activity_detail.preview}}" width="436" style="height:303px;"> 
+				<div ng-if="post.loadingImage || post.loading_preload">
+			<md-progress-circular md-mode="indeterminate" md-diameter="200" style="margin:60px auto"></md-progress-circular>
+			</div>
+				<card-activity-caption ng-bind="post.activity_detail.caption" ng-if="!post.activity_detail.caption_bubble && (post.activity_detail.caption!=''&& post.activity_detail.caption!=null)"></card-activity-caption>
+			</card-activity-parallax>
+			
+		</div>
+		<div class="c-detail-act-filter">
+			<div class="item" ng-repeat="item in post.items_detail.items" ng-click="open_item_hidden($index)">
+				<div class="container"><img ng-src="{{item.image}}"/></div>
+				<div class="name" ng-bind="item.name"></div>
+			</div>
+		</div>
+
+		<!-- status 0 Ada tag teman -->
+		<div class="c-detail-act-with" ng-if="post.with_detail.with_status.value==0" ng-click="show_with_ask_normal(post)">
+			<div class="picture">
+				<div class="left">with <span ng-bind="post.with_detail.with_user_count"></span></div>
+				<div class="right"><i class="ci-with s-24"></i></div>
+			</div>
+			<div class="desc">
+				<span ng-bind="post.with_detail.with_user"></span>
+			</div>
+		</div>
+		<div class="action-with" ng-if="post.with_detail.with_status.value==0">
+			<div class="frame">
+				<div class="frame-list" ng-repeat="with in post.with">
+                  <div class="frame-photo-profile" style="background-color:{{with.user_avatar_detail.background_avatar}}"><img ng-src="{{with.user_avatar_cropped.avatar}}"/></div>
+                  <div class="frame-name">
+                  	<a ui-sref="profile({'user':with.username})" ng-bind="with.user_display_name"></a>
+                  </div>
+                </div>
+               
+			</div>
+		</div>
+		
+		
+
+		<!-- status -1, belum ada tag -->
+		<div class="c-detail-act-with-empty" ng-if="post.with_detail.with_status.value==-1" ng-click="show_with_ask(post)">
+			<div class="icon"><img src="assets/img/with_empty.png"></div>
+			<div class="title"><ciayo translate="$who.with.you?">who are you with?</ciayo></div>
+			<i class="ci-dropdown"></i>
+		</div>
+
+		<div class="action-with" ng-if="post.with_detail.with_status.value==-1">
+			<div class="frame">
+				<div class="content">
+					<ciayo translate="$ask.with">Do you want to asking who with</ciayo> {{post.user_display_name}} <ciayo translate="$ask.with.when">when he is doing this activity?</ciayo>
+					<div class="button_frame">
+						<div class="button" ng-click="cancel_show_with_ask(post)"><ciayo translate="$cancel">Cancel</ciayo></div>
+						<div class="button" ng-click="askWith_detail(post)"><ciayo translate="$yes">Yes</ciayo></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- status 1, secret with -->
+		<div class="c-detail-act-with-empty its_secret" ng-if="post.with_detail.with_status.value==1" ng-click="show_with_ask(post)">
+			<div class="icon"><img src="assets/img/with_empty.png"></div>
+			<div class="title"><ciayo translate="$secret">It's Secret</ciayo></div>
+		</div>
+		
+		<div class="action-with" ng-if="post.with_detail.with_status.value==1">
+			<div class="frame">
+				<div class="content-secret">
+					<div class="icon"><img src="assets/img/its-secret.png"></div>
+					<div class="descname"><ciayo translate="$secret">It's Secret</ciayo></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- status 2, alone with -->
+		<div class="c-detail-act-with-empty its_secret" ng-if="post.with_detail.with_status.value==2" ng-click="show_with_ask(post)">
+			<div class="icon"><img src="assets/img/with_empty.png"></div>
+			<div class="title"><ciayo translate="$alone">I'm Alone</ciayo></div>
+		</div>
+		
+		<div class="action-with" ng-if="post.with_detail.with_status.value==2">
+			<div class="frame">
+				<div class="content-secret">
+					<div class="icon"><img src="assets/img/im-alone.png"></div>
+					<div class="descname"><ciayo translate="$alone">I'm Alone</ciayo></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- status 0, ada place -->
+		<div class="c-detail-act-place" ng-if="post.place_detail.place_status.value==0" ng-click="show_place_ask_normal(post)">
+			<div class="picture"><img  ng-src="{{post.place_detail.place.place_image}}"/>
+				<div class="location-icon"><img src="../assets/img/desktop/location.png"/></div>
+			</div>
+			<div class="desc">
+			<span ng-bind="post.place_detail.place.place_name"></span>
+			<span ng-bind="post.place_detail.place.place_address"></span>
+			</div>
+		</div>
+		<div class="action-place" ng-if="post.place_detail.place_status.value==0">
+			<div class="frame">
+				<div class="content-secret">
+					<div class="icon"><img ng-src="{{post.place_detail.place.place_image_detail}}"></div>
+					<div class="descname">{{post.place_detail.place.place_name}}</div>
+					<div class="description">{{post.place_detail.place.place_address}}</div>
+					<div class="map_empty">
+						<img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{post.place_detail.place.place_lat}},{{post.place_detail.place.place_long}}&zoom=15&size=380x110&key=AIzaSyAp_OxlQ8w6fayEK51b-6mpupMi-wbdOwc"/>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- status -1, belum ada place -->
+		<div class="c-detail-act-place-empty" ng-if="post.place_detail.place_status.value==-1" ng-click="show_place_ask(post)">
+			<div class="icon"><img src="assets/img/place_empty.png"></div>
+			<div class="title"><ciayo translate="$where.are.you?">where are you?</ciayo></div>
+			<i class="ci-dropdown"></i>
+		</div>
+
+		<div class="action-place" ng-if="post.place_detail.place_status.value==-1">
+			<div class="frame">
+				<div class="content">
+					<ciayo translate="$ask.place">Do you want to asking where is</ciayo> {{post.user_display_name}} <ciayo translate="$ask.place.when">he is doing this activity?</ciayo>
+					<div class="button_frame">
+						<div class="button" ng-click="cancel_show_place_ask(post)"><ciayo translate="$cancel">Cancel</ciayo></div>
+						<div class="button" ng-click="askPlace_detail(post)"><ciayo translate="$yes">Yes</ciayo></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- status 1, secret place -->
+		<div class="c-detail-act-place-empty its_secret" ng-if="post.place_detail.place_status.value==1" ng-click="show_place_ask(post)">
+			<div class="icon"><img src="assets/img/place_empty.png"></div>
+			<div class="title"><ciayo translate="$secret">It's Secret</ciayo></div>
+		</div>
+
+		<div class="action-place" ng-if="post.place_detail.place_status.value==1">
+			<div class="frame">
+				<div class="content-secret">
+					<div class="icon"><img src="assets/img/secret-place.png"></div>
+					<div class="descname"><ciayo translate="$secret">It's Secret</ciayo></div>
+					<div class="description">Keterangan tentang bahwa user merahasiakan tempat ini untuk diketahui oleh orang lain.</div>
+					<div class="map_empty">This location is not available on map</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<c-card-right post="post" index="index"></c-card-right>
+	<div class="c-clear"></div>
+</card>

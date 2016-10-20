@@ -1,0 +1,84 @@
+<div class="store-banner">
+	<div class="_container">
+		<div ng-repeat="banner in vm.listBannerHome" class="_item" style="background-image: url({{banner.image.desktop}})" ng-click="vm.viewDetail(banner.product_id)">
+		</div>
+	</div>
+	<div class="_prev">
+		<i class="ci-prev"></i>
+	</div>
+	<div class="_next">
+		<i class="ci-next"></i>
+	</div>
+</div>
+<h3 class="c-store-title -home"><ciayo translate="$most.popular">Most Popular</ciayo></h3>
+<div layout="row" style="position: relative; min-height: 362px;" class="c-store-wrapper">
+	<div class="c-loader-popular" layout="row" layout-align="center center" ng-hide="vm.listLoading[0]">
+		<md-progress-circular md-mode="indeterminate" md-diameter="100"></md-progress-circular>
+	</div>
+	<div flex="none">
+		<div class="c-store-item -larger" ng-click="vm.viewDetail(vm.listPopular[0].product_id)"><img ng-src="{{vm.listPopular[0].image}}" class="_image"/>
+			<div class="_title" ng-bind="vm.listPopular[0].name"></div>
+		</div>
+	</div>
+	<div flex="flex" layout="row" layout-wrap="layout-wrap">
+		<div flex="none" ng-repeat="item in vm.listPopular" ng-if="$index != 0">
+			<div class="c-store-item" ng-click="vm.viewDetail(item.product_id)"><img ng-src="{{ item.image }}" class="_image"/>
+				<div class="_title" ng-bind="item.name"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<h3 class="c-store-title -home"><ciayo translate="$premium.new">Premium New</ciayo></h3>
+<div layout="row" style="position: relative; min-height: 180px;" class="c-store-wrapper">
+	<div class="c-loader-popular" layout="row" layout-align="center center" ng-hide="vm.listLoading[1]">
+		<md-progress-circular md-mode="indeterminate" md-diameter="100"></md-progress-circular>
+	</div>
+	<div flex="none" class="c-store-banner -image" ng-repeat="item in vm.listPremiumNew | limitTo:4" ng-click="vm.viewDetail(item.product_id)"><img ng-src="{{item.image}}" class="_image"/>
+	</div>
+</div>
+<h3 class="c-store-title -home"><ciayo translate="$contributor.new">Contributor New</ciayo></h3>
+<div style="min-height: 180px;position:relative;" class="c-store-wrapper">
+	<div class="c-loader-popular" layout="row" layout-align="center center" ng-hide="vm.listLoading[2]">
+		<md-progress-circular md-mode="indeterminate" md-diameter="100"></md-progress-circular>
+	</div>
+	<div class="c-store-carousel">
+
+		<div class="c-store-item" ng-repeat="item in vm.listContributor" ng-click="vm.viewDetail(item.product_id)"><img ng-src="{{ item.image }}" class="_image"/>
+			<div class="_title" ng-bind="item.name"></div>
+		</div>
+	</div>
+</div>
+<h3 class="c-store-title -home"><ciayo translate="$free.new">Free New</ciayo></h3>
+<div class="c-store-carousel c-store-wrapper" style="min-height: 180px;position:relative;">
+	<div class="c-loader-popular" layout="row" layout-align="center center" ng-hide="vm.listLoading[3]">
+		<md-progress-circular md-mode="indeterminate" md-diameter="100"></md-progress-circular>
+	</div>
+	<div data-toggle="modal" class="c-store-item" ng-repeat="item in vm.listFreeNew" ng-click="vm.viewDetail(item.product_id)"><img ng-src="{{ item.image }}" class="_image"/>
+		<div class="_title" ng-bind="item.name"></div>
+	</div>
+</div>
+<h3 class="c-store-title -home">Emoji</h3>
+<div class="c-store-carousel c-store-wrapper" style="min-height: 180px;position:relative;">
+	<div class="c-loader-popular" layout="row" layout-align="center center" ng-hide="vm.listLoading[3]">
+		<md-progress-circular md-mode="indeterminate" md-diameter="100"></md-progress-circular>
+	</div>
+	<div data-toggle="modal" class="c-store-item" ng-repeat="item in vm.listEmoji" ng-click="vm.viewDetail(item.product_id, 'emoji')"><img ng-src="{{ item.image }}" class="_image"/>
+		<div class="_title" ng-bind="item.name"></div>
+	</div>
+</div>
+
+<div class="c-store-legend">
+	<span>Legend: </span>
+	<div class="_item">
+		<img src="assets/img/store/premium.png" alt="">
+		<span>Premium Sticker</span>
+	</div>
+	<div class="_item">
+		<img src="assets/img/store/contributor.png" alt="">
+		<span>Contributor Sticker</span>
+	</div>
+	<div class="_item">
+		<img src="assets/img/store/emoji.png" alt="">
+		<span>Emoji</span>
+	</div>
+</div>

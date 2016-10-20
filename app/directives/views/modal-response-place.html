@@ -1,0 +1,48 @@
+<div id="MdlAskPlacePosition">
+	<div class="c-modal-wrapper" layout="column">
+			<div class="_title" flex="none"><center><ciayo translate="$where.are.you?">Where are you?</ciayo></center></div>
+			<div class="_selected" layout="row" ng-if="me.data.selected">
+				<div flex="none"><img width="40" height="40" class="_image" ng-src="{{me.data.selected.place_main_image}}"></div>
+				<div flex>
+					<div class="_name" ng-bind="me.data.selected.name"></div>
+					<div class="_address" ng-bind="me.data.selected.address"></div>
+				</div>
+				<div class="flex-none _remove" ng-click="me.data.removePlace()"><i class="ci-delete-2 s-8"></i></div>
+			</div>
+			<div class="_body" flex layout="column">
+				<div flex="none" class="_search" ng-if="me.data.selected==null">
+					<input type="text" ng-model-options="{debounce: 150}" ng-model="me.data.search" ng-change="me.data.searchPlace()">
+					<i class="ci-search s-16"></i>
+					<i ng-if="me.data.search!=''" class="ci-delete-2"></i>
+				</div>
+				<div flex class="_places" ng-if="me.data.place_list.length>0">
+					<div class="_place" layout="row" ng-repeat="list in me.data.place_list" ng-click="me.data.selectPlace(list)">
+						<div flex="none"><img width="40" height="40" class="_image" ng-src="{{list.place_main_image}}" alt="{{list.name}}"></div>
+						<div flex>
+							<div class="_name" ng-bind="list.name"></div>
+							<div class="_address" ng-bind="list.address"></div>
+						</div>
+						
+					</div>
+				</div>
+				<div flex="none" ng-if="me.data.selected">
+				<img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{me.data.selected.location.lat}},{{me.data.selected.location.lon}}&zoom=15&size=436x300&key=AIzaSyAp_OxlQ8w6fayEK51b-6mpupMi-wbdOwc"/>
+				</div>
+				<div class="_title" ng-if="me.data.nearby_list.length>0 && me.data.search=='' && me.data.selected==null">Suggestion Place</div>
+				<div flex class="_places" ng-if="me.data.nearby_list.length>0 && me.data.search=='' && me.data.selected==null">
+					<div class="_place" layout="row" ng-repeat="list in me.data.nearby_list" ng-click="me.data.selectPlace(list)">
+						<div flex="none"><img width="40" height="40" class="_image" ng-src="{{list.place_main_image}}" alt="{{list.name}}"></div>
+						<div flex>
+							<div class="_name" ng-bind="list.name"></div>
+							<div class="_address" ng-bind="list.address"></div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<div class="_foot" flex="none">
+				<md-button flex class="md-raised md-primary -ciayo-button" ng-click="me.close();"><ciayo translate="$cancel">Cancel</ciayo></md-button>
+				<md-button flex class="md-raised md-primary -ciayo-button" ng-click="me.data.save();me.close();"><ciayo translate="$save">Save</ciayo></md-button>
+			</div>
+	</div>
+</div>

@@ -1,0 +1,101 @@
+ 
+<card type="activity" layout="row">
+	<card-activity flex="50" layout="column">
+		<card-activity-parallax flex="none">
+			<parallax plx="post.activity_detail"></parallax>
+		</card-activity-parallax>
+		<div layout="row" layout-wrap="layout-wrap">
+			<card-activity-info flex="flex" ng-repeat="item in post.item_detail" class="-item">
+				<card-activity-toggle layout="column" layout-align="center center" md-ink-ripple="#{{item.filter_color}}"><img ng-src="{{item.item_thumbnail}}"/></card-activity-toggle>
+				<card-activity-pane layout="column" layout-align="center center"><img ng-src="{{item.item_image}}"/><strong>{{item.item_name}}</strong></card-activity-pane>
+			</card-activity-info>
+			<!--card-activity-info.-item(flex	ng-repeat="item in post.item_detail")-->
+			<card-activity-info flex="flex" ng-repeat="brand in post.brand_detail" class="-item">
+				<card-activity-toggle layout="column" layout-align="center center" md-ink-ripple="#{{brand.brand_color}}"><img ng-src="{{brand.brand_thumbnail}}"/></card-activity-toggle>
+				<card-activity-pane layout="column" layout-align="center center"><img ng-src="{{brand.brand_image}}"/><strong>{{brand.brand_name}}</strong></card-activity-pane>
+			</card-activity-info>
+			<!--card-activity-info.-item(flex	ng-repeat="brand in post.brand_detail")-->
+			<card-activity-info flex="nogrow" class="-friend">
+				<card-activity-toggle layout="row" layout-align="center center" md-ink-ripple="#59bae7">
+					<div> <small><ciayo translate="$with">with</ciayo></small><strong>5</strong></div><i class="ci-with s-24"></i>
+				</card-activity-toggle>
+				<card-activity-pane layout="column">
+					<card-activity-people-username flex="none">Kuncoro Jati Kusumo</card-activity-people-username>
+					<card-activity-people-title flex="none">Jalan jalan ke puncak gunung bersama</card-activity-people-title>
+					<card-activity-people-lists flex="auto">
+												<div layout="row" class="_list">
+													<div flex="none" class="_userimage"><img src="../../build/assets/img/profile.png"/>
+													</div>
+													<div flex="auto" class="_username"><a href="#">Sandy sandoro</a></div><a href="#" flex="none" class="_action"><i class="ci-c-btn s-24"></i></a>
+												</div>
+												<div layout="row" class="_list">
+													<div flex="none" class="_userimage"><img src="../../build/assets/img/profile.png"/>
+													</div>
+													<div flex="auto" class="_username"><a href="#">Sandy sandoro</a></div><a href="#" flex="none" class="_action"><i class="ci-c-btn s-24"></i></a>
+												</div>
+												<div layout="row" class="_list">
+													<div flex="none" class="_userimage"><img src="../../build/assets/img/profile.png"/>
+													</div>
+													<div flex="auto" class="_username"><a href="#">Sandy sandoro</a></div><a href="#" flex="none" class="_action"><i class="ci-c-btn s-24"></i></a>
+												</div>
+												<div layout="row" class="_list">
+													<div flex="none" class="_userimage"><img src="../../build/assets/img/profile.png"/>
+													</div>
+													<div flex="auto" class="_username"><a href="#">Sandy sandoro</a></div><a href="#" flex="none" class="_action"><i class="ci-c-btn s-24"></i></a>
+												</div>
+												<div layout="row" class="_list">
+													<div flex="none" class="_userimage"><img src="../../build/assets/img/profile.png"/>
+													</div>
+													<div flex="auto" class="_username"><a href="#">Sandy sandoro</a></div><a href="#" flex="none" class="_action"><i class="ci-c-btn s-24"></i></a>
+												</div>
+												<div layout="row" class="_list">
+													<div flex="none" class="_userimage"><img src="../../build/assets/img/profile.png"/>
+													</div>
+													<div flex="auto" class="_username"><a href="#">Sandy sandoro</a></div><a href="#" flex="none" class="_action"><i class="ci-c-btn s-24"></i></a>
+												</div>
+												<div layout="row" class="_list">
+													<div flex="none" class="_userimage"><img src="../../build/assets/img/profile.png"/>
+													</div>
+													<div flex="auto" class="_username"><a href="#">Sandy sandoro</a></div><a href="#" flex="none" class="_action"><i class="ci-c-btn s-24"></i></a>
+												</div>
+												<div layout="row" class="_list">
+													<div flex="none" class="_userimage"><img src="../../build/assets/img/profile.png"/>
+													</div>
+													<div flex="auto" class="_username"><a href="#">Sandy sandoro</a></div><a href="#" flex="none" class="_action"><i class="ci-c-btn s-24"></i></a>
+												</div>
+												<div layout="row" class="_list">
+													<div flex="none" class="_userimage"><img src="../../build/assets/img/profile.png"/>
+													</div>
+													<div flex="auto" class="_username"><a href="#">Sandy sandoro</a></div><a href="#" flex="none" class="_action"><i class="ci-c-btn s-24"></i></a>
+												</div>
+												<div layout="row" class="_list">
+													<div flex="none" class="_userimage"><img src="../../build/assets/img/profile.png"/>
+													</div>
+													<div flex="auto" class="_username"><a href="#">Sandy sandoro</a></div><a href="#" flex="none" class="_action"><i class="ci-c-btn s-24"></i></a>
+												</div>
+												<div layout="row" class="_list">
+													<div flex="none" class="_userimage"><img src="../../build/assets/img/profile.png"/>
+													</div>
+													<div flex="auto" class="_username"><a href="#">Sandy sandoro</a></div><a href="#" flex="none" class="_action"><i class="ci-c-btn s-24"></i></a>
+												</div>
+					</card-activity-people-lists>
+				</card-activity-pane>
+			</card-activity-info>
+			<!--card-activity-info.-friend(flex="nogrow")-->
+			<card-activity-info flex="nogrow" class="-place">
+				<card-activity-toggle layout="column" layout-align="center center" md-ink-ripple="#59bae7"><img src="../../build/assets/img/places/place01.png"/>
+				</card-activity-toggle>
+				<card-activity-pane><img src="../../build/assets/img/place-1.png"/><strong>Sinar Maju Jaya</strong>
+					<p>23-29 Rives de Clausen, L-2165 Luxembourg Company No: R.C.S. Luxembourg B100.468, VAT: LU 20981643</p>
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3169.2567706898194!2d-122.14956058431578!3d37.40740537982801!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fba973c3a7c79%3A0xd3f84c871a3cca88!2sSkype!5e0!3m2!1sen!2sid!4v1452157220024" width="389" height="120" frameborder="0" style="border:0" allowfullscreen="allowfullscreen"></iframe>
+				</card-activity-pane>
+			</card-activity-info>
+			<!--card-activity-info.-place(flex="nogrow")-->
+			<card-activity-overlay>
+				<div toggle-activity-close="toggle-activity-close" class="_close"><i class="ci-close s-10"></i>
+				</div>
+			</card-activity-overlay>
+		</div>
+	</card-activity>
+</card>
+<!--card(type="activity" layout="row")-->

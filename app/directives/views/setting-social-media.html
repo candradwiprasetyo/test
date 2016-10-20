@@ -1,0 +1,50 @@
+
+                <h1 class="c-set-right-heading"><ciayo translate="$MANAGE.SOCIAL.MEDIA">MANAGE SOCIAL MEDIA</ciayo></h1>
+                <div class="c-set-right-body">
+                  <div class="c-set-socmed">
+                    <div class="loading-detail" ng-hide="vm.list_social_media">
+		                <center><md-progress-circular md-mode="indeterminate" md-diameter="150"></md-progress-circular></center>
+	                </div>
+                    <ul class="c-set-socmed-list" ng-hide="!vm.list_social_media">
+                        <div ng-repeat="list in vm.list_social_media">
+                            <div>
+                                <li>
+                                <div class="c-set-socmed-list-item">
+                                  <div class="_close"><i class="ci-delete-2" ng-click="vm.deleteSocialMedia(list.id, $event)"></i>
+                                  </div><i class="ci-{{list.name | spaceless |lowercase}}"></i><b ng-bind="list.value"></b><a href="javascript:void(0)" data-toggle="dropdown" class="_edit"><i class="ci-edit"></i></a>
+                                </div>
+                                <div class="c-set-socmed-list-dropdown">
+                                  <div style="position: relative" ng-init="vm.value_social_media[list.id]=list.value">
+                                    <input type="text" class="c-set-input" ng-model="vm.value_social_media[list.id]" ng-click="vm.sPr($event)"/>
+                                    <div class="_close"><i class="ci-delete-2" ng-click="vm.clearValueSocialMedia(list.id)"></i></div>
+                                  </div>
+                                  <md-button type="button" class="md-raised md-primary md-ink-ripple c-sosmed-button" ng-disabled="vm.value_social_media[list.id] == ''" ng-click="vm.updateSocialMedia(list.id, vm.value_social_media[list.id], $event)"><ciayo translate="$save">Save</ciayo></md-button>
+                                </div>
+                              </li>
+                            </div>
+                        </div>
+                        <li><a href="javascript:void(0)" data-toggle="dropdown" class="c-set-socmed-list-item"><i class="ci-add-item"></i><b><ciayo translate="$add.another.socmed">Add your another social media</ciayo></b></a>
+                            <div class="c-set-socmed-list-dropdown">
+                              <div class="c-set-socmed-list-dropdown-icon">
+                                  <i class="ci-facebook s-24 active" ng-click="vm.chooseSocialMedia($event, '0')" ng-class="vm.choose_social_media=='0' ? 'active' : ''"></i>
+                                  <i class="ci-twitter s-24" ng-click="vm.chooseSocialMedia($event, '1')" ng-class="vm.choose_social_media=='1' ? 'active' : ''"></i>
+                                  <i class="ci-instagram s-24" ng-click="vm.chooseSocialMedia($event, '2')" ng-class="vm.choose_social_media=='2' ? 'active' : ''"></i>
+                                  <i class="ci-pinterest s-24" ng-click="vm.chooseSocialMedia($event, '8')" ng-class="vm.choose_social_media=='8' ? 'active' : ''"></i>
+                                  <!--<i class="ci-bbm-pin s-24 active" ng-click="vm.chooseSocialMedia($event, '3')" ng-class="vm.choose_social_media=='3' ? 'active' : ''"></i>
+                                  <i class="ci-whatsapp s-24" ng-click="vm.chooseSocialMedia($event, '4')" ng-class="vm.choose_social_media=='4' ? 'active' : ''"></i>
+                                  <i class="ci-skype s-24" ng-click="vm.chooseSocialMedia($event, '5')" ng-class="vm.choose_social_media=='5' ? 'active' : ''"></i>
+                                  <i class="ci-googleplus s-24 active" ng-click="vm.chooseSocialMedia($event, '6')" ng-class="vm.choose_social_media=='6' ? 'active' : ''"></i>
+                                  <i class="ci-path s-24" ng-click="vm.chooseSocialMedia($event, '7')" ng-class="vm.choose_social_media=='7' ? 'active' : ''"></i>-->
+                              </div>
+                              <div style="position: relative">
+                                <input type="hidden" ng-model="vm.choose_social_media">
+                                <input type="text" ng-model="vm.account_social_media" class="c-set-input"/>
+                                <div class="_close" ng-click="vm.clearAccountSocialMedia()"><i class="ci-delete-2"></i></div>
+                              </div>
+                              <md-button type="button" class="md-raised md-primary md-ink-ripple c-sosmed-button" ng-disabled="!vm.account_social_media" ng-click="vm.addSocialMedia($event)"><ciayo translate="$save">Save</ciayo></md-button>
+                            </div>
+                          </li>
+                      </ul>
+                    </ul>
+                  </div>
+                </div>

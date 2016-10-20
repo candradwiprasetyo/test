@@ -1,0 +1,32 @@
+<div id="MdlAskWithRespond">
+	<div class="c-modal-wrapper" style="margin-top:20%">
+		<div class="_title"><ciayo translate="$response.friend.question">Response to your friend question</ciayo></div>
+			<div class="_row">
+				<span class="_username" ng-bind="me.data.from_name"></span>
+				<span ng-bind="me.data.title"></span>
+			</div>
+			<div class="_row -activity">
+				<div class="_timestamp">
+					<div class="_time">{{me.data.created_at*1000 |date:'HH:mm'}}</div>
+					<div class="_date">{{me.data.created_at*1000 |date:'d MMM yyyy'}}</div>
+				</div>
+				<img ng-src="{{me.data.image}}" height="312" width="436" class="_image">
+				<div class="_caption" ng-bind="me.data.caption" ng-if="me.data.caption"></div>
+			</div>
+			<div class="_row -button" layout="row">
+				<md-button flex class="md-raised md-primary -ciayo-button" ng-click="me.close();me.data.tag()"><ciayo translate="$tag.friend">Tag friend</ciayo></md-button>
+				<md-button flex class="md-raised md-primary -ciayo-button" ng-click="me.close();me.data.response(1)"><ciayo translate="$secret">It's secret</ciayo></md-button>
+				<md-button flex class="md-raised md-primary -ciayo-button" ng-click="me.close();me.data.response(2)"><ciayo translate="$alone">I'm alone</ciayo></md-button>
+			</div>
+	</div>
+	<style>
+		.c-modal-wrapper{
+			background: #fff;
+			border: 4px solid #49A8DC;
+			border-radius: 8px;
+			font-size: 16px;
+			color: #333;
+			text-align: center;
+		}
+	</style>
+</div>

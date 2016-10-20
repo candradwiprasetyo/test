@@ -1,0 +1,31 @@
+
+<div class="c-rgs-mascot-heading">
+	<h1>select your mascot</h1>
+</div>
+<div class="c-rgs-mascot-paragraph">
+	<p>The Navajo Indians have their spirit animals, but here in the CIAYO World,<br>we have our mascots. Pick one to accompany you along the way!</p>
+</div>
+<div class="c-rgs-mascot-form">
+	<div class="c-rgs-mascot-wrp">
+		<div ng-repeat="mascot in vm.dataMascot" ng-class="vm.mascot==mascot.id_image_mascot?'active':''" ng-click="vm.mascot=mascot.id_image_mascot" class="c-rgs-mascot-item">
+			<label>
+				<input type="radio" name="mascot" ng-value="mascot.name"/><div class="c-rgs-mascot-img c-mascot-{{mascot.name | lowercase}}" style="background-color:#a9e0f5"></div><span class="c-rgs-mascot-name" ng-bind="mascot.name"></span>
+				<div class="c-mascot-char" ng-repeat="trait in mascot.mascot_trait">
+					<div class="char-wrp">
+						<div class="text" ng-bind="trait.name"></div>
+						<div class="trait.percent"></div>
+						<div class="c-clear"></div>
+					</div>
+					<div class="char-bar">
+						<div style="width: {{trait.percent}}%" class="{{'char-value'+($index+1)}}"></div>
+					</div>
+				</div>
+			</label>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div class="c-rgs-mascot-next-btn">
+		<md-button class="md-raised md-button md-ink-ripple cancel" type="submit" ng-transclude="" aria-label="Back" ng-click="vm.step='avatar-wizard'"><span class="ng-scope">Back</span></md-button>
+		<md-button class="md-raised md-primary" ng-click="vm.saveMascot()">Finish</md-button>
+	</div>
+</div>

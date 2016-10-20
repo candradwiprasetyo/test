@@ -1,0 +1,70 @@
+<span>
+	<a style="position:relative" ng-mouseleave="me.hideTooltip()">
+
+		<span ng-bind="me.mutual_friend_count>0 ? me.mutual_friend_count+' '+('$mutual.friend' | translate) : ('$dont.have.mutual.friend' | translate)" class="mf-title" ng-mouseenter="me.showTooltip($event)"></span>
+
+		<div class="mf-tooltip {{me.class}}" ng-show="me.isActive" ng-if="me.mutual_friend_count>0">
+			<span ng-if="me.data.length==0">Loading...</span>
+			<ul ng-if="me.data.length>0">
+				<li ng-repeat="data in me.data | limitTo:10" ng-bind="data.user_display_name"></li>
+				<li ng-if="me.more">and <span> more...</span></li>
+			</ul>
+		</div>
+	</a>
+<style>
+	.mf-title{
+		color: #02679E;
+		text-decoration: none;
+		padding:12px 0;
+		cursor: pointer;
+	}
+	.mf-tooltip{
+		font-size: 12px;
+		line-height: 12px;
+		cursor: default;
+		position: absolute;
+		z-index: 99;
+		background: #59BAE7;
+		color: #fff;
+		margin-top: 5px;
+		padding: 4px 10px;
+		border-radius: 4px;
+	}
+	.mf-tooltip.up:before{
+		content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent;
+    bottom: -7px;
+    left: 18px;
+    border-top-color: #59BAE7;
+    border-width: 8px;
+    border-bottom: 0;
+	}
+	.mf-tooltip.down:after{
+		content: "";
+		position: absolute;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-color: transparent;
+		top: -7px;
+		left: 18px;
+		border-bottom-color: #59BAE7;
+		border-width: 8px;
+		border-top: 0;
+	}
+	.mf-tooltip ul{
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.mf-tooltip ul li{
+		margin:6px;
+		padding: 0;
+	}
+</style>
+
+</span>

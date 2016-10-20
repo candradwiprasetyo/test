@@ -1,0 +1,53 @@
+<div class="c-modal achievement -open">
+	<div data-toggle="modal-close" class="c-modal-backdrop" ng-click="me.close()" role="button" tabindex="0"></div>
+	<div class="c-modal-wrapper c-achv-popup-notification">
+		<div data-toggle="modal-close" class="c-achv-popup-notification-close" ng-click="me.close()" role="button" tabindex="0"><i class="ci-delete-2"></i>
+		</div>
+		<div class="loading-detail ng-hide" ng-hide="me.data.itemDetail" aria-hidden="true" style="">
+			<md-progress-circular md-mode="indeterminate" md-diameter="150" aria-valuemin="0" aria-valuemax="100" role="progressbar" class="ng-scope" style="width: 150px; height: 150px;"><div class="md-scale-wrapper md-mode-indeterminate" style="transform: translate(-50%, -50%) scale(1.5);"><div class="md-spinner-wrapper"><div class="md-inner"><div class="md-gap"></div><div class="md-left"><div class="md-half-circle"></div></div><div class="md-right"><div class="md-half-circle"></div></div></div></div></div></md-progress-circular>
+		</div>
+		<!-- ngIf: me.data.itemDetail --><div ng-if="me.data.itemDetail" class="ng-scope">
+
+			<div class="popup-title">Congratulations!</div>
+			<div class="popup-subtitle">You earn a achievement</div>
+
+			<div class="c-achv-popup-notification-ite">
+				<img ng-src="{{me.data.itemDetail.image}}">
+				
+			</div>
+			<div class="c-achp-popup-notification-info">
+				<div class="header">
+					<div class="title">
+						<span class="ng-binding">{{me.data.itemDetail.name}}</span>
+						<!-- ngIf: me.data.itemDetail.title && me.data.itemDetail.percent==100 -->
+						<!-- ngIf: me.data.itemDetail.title && me.data.itemDetail.percent==100 -->
+						<span class="icon"><img ng-src="assets/img/achievement/popup-achievement.png"></span>
+					</div>
+
+					<div class="button-as-title" ng-click="me.data.useAsTitle(me.data.itemDetail.name)" ng-if="me.data.itemDetail.title==true">Use as title</div>
+				</div>
+				<p ng-bind="me.data.itemDetail.description" class="ng-binding">Go get an achievement!</p>
+				<div class="c-achp-pop-addinfo">
+					<div class="reward">
+						<!-- ngIf: me.data.itemDetail.reward_type=='point' --><div ng-if="me.data.itemDetail.reward_type=='point'" class="ng-scope">
+							<span class="title-reward">Reward:</span> <img src="../assets/img/store/coin-caps.png"> <span ng-bind="me.data.itemDetail.reward" class="ng-binding">1</span>
+						</div><!-- end ngIf: me.data.itemDetail.reward_type=='point' -->
+						<!-- ngIf: me.data.itemDetail.reward_type=='sticker' -->
+					</div>
+					<!-- ngIf: me.data.itemDetail.percent==100 --><div class="share ng-scope">
+						<ciayo class="ng-scope">Bagikan ini</ciayo> &nbsp;
+						<i class="ci-facebook s-24" ng-click="me.data.shareFB(me.data.itemDetail.id_achievement,me.data.itemDetail.id)" ng-class="me.data.isFB?'-active':''" role="button" tabindex="0"></i> 
+						<i class="ci-twitter s-24" ng-click="me.data.shareTwitter(me.data.itemDetail.id_achievement,me.data.itemDetail.id)" ng-class="me.data.isFB?'-active':''" role="button" tabindex="0"></i> 
+						<!--<i class="ci-twitter s-24"></i>-->
+					</div><!-- end ngIf: me.data.itemDetail.percent==100 -->
+				</div>
+			</div>
+			
+			
+		</div><!-- end ngIf: me.data.itemDetail -->
+		<div class="c-achv-pop-button ng-binding">
+			<ciayo class="ng-scope" ui-sref="achievement">Go to achievement</ciayo>
+		</div>
+	</div>
+
+</div>

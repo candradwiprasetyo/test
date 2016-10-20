@@ -1,0 +1,137 @@
+
+<c-header></c-header>
+<div class="c-animate">
+<div class="c-wrp">
+      <div class="c-wrp-inner">
+
+      <!--<button ng-click="vm.test()">asdasd</button>-->
+        <div class="c-search-result">
+          <div class="title">{{vm.list_user.length}} <ciayo translate="$result.for">result for</ciayo> "{{vm.searchtext}}"</div>
+          <div class="list-frame" when-scroll-ends="vm.loadMoreRecords()">
+              <div ng-if="vm.list_user.length==0 && vm.start_user == true" class="loading">
+                Data not found
+              </div>
+                  <div ng-if="vm.list_user.length==0 && vm.start_user == false" class="loading">
+                    <div class="loader">
+                      <md-progress-circular md-mode="indeterminate" md-diameter="150"></md-progress-circular>
+                    </div>
+                  </div>
+          
+         <c-friend-connection user = "user" ng-repeat="user in vm.list_user">
+           
+         </c-friend-connection>
+            <!-- <div ng-repeat="user in vm.list_user | limitTo: paginationLimit()" class="list-content">
+
+              <div class="frame-hidden">
+                <div class="icon-response" ng-show="user.icon_action_response" click-outside="vm.closeActionResponse($index);">
+                  
+                    <div class="item" ng-click="vm.action_response_accept(user, $index)">
+                      <md-icon class="material-icons md-light md-8 icon">done</md-icon>
+                    </div>
+                     <div class="item" ng-click="vm.action_response_accept(user, $index)">
+                      <md-icon class="material-icons md-light md-8 icon">done</md-icon>
+                    </div>
+                    <div class="item" ng-click="vm.action_response_delete(user, $index)">
+                      <md-icon class="material-icons md-light md-8 icon">clear</md-icon>
+                    </div>
+                  </div>
+
+
+              </div>
+
+            <div class="frame" ng-class="user.open_action==true?'open':''">
+              <div class="photo-profile" style="background: {{ user.user_avatar_detail.avatar_background }}"><img ng-src="{{ user.user_avatar_detail.avatar }}"/></div>
+              <div class="profile">
+                <div class="nickname">{{user.user_display_name ? user.user_display_name : '-' }}</div>
+                <div class="fullname">{{user.user_full_name ? user.user_full_name : '-' }}</div>
+                <div class="gender"> <i class="{{user.gender_name == 'Male'?'ci-male':'ci-female'}} s-12"></i>&nbsp; {{user.gender_name}}</div>
+                <div class="mutual-friend">
+                   <c-mutual-friend user-id="user.user_id" mutual-friend-count="user.total_mutual_friend"></c-mutual-friend>
+                </div>
+
+              </div>
+              <div md-ink-ripple="#fff" ng-click="vm.show_frame(user, $index)" class="button-action md-ink-ripple">
+                <img src="../assets/img/search-result/button-action2.png">
+              </div>
+
+              <div class="action">
+            
+                  <div class="icon-response_fr" ng-show="user.icon_action_response_fr" click-outside="vm.closeActionResponseFr($index);" id="icon-response_fr" outside-if-not="icon-response_fr">
+                    <i class="ci-notif-star" id="ci-sent"></i>
+                     <div class="item"><img src="../assets/svg/c-button_addfriends-noactiv.svg"></div>
+                     <div class="text">Cancel friend request</div>
+                  </div>
+
+                <div class="icon-group">
+                  <div class="icon active" ng-click="vm.action_check_me(user.username)"> 
+                    <img src="../assets/svg/c-button_checkme-activ.svg">
+                  </div>
+                  <div class="name active" ng-click="vm.action_check_me(user.username)">Check Me</div>
+                </div>
+                <div class="icon-group" ng-class="(user.icon_self==1) ? '':'tengah'">
+                  <div class="icon_action" ng-hide="user.icon_addfriend" > 
+                    <i class="ci-check-3" id="ci-sent" ng-show="user.ci_check"></i>
+                    <i class="ci-notif-star" id="ci-sent"></i>
+                      <img src="../assets/svg/c-button-friend.svg" ng-if="user.status.friend.approve==true" >
+                      <img src="../assets/svg/c-button_addfriends-noactiv.svg" ng-if="user.status.friend.approve==false" >
+                  </div>
+                  
+                      <div class="icon active" ng-show="user.icon_addfriend" ng-click="user.icon_self==0?vm.action_addfriend(user, $index):vm.action_response(user, $index)">
+                       <i class="ci-notif-star" id="ci-sent" ng-show="user.ci_star"></i>
+                        <img src="../assets/svg/c-button_addfriends-activ.svg">
+                      </div>
+
+
+                  <div class="name_action" ng-hide="user.name_addfriend" >
+                    <div class="title1" ng-bind="user.checklist_addfriend==true?'Friend request sent':'Friends'"></div> 
+                    <div class="title2" ng-bind="user.checklist_addfriend==true?'Cancel friend request':'Friends'"></div>  
+                  </div>
+                  
+
+                  <div class="name active" ng-show="user.name_addfriend" ng-click="user.icon_self==0?vm.action_addfriend(user, $index):vm.action_response(user, $index)" ng-bind="user.icon_self==0?'Add Friend':'Respon Friend Request'"></div>
+                </div>
+                <div class="icon-group">
+                  <div class="icon_action" ng-hide="user.icon_follow"> 
+                    <i class="ci-check-3" id="ci-sent"></i>
+                    <img src="../assets/svg/c-button_follow-noactiv.svg">
+                  </div>
+                  <div class="icon active" ng-show="user.icon_follow" ng-click="vm.action_follow(user, $index)"> 
+                    <img src="../assets/svg/c-button_follow-activ.svg">
+                  </div>
+                  <div class="name_action" ng-hide="user.name_follow">Following</div>
+                  <div class="name active" ng-show="user.name_follow" ng-click="vm.action_follow(user, $index)">Follow</div>
+                </div>
+                <div md-ink-ripple="#fff" ng-click="vm.close_frame(user, $index)" class="close-button"><i class="ci-delete-2"></i></div>
+              </div>
+
+
+              </div>
+
+            </div> -->
+            <div style="clear: both"></div>
+
+                  <div  class="loading_show_more" ng-show="vm.button_show_more">
+                    <div class="loader">
+                      <md-progress-circular md-mode="indeterminate" md-diameter="50"></md-progress-circular>
+                    </div>
+                  </div>
+
+            <!--<div class="show_more" ng-click="vm.showMore(vm.pagelist, element)" ng-if="vm.button_show_more==true">
+              Show more         
+            </div>-->
+
+          </div>
+
+           
+
+        </div>
+
+
+
+      </div>
+
+
+    </div>
+    </div>
+    
+  

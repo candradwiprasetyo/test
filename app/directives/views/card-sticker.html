@@ -1,0 +1,54 @@
+<div id="card-sticker">
+	<!--Button-->
+	<div class="_sticker" ng-click="me.init()">
+		<i class="ci-sticker-button s-16"></i>
+	</div>
+	<!--Modal outside-if-not-->
+	<div class="c-sticker {{me.class}}" click-outside="me.close()" outside-if-not="card-sticker" ng-if="me.class!=''">
+		<md-tabs md-stretch-tabs="always" md-dynamic-height="false" class="_nav">
+			<md-tab md-on-select="me.open()">
+				<md-tab-label><ciayo translate="$sticker">Sticker</ciayo></md-tab-label>
+				<md-tab-body>
+					<md-tabs md-stretch-tabs="never" md-dynamic-height="false" md-no-ink-bar="md-no-ink-bar" class="_nav">
+						<md-tab ng-repeat="collection in me.stickerCollection">
+							<md-tab-label title="{{collection.name}}" ><img ng-click="me.loadStickerDetail(collection)" ng-src="{{collection.image}}"/>
+							</md-tab-label>
+							<md-tab-body>
+								<div class="_wrapper -sticker">
+									<div class="_item" ng-repeat="detail in collection.detail">
+										<!--<img ng-src="{{detail.image}}" width="80" height="80"/>-->
+										<div style="background-size: cover;background-image:url({{detail.image}});width:80px;height:80px;cursor:pointer;" ng-click="me.comment(detail,1)"></div>
+									</div>
+								</div>
+							</md-tab-body>
+						</md-tab>
+					</md-tabs>
+				</md-tab-body>
+			</md-tab>
+			<md-tab md-on-select="me.open()">
+				<md-tab-label>Emoji</md-tab-label>
+				<md-tab-body>
+					<md-tabs md-stretch-tabs="never" md-dynamic-height="false" md-no-ink-bar="md-no-ink-bar" class="_nav">
+						<md-tab ng-repeat="collection in me.emojiCollection">
+							<md-tab-label title="{{collection.name}}" ><img ng-click="me.loadEmojiDetail(collection)" ng-src="{{collection.image}}"/>
+							</md-tab-label>
+							<md-tab-body>
+								<div class="_wrapper -emoji">
+									<div class="_item" ng-repeat="detail in collection.detail">
+										<!--<img ng-src="{{detail.image}}" width="30" height="30"/>-->
+										<div style="background-size: cover;background-image:url({{detail.image}});width:30px;height:30px;cursor:pointer;" ng-click="me.comment(detail,2)"></div>
+									</div>
+								</div>
+							</md-tab-body>
+						</md-tab>
+					</md-tabs>
+				</md-tab-body>
+			</md-tab>
+			<md-tab ui-sref="store.home">
+				<md-tab-label><i class="ci-mobile-store-default-36"></i>&nbsp<ciayo translate="$shop">Shop</ciayo>
+				</md-tab-label>
+				<md-tab-body></md-tab-body>
+			</md-tab>
+		</md-tabs>
+	</div>
+</div>

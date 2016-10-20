@@ -1,0 +1,255 @@
+<h1 class="c-set-right-heading">
+  <ciayo translate="$EDIT.ACCOUNT">EDIT ACCOUNT</ciayo>
+</h1>
+<div class="c-set-right-body">
+  <div class="c-set-eprof">
+    <ul class="c-set-eprof-setting">
+      <li class="-full">
+        <h5>
+          <ciayo translate="$email.address">Email Address</ciayo>
+        </h5>
+        <div layout="row" layout-align="center center">
+          <input class="c-set-input" ng-model="vm.edit_email_address" ng-change="vm.email_change=true" type="email" placeholder="{{'$email.address' | translate}}"
+            style="width: 421px" flex="none" ng-disabled="vm.verify_status"/>
+          <div flex="flex" class="_checkbox-wrp">
+            <label class="_checkbox-label">
+                              <input type="checkbox" value="" class="_checkbox" ng-model="vm.show_email" ng-change="vm.showEmail()">Show on Profile
+                            </label>
+          </div>
+        </div>
+        <div class="_link" ng-if="!vm.verify_status&&vm.email_address">
+          <a href="javascript:void(0)" data-toggle="modal" class="c-link" ng-click="vm.verifyModal('open', 'email')">
+            <ciayo translate="$verify.your.email">Verify your email</ciayo>
+          </a>
+        </div>
+      </li>
+      <li class="-full">
+        <h5>
+          <ciayo translate="$phone.number">Phone Number</ciayo>
+        </h5>
+        <div layout="row" layout-align="center center">
+          <div style="width: 91px;margin-right:8px" flex="none" class="c-dropdown">
+            <div class="c-set-input" data-toggle="dropdown">
+              <!--<img src="{{vm.image_prefix}}" width="20" height="16">-->
+              <span ng-bind="'+'+vm.prefix"> &nbsp;</span>
+              <i class="ci-dropdown s-10" style="float:right"></i>
+            </div>
+            <ul class="c-dropdown-menu list-code-region">
+              <li ng-repeat="list in vm.list_prefix_phone_number | orderBy:'country_name'">
+                <a href="javascript:void(0)" ng-click="vm.setPrefixPhoneNumber(list.image,list.phone_code)" ng-if="list.phone_code && list.image">
+                  <img ng-src="{{list.image}}" width="20" height="16" style="vertical-align: middle" /> &nbsp; <span ng-bind="list.country_name"></span>
+                  <span
+                    style="vertical-align: middle; float:right" ng-bind="' +'+list.phone_code"></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <input type="text" class="c-set-input" id="phone_number" ng-model="vm.edit_phone_number" ng-change="vm.phone_change=true" placeholder="{{'$phone.number' | translate}}"
+            style="width: 323px" flex="none" onkeypress="return numberOnly(this, event)" />
+          <div flex="flex" class="_checkbox-wrp">
+            <label class="_checkbox-label">
+                              <input type="checkbox" value="" class="_checkbox" ng-model="vm.show_phone" ng-change="vm.showPhone()">Show on Profile
+                            </label>
+          </div>
+        </div>
+        <div class="_link" ng-if="!vm.verify_status&&vm.phone_number">
+          <a href="javascript:void(0)" class="c-link" ng-click="vm.verifyModal('open', 'phone')">
+            <ciayo translate="$verify.phone.number">Verify your phone number</ciayo>
+          </a>
+        </div>
+      </li>
+      <li>
+        <h5>
+          <ciayo translate="$login.notification">Login Notification</ciayo>
+        </h5>
+        <p>
+          <ciayo translate="$show.notif.toemail">Show notification to my email or phone when someone login to my account</ciayo>
+        </p>
+        <label class="c-switch">
+                          <input type="checkbox" ng-checked="vm.login_notification" ng-model="vm.login_notification" ng-change="vm.loginNotification()"/><span></span>
+                        </label>
+      </li>
+      <li>
+        <h5>
+          <ciayo translate="$deactive.account">Deactive Account</ciayo>
+        </h5>
+        <p>
+          <ciayo translate="$when.account.deactive">When your account is deactive, people can’t find, tag and message you in CIAYO</ciayo>
+        </p>
+        <md-button ng-click="vm.confirmDeactive($event)" class="md-raised md-primary">
+          <ciayo translate="$deactive.account">Deactive Account</ciayo>
+        </md-button>
+      </li>
+      <li>
+        <h5>
+          <ciayo translate="$delete.account">Delete Account</ciayo>
+        </h5>
+        <p>
+          <ciayo translate="$when.delete.account">When you delete you’r account, people can’t find, tag and message you in CIAYO</ciayo>
+        </p>
+        <md-button ng-click="vm.confirmDelete($event)" class="md-raised md-primary">
+          <ciayo translate="$delete.account">Delete Account</ciayo>
+        </md-button>
+      </li>
+      <li>
+        <a href="javascript:void(0)" ng-click="vm.restoreDefaultSetting()" class="c-link-underline">
+          <ciayo translate="$restore.default.setting">Restore Default Setting</ciayo>
+        </a>
+        <md-button class="md-raised md-primary" ng-click="vm.saveAccountSetting()">
+          <ciayo translate="$save">Save</ciayo>
+        </md-button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!--<div class="c-set-right-body _bottom">
+                  <div class="c-set-eprof">
+                    <ul class="c-set-eprof-setting">
+                    </ul>
+                  </div>
+                </div>-->
+
+</div>
+
+<div class="c-success">
+  <div data-toggle="success-close" class="c-success-backdrop" ng-click="vm.successModal('close')"></div>
+  <div class="c-success-wrapper c-mod-set-verify">
+    <div class="_inner">
+      <div class="_close" ng-click="vm.successModal('close')" style="outline:none">
+        <i class="ci-delete-2 s-10"></i>
+      </div>
+      <div class="logo"></div>
+      <p class="title">
+        <ciayo translate="$congratulation!">Congratulation</ciayo>
+      </p>
+      <p>
+        <ciayo translate="$success.verify">Your account has been verified. Lets play Ciayo</ciayo>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="c-modal">
+  <div data-toggle="modal-close" class="c-modal-backdrop" ng-click="vm.verifyModal('close', vm.verify)"></div>
+  <div class="c-modal-wrapper c-mod-set-verify">
+    <div class="_inner">
+      <div layout="row" layout-align="end center" class="_head"><span flex="none" data-toggle="modal-close" class="c-link" ng-click="vm.verifyModal('close', vm.verify)"><span><ciayo translate="$verification.later">Verification later</ciayo></span>
+        <i
+          class="ci-keyboard_arrow_right"></i>
+          </span>
+      </div>
+      <div layout="column" layout-align="center center" class="_body">
+        <div flex="none">
+          <input type="text" id="code_1" flex="none" class="_pin" maxlength="1" ng-model="vm.code_1" ng-keydown="vm.inputCodeKey(1,$event.keyCode)"
+            ng-paste="vm.inputCode(0, $event.originalEvent)" ng-disabled="vm.verify_status" />
+          <input type="text" id="code_2" flex="none" class="_pin" maxlength="1" ng-model="vm.code_2" ng-keydown="vm.inputCodeKey(2,$event.keyCode)"
+            ng-disabled="vm.verify_status" />
+          <input type="text" id="code_3" flex="none" class="_pin" maxlength="1" ng-model="vm.code_3" ng-keydown="vm.inputCodeKey(3,$event.keyCode)"
+            ng-disabled="vm.verify_status" />
+          <input type="text" id="code_4" flex="none" class="_pin" maxlength="1" ng-model="vm.code_4" ng-keydown="vm.inputCodeKey(4,$event.keyCode)"
+            ng-disabled="vm.verify_status" ng-change="vm.sendcode()" />
+        </div>
+        <div flex="nogrow" class="_paragraph" ng-if="vm.verify == 'email'">
+          <div ng-bind-html="vm.codeconfirmmessage"></div>
+          <div ng-show="vm.verify_status" style="color:green">
+            <ciayo translate="$has.been.verify">Your account has been verified.</ciayo>
+          </div>
+          <ciayo translate="$to.verify.email">To verify your account, please enter the One-Time s redeived via email on your registered email:</ciayo>
+          <div class="loading-registered"
+            ng-show="!vm.verify_status">
+            <md-progress-circular md-mode="indeterminate" md-diameter="25"></md-progress-circular>
+          </div><span ng-bind="vm.email_address" ng-show="vm.verify_status"></span></div>
+        <div flex="nogrow" class="_paragraph" ng-if="vm.verify == 'phone'">
+          <div ng-bind-html="vm.codeconfirmmessage"></div>
+          <div ng-show="vm.verify_status" style="color:green">
+            <ciayo translate="$has.been.verify">Your account has been verified.</ciayo>
+          </div>
+          <ciayo translate="$to.verify.phone">To verify your account, please enter confirmation code received via SMS on your registered mobile number:</ciayo>
+          <div
+            class="loading-registered" ng-show="!vm.verify_status" && vm.prefix_verify "><md-progress-circular md-mode="indeterminate
+            " md-diameter="25 "></md-progress-circular></div><span ng-show="vm.phone_number "><span ng-bind=" '+'+vm.prefix_verify + '-'
+            + vm.phone_number " ng-show="vm.verify_status "></span></span></div>
+              <!-- <div flex="none " ng-if="vm.verify=='email' ">
+                <md-button id="resend " class="md-raised md-primary " ng-click="vm.sendCodeVerify( 'email')
+            " ng-disabled="vm.verify_status "><ciayo translate="$send " ng-show="vm.resendEmailCount<1 "></ciayo> <ciayo translate="$resend
+            " ng-show="vm.resendEmailCount>0">Resend</ciayo> <span ng-show="vm.resendEmailCount>1">(<span ng-bind="vm.resendEmailCount-1"></span>)</span>
+            </md-button>
+        </div> -->
+        <div flex="none" ng-if="vm.verify == 'email'" ng-hide="vm.verify_status">
+          <md-button id="resend" class="md-raised md-primary" ng-click="vm.sendCodeVerify('email')" ng-disabled="vm.verify_status || !vm.response_api">
+            <ciayo translate="$resend">Resend</ciayo> <span>(<span ng-bind="vm.resendEmailCount"></span>)</span>
+          </md-button>
+        </div>
+        <div flex="none" ng-if="vm.verify == 'phone'" ng-hide="vm.verify_status">
+          <md-button id="resend" class="md-raised md-primary" ng-click="vm.sendCodeVerify('phone')" ng-disabled="vm.verify_status || !vm.response_api">
+            <ciayo translate="$resend">Resend</ciayo> <span>(<span ng-bind="vm.resendPhoneCount"></span>)</span>
+          </md-button>
+        </div>
+      </div>
+      <div class="_foot"><span flex="none" show-pane="show-pane" class="c-link-underline"><span ng-if="vm.verify == 'phone'"><ciayo translate="$change.mobile.number?">Change mobile number?</ciayo></span>
+        <span
+          ng-if="vm.verify == 'email'">
+          <ciayo translate="$change.email?">Change email?</ciayo>
+          </span>
+          </span>
+          <div layout="row" class="_pane">
+            <div flex="none" ng-if="vm.verify == 'email'">
+              <input type="text" placeholder="{{'$email.address' | translate}}" style="width:370px" ng-model="vm.update_resend_email" />
+            </div>
+            <div flex="none" class="c-dropdown" ng-if="vm.verify == 'phone'">
+              <label data-toggle="dropdown" style="width: 50px"><span ng-bind="'+'+vm.prefix_verify"></span><i class="ci-keyboard_arrow_down"></i>
+                  </label>
+              <ul class="c-dropdown-menu list-code-region-verify">
+                <li ng-repeat="list in vm.list_prefix_phone_number | orderBy:'country_name'">
+                  <a href="javascript:void(0)" ng-click="vm.setPrefixPhoneVerify(list.image,list.phone_code)" ng-if="list.phone_code && list.image">
+                    <img ng-src="{{list.image}}" width="20" height="16" style="vertical-align: middle" /> &nbsp; <span ng-bind="list.country_name"></span>
+                    <span
+                      style="vertical-align: middle; float:right" ng-bind="' +'+list.phone_code"></span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div flex="none" ng-if="vm.verify == 'phone'">
+              <input type="text" class="phone-verify" id="phone_verify" placeholder="{{'$phone.number' | translate}}" ng-model="vm.update_resend_phone"
+                onkeypress="return numberOnly(this, event)" />
+            </div>
+            <div flex="flex"></div>
+            <div flex="none" ng-if="vm.verify == 'email'">
+              <md-button class="md-raised md-primary" ng-click="vm.updateResendEmail($event)">
+                <ciayo translate="$save">Save</ciayo>
+              </md-button>
+            </div>
+            <div flex="none" ng-if="vm.verify == 'phone'">
+              <md-button class="md-raised md-primary" ng-click="vm.updateResendPhone($event)">
+                <ciayo translate="$save">Save</ciayo>
+              </md-button>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+        function numberOnly(myfield, e, dec){
+          var key;
+          var keychar;
+          if (window.event) {
+            key = window.event.keyCode; 
+          } else if (e) {
+            key = e.which; 
+          } else {
+            return true;
+          }
+
+          keychar = String.fromCharCode(key);
+
+          if ((key==null) || (key==0) || (key==8) || (key==9) || (key==13) || (key==27) ) {
+            return true;
+          } else if ((("0123456789").indexOf(keychar) > -1)) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      </script>

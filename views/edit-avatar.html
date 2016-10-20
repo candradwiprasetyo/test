@@ -1,0 +1,86 @@
+<c-header type="profile"></c-header>
+
+<div class="display_loading_avatar">
+	<div class="loader">
+		<md-progress-circular md-mode="indeterminate" md-diameter="150"></md-progress-circular>
+	</div>
+</div>
+
+<div ng-class="vm.isModal?'modal-is-open':''" class="c-wizard-wrp">
+</div>
+
+<div class="avatar">
+			<div class="c-wrp">
+				<div class="c-cav c-pfl-editavatar">
+					
+					<div class="c-cav-head">
+						<div class="_headedit"><ciayo translate="$edit.avatar">edit your avatar</ciayo></div>
+					
+					</div>
+					<div class="c-cav-viewer">
+						<div class="display_loading">
+							<div class="loader">
+								Please wait
+							</div>
+
+						</div>
+						<div class="_viewport" style="background: {{vm.bgAvaColor}}">
+							<a href="#" toggle-zoom="toggle-zoom" class="_zoom">
+								<i class="ci-zoom-out"></i>
+							</a>
+							<div class="_avatar">
+								<div style="background-image: url({{ vm.imgBack }})" class="_part"></div>
+								<div ng-repeat="part in vm.defaultAvatar" style="background-image: url({{ part.image }})" id="part_{{ part.filter_id }}" filter-id="{{ part.filter_id }}" filter-value="{{ part.asset_id }}" element-id="{{ part.element_type_id }}" variant-id="{{	part.variant_id }}" class="_part"></div>
+							</div>
+						</div>
+
+					</div>
+					<div class="c-cav-parts">
+						<h3 ng-bind="vm.elementSelected.element_name" class="_title"></h3>
+						<div class="_parts">
+							<div ng-repeat="tab in vm.init | orderBy:'ui_position'" ng-click="vm.switchTab(tab)" ng-if="tab.ui_position&& tab.element_id != 16" style="background-image: url({{tab.element_image_url}})" ng-class="vm.elementSelected.element_id==tab.element_id?'-active':''" class="_item"></div>
+							<div class="_item" ng-class="vm.elementSelected.element_id==0?'-active':''" ng-click="vm.switchTab(vm.bgElement)">
+								<i class="ci-background"></i>
+							</div>
+						</div>
+					</div>
+					<!--<div class="image_loading">{{vm.image_loading}}</div>-->
+
+					<div class="new-carousel">
+						<div class="new-carousel-header">
+							<div class="frame">
+								<div ng-repeat="tab in vm.elementSelected.element_type" ng-if="tab.element_variation.length" label="{{ tab.element_type_name }}" ng-click="vm.selectElementVariation(tab);" class="_item" ng-class="tab.element_type_id==vm.elementIdSelected?'_active':''" style="cursor:pointer">
+									<div >{{ tab.element_type_name }}</div>
+								</div>
+							</div>
+						</div>
+
+								
+						<div class="new-carousel-content">
+							<div class='arrow-left' ng-mousedown="vm.arrow_prev()" ng-hide="vm.element_variation.length < 9" ></div>
+							<div class="frame scrollbar">
+									<div class="_item" ng-if="!vm.elementSelected.required" ng-class="vm.elementSelected.element_id==vm.getFilterValue(vm.idItemSelected)?'_active':''">
+										<div style="height:60px;width:60px;background-size: 60px 60px;background-image: url(assets/img/icon/no-avatar.png);" ng-click="vm.removePart(vm.elementSelected.element_id)"></div>
+									</div>
+									<div ng-repeat="variant in vm.element_variation" class="_item" ng-if="!vm.inConstraints(variant.variant_id) && variant.variant_thumb_url" ng-class="variant.variant_id==vm.getVariantId()?'_active':''">
+										<div style="height:60px;width:60px;background-size: 60px 60px; background-image: url({{ variant.variant_thumb_url	}});background-color: {{vm.elementSelected.color_variant[vm.defaultElementColor['element_'+vm.elementSelected.element_id]].color_code}};" ng-click="vm.changePart(variant, vm.elementSelected.element_id)"></div>
+									</div>
+									<div class="_item" ng-repeat="variant in vm.element_variation" ng-if="vm.elementSelected.element_id==0" ng-class="variant==vm.variantSelected?'_active':''" ng-click="vm.changeBackground(variant)">
+										<div style="width:60px;height:60px;background:{{variant}};border-radius: 30px;"></div>
+									</div>
+							</div>
+							<div class='arrow-right' ng-mousedown="vm.arrow_next()" ng-hide="vm.element_variation.length < 9"></div>
+						</div>
+					</div>
+					<div class="c-cav-color" ng-hide="!vm.elementSelected.color_variant || (vm.getFilterValue(vm.elementSelected.element_id) == '')">
+						<ul>
+							<li ng-repeat="color in vm.elementSelected.color_variant" ng-class="vm.defaultElementColor['element_'+vm.elementSelected.element_id]==$index?'color_active':''"><a href="javascript:void(0)" style="background: {{ color.color_code }}" ng-click="vm.changePartColor(color.color_id, $index)" class="_color"></a></li>
+						</ul>
+					</div>
+					<div class="_button">
+						<md-button ng-click="vm.cancelAvatar()" class="md-raised md-button md-ink-ripple cancel" type="submit" ng-transclude="" aria-label="Cancel"><span class="ng-scope"><ciayo translate="$cancel">Cancel</ciayo></span></md-button>
+						<md-button ng-click="vm.saveAvatar()" class="md-raised md-primary md-button md-ink-ripple" type="submit" ng-transclude="" aria-label="Save"><span class="ng-scope"><ciayo translate="$save">Save</ciayo></span></md-button>
+					</div>
+				</div>
+			</div>
+		</div>

@@ -1,0 +1,196 @@
+.c-rgs-mascot-heading h1 {
+	margin: 50px 0 50px 0;
+	text-align: center;
+	color: #59c1ee;
+	font-family: ciayobold;
+	font-size: 48px;
+	line-height: 1;
+	text-transform: uppercase;
+}
+
+.c-rgs-mascot-paragraph p {
+	margin: 0 0 50px 0;
+	text-align: center;
+	color: #333;
+	font: ciayo;
+	font-size: 16px;
+	line-height: 1.25;
+}
+
+.c-rgs-mascot-form {
+	height: 439px;
+	margin: 0 auto 0 auto;
+}
+
+.c-rgs-mascot-wrp {
+	height: 280px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.c-rgs-mascot-item {
+	display: inline-block;
+	vertical-align: top;
+	width: 220px;
+	height: 270px;
+	padding: 6px;
+	margin-right: 10px;
+	border: 2px solid transparent;
+	border-radius: 6px;
+	box-sizing: border-box;
+	cursor: pointer;
+	transition: height 300ms ease;
+	overflow: hidden;
+	outline: none;
+}
+
+.c-rgs-mascot-item:hover, .c-rgs-mascot-item.active {
+	border: 2px solid #49a8dc;
+}
+
+.c-rgs-mascot-item:hover .c-rgs-mascot-name, .c-rgs-mascot-item.active .c-rgs-mascot-name {
+	color: #49a8dc;
+}
+
+.c-rgs-mascot-item.active {
+	height: 388px;
+}
+
+.c-rgs-mascot-item.active .c-mascot-char {
+	visibility: visible;
+	opacity: 1;
+}
+
+.c-rgs-mascot-item label {
+	cursor: pointer;
+}
+
+.c-rgs-mascot-item:last-child {
+	margin-right: 0;
+}
+
+.c-rgs-mascot-img {
+	width: 200px;
+	height: 200px;
+	margin: 0 auto 21px auto;
+}
+
+.c-rgs-mascot-name {
+	display: block;
+	height: 30px;
+	margin: 0 auto 16px auto;
+	text-align: center;
+	color: #333;
+	font-family: ciayo;
+	font-size: 30px;
+	font-weight: bold;
+	line-height: 1;
+}
+
+.c-rgs-mascot-next-btn {
+	margin-top: 133px;
+	text-align: center;
+}
+
+.c-rgs-mascot-next-btn button {
+	font-size: 16px;
+	text-transform: capitalize;
+}
+
+.c-rgs-mascot-item > label > input {
+	visibility: hidden;
+	position: absolute;
+}
+
+.c-mascot-char {
+	visibility: hidden;
+	opacity: 0;
+	transition: all .3s ease;
+}
+
+.c-mascot-char .char-wrp {
+	margin-bottom: 3px;
+	font-size: 14px;
+}
+
+.c-mascot-char .char-wrp .text {
+	margin-left: 6px;
+	color: #666;
+	float: left;
+}
+
+.c-mascot-char .char-wrp .value1,
+.c-mascot-char .char-wrp .value2,
+.c-mascot-char .char-wrp .value3 {
+	font-family: ciayobold;
+	float: right;
+}
+
+.c-mascot-char .char-wrp .value1 {
+	color: #f89b1f;
+}
+
+.c-mascot-char .char-wrp .value2 {
+	color: #ee4481;
+}
+
+.c-mascot-char .char-wrp .value3 {
+	color: #49afe3;
+}
+
+.c-mascot-char .char-bar {
+	width: 204px;
+	height: 5px;
+	background: #fff;
+	margin-bottom: 12px;
+	border-radius: 2.5px;
+}
+
+.c-mascot-char .char-bar .char-value1,
+.c-mascot-char .char-bar .char-value2,
+.c-mascot-char .char-bar .char-value3 {
+	height: 5px;
+	border-radius: 2.5px;
+}
+
+.c-mascot-char .char-bar .char-value1 {
+	background: #f89b1f;
+}
+
+.c-mascot-char .char-bar .char-value2 {
+	background: #ee4481;
+}
+
+.c-mascot-char .char-bar .char-value3 {
+	background: #49afe3;
+}
+
+.c-mascot-crocket {
+	background: transparent url(https://s3-ap-southeast-1.amazonaws.com/ciayo-dev4/mascots/e095af5cd7fc2682cc598869c210adb044422ff4_500x500.png) no-repeat;
+	background-size: cover;
+	transition: all ease .25s;
+}
+.c-rgs-mascot-item.active .c-mascot-crocket, 
+.c-mascot-crocket:hover {
+	background-image: url(https://s3-ap-southeast-1.amazonaws.com/ciayo-dev4/mascots/7defdcaf803b0c4b5c4a06e101a0543506949ec7_500x500.png);
+}
+
+.c-mascot-coco {
+	background: transparent url(https://s3-ap-southeast-1.amazonaws.com/ciayo-dev4/mascots/02a65403f5958e9af86280188c32ce36cee66d61_500x500.png) no-repeat;
+	background-size: cover;
+	transition: all ease .25s;
+}
+.c-rgs-mascot-item.active .c-mascot-coco, 
+.c-mascot-coco:hover {
+	background-image: url(https://s3-ap-southeast-1.amazonaws.com/ciayo-dev4/mascots/55baed0024d3b6cb171fb8b8063834cd78977b58_500x500.png);
+}
+
+.c-mascot-chips {
+	background: transparent url(https://s3-ap-southeast-1.amazonaws.com/ciayo-dev4/mascots/616f3fce317cb888a940e74c025096f8207a56f6_500x500.png) no-repeat;
+	background-size: cover;
+	transition: all ease .25s;
+}
+.c-rgs-mascot-item.active .c-mascot-chips, 
+.c-mascot-chips:hover {
+	background-image: url(https://s3-ap-southeast-1.amazonaws.com/ciayo-dev4/mascots/2241c58ee5faa80b95606f0aa01d24586bbf92bc_500x500.png);
+}

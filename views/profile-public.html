@@ -1,0 +1,495 @@
+<c-header-public></c-header-public>
+<div class="c-animate">
+<div class="c-prof-editable active">
+	
+	<div class="c-prof-head">	
+		<div class="prof-banner">
+			<div class="c-banner">
+				<ul class='c-banner-viewport'>
+					<li ng-repeat='banner in vm.profile.banner' class='layer' data-depth='{{0.1+(0.20*(4-banner.speed))}}'>
+						<img ng-src='{{banner.image}}'>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="avatar-wrp">
+			<img ng-src="{{vm.profile.user_avatar}}"/>
+		</div>
+		<div class="prof-detail-wrp">
+			<div class="prof-detail">
+				<div class="username" ng-bind="vm.profile.user_display_name"></div>
+				<!--<div>{{vm.user_id}}</div>-->
+				<div class="desc"><i class="ci-title"></i><span ng-bind="vm.profile.title"></span></div>
+			</div>
+		</div>
+	
+	</div>
+	<div class="c-wrp">
+			<div class="c-prof-wrp">
+				<div class="c-prof-menu">
+					<ul>
+						<li class="{{vm.state==0?'active':''}}" ng-click="vm.state=0; vm.carouselActive()">
+							<a md-ink-ripple="#000000" href="" class="prof-menu"><span class="overview"></span><ciayo translate="$overview">overview</ciayo></a>
+						</li>
+						<li class="{{vm.state==1?'active':''}}" ng-click="vm.state='1'">
+							<a md-ink-ripple="#000000" href="" class="prof-menu"><span class="timeline"></span><ciayo translate="$timeline">timeline</ciayo></a>
+						</li>
+						<li class="{{vm.state==2?'active':''}}" ng-click="vm.state='2'">
+							<a md-ink-ripple="#000000" href="" class="prof-menu"><span class="connection"></span><ciayo translate="$friends">friends</ciayo></a>
+						</li>
+						<li class="{{vm.state==3?'active':''}}" ng-click="vm.state='3'">
+							<a md-ink-ripple="#000000" href="" class="prof-menu"><span class="achievement"></span><ciayo translate="$achievement">achievement</ciayo></a>
+						</li>
+					</ul>
+				</div>
+				<div layout="row" class="c-prof-container" ng-if="vm.state==0">
+					<div flex="50">
+						<div class="overview-box">
+							<div class="head"><ciayo translate="$about.me">about me</ciayo></ciayo></div>
+							<div class="content">
+								<div class="loading-aboutme" ng-hide="vm.aboutme">
+									<center><md-progress-circular md-mode="indeterminate" md-diameter="50"></md-progress-circular></center>
+								</div>
+								<div class="about-me" ng-hide="!vm.aboutme">
+									<div class="fullname">
+										<div class="title"><i class="ci-fullname"></i><ciayo translate="$full.name">Full Name</ciayo>
+										</div>
+										<div class="text">
+											<span ng-bind="vm.profile.user_first_name"></span>
+											<span ng-bind="vm.profile.user_middle_name"></span>
+											<span ng-bind="vm.profile.user_last_name "></span>
+										</div>
+									</div>
+									<div class="place-dateofbirth">
+										<div class="title"><i class="ci-birthday"></i><ciayo translate="$place.date.birth">Place, Date of Birth</ciayo>
+										</div>
+										<div class="text">
+											<span ng-bind="vm.profile.place_of_birth" style="text-transform: capitalize;"></span><span ng-bind="vm.qoma"></span>
+											<span ng-bind="vm.profile.date_of_birth"></span>
+											</div>
+									</div>
+									<div class="nationality">
+										<div class="title"><i class="ci-nationality"></i><ciayo translate="$nationality">Nationality</ciayo>
+										</div>
+										<div class="text" ng-bind="vm.profile.nationality"></div>
+										<!-- <section ng-repeat="list in vm.list_nationality | orderBy:'country_name'">
+											<section ng-if="$index+1 == vm.profile.nationality">
+												<div class="text" ng-bind="list.country_name" ng-init="vm.nationality_image = list.image;vm.nationality_name = list.country_name">
+												</div>
+											</section>
+										</section> -->
+									</div>
+									<div class="email">
+										<div class="title"><i class="ci-email"></i><ciayo translate="">Email</ciayo>
+										</div>
+										<div class="text">
+											<span ng-bind="vm.profile.email"></span>
+											</div>
+									</div>
+									<!-- <div class="phone-number">
+										<div class="title"><i class="ci-phone"></i><ciayo translate="">Phone Number</ciayo>
+										</div>
+										<div class="text">
+											<span ng-bind="''+vm.profile.phone"></span>
+											</div>
+									</div> -->
+								</div>
+							</div>
+						</div>
+						<div class="overview-box">
+							<div class="head"><ciayo translate="$website">website</ciayo><span ></span></div>
+							<div class="content">
+								<div class="website">
+									<!-- <div class="loading-website">
+										<center><md-progress-circular md-mode="indeterminate" md-diameter="50"></md-progress-circular></center>
+									</div> -->
+									<div>
+										<i class="ci-website"></i>
+										<a ng-href="http://{{vm.profile.website}}" target="_blank">
+											<span ng-bind="vm.profile.website"></span>
+										</a>
+										<span ng-if="!vm.profile.website" class="_empty"><ciayo translate="$no.website.added">no website</ciayo></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="overview-box">
+							<div class="head"><ciayo translate="$social.media">social media </ciayo></div>
+							<div class="content social-media">
+								<div class="loading-social-media" ng-hide="vm.social_media_loading">
+									<center><md-progress-circular md-mode="indeterminate" md-diameter="50"></md-progress-circular></center>
+								</div>
+								<div class="social-media" ng-hide="!vm.social_media">
+									<a ng-href="{{vm.profile.pinterest ? 'http://pinterest.com/'+vm.profile.pinterest : ''}}" target="_blank" ng-show="vm.profile.pinterest">
+										<i class="ci-pinterest {{vm.profile.pinterest?'active':''}}"></i>
+									</a>
+									<a ng-href="{{vm.profile.facebook ? 'http://facebook.com/'+vm.profile.facebook : ''}}" target="_blank" ng-show="vm.profile.facebook">
+										<i class="ci-facebook {{vm.profile.facebook?'active':''}}"></i>
+									</a>
+									<a ng-href="{{vm.profile.twitter ? 'http://twitter.com/'+vm.profile.twitter : ''}}" target="_blank" ng-show="vm.profile.twitter">
+										<i class="ci-twitter {{vm.profile.twitter?'active':''}}"></i>
+									</a>
+									<a ng-href="{{vm.profile.instagram ? 'http://instagram.com/'+vm.profile.instagram : ''}}" target="_blank" ng-show="vm.profile.instagram">
+										<i class="ci-instagram {{vm.profile.instagram?'active':''}}"></i>
+									</a>
+									<a ng-href="{{vm.profile.path ? 'http://path.com/'+vm.profile.path : ''}}" target="_blank" ng-show="vm.profile.path">
+										<i class="ci-path {{vm.profile.path?'active':''}}"></i>
+									</a>
+									<span ng-if="vm.social_media_nodata" class="_empty"><ciayo translate="$no.social.network.added">no social network added</ciayo></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div flex="50">
+						<div class="overview-box badge-edit">
+							<div class="head"><ciayo translate="$badge.collection">badge collection</ciayo>
+								<div class="_button">
+									<md-button class="md-raised md-button md-ink-ripple _edit" type="submit" ng-transclude="" aria-label="Cancel" ng-click="vm.closeEditBadge()"><span class="ng-scope"><ciayo translate="$cancel">Cancel</ciayo></span></md-button>
+									<md-button class="md-raised md-button md-ink-ripple _edit" type="submit" ng-transclude="" aria-label="Save"><span class="ng-scope"><ciayo translate="$save">Save</ciayo></span></md-button>
+								</div>
+							</div>
+							<div class="content">
+							<div>
+								<div class="badge">
+									<div class="c-profile-badge" style="height:150px">
+										<!-- <div class="collection-box-blank" style="height:150px"></div>-->
+										<div class="collection-box" ng-repeat="list in vm.list_choice_badge">
+											<i class="ci-delete-2"></i>
+											<img ng-src="{{list.image}}"/>
+											<span ng-bind="list.name"></span>
+										</div>
+										<div class="collection-box add" toggle-modal="ModalAddBadge">
+												<div class="plus-icon"><i class="ci-add-item" ng-click="vm.showModalAddBadge()"></i></div>
+												<span class="add-text"><ciayo translate="$add.badge">add badge</ciayo></span>
+										</div>
+										<div class="_empty" ng-if="vm.list_choice_badge.length==0">
+											<span>{{vm.profile.user_first_name}} has no badge</span>
+										</div>
+									</div>
+									<!--<div class="collection-box">
+										<i class="ci-delete-2"></i> 
+										<img src="../assets/img/badge/badge-welcome.png"/>
+										<span>Welcome to Ciayo</span>
+									</div>-->
+									<div class="c-clear"></div>
+								</div>
+								</div>
+							</div>
+						</div>
+						<div class="overview-box achievement-edit">
+							<div class="head"><ciayo translate="$achievement"></ciayo>
+								<div class="_button">
+									<md-button class="md-raised md-button md-ink-ripple _edit" type="submit" ng-transclude="" aria-label="Cancel" ng-click="vm.closeEditAchievement()"><span class="ng-scope"><ciayo translate="$cancel">Cancel</ciayo></span></md-button>
+									<md-button class="md-raised md-button md-ink-ripple _edit" type="submit" ng-transclude="" aria-label="Save" ng-click="vm.saveChoiceAchievement()"><span class="ng-scope"><ciayo translate="$save">Save</ciayo></span></md-button>
+								</div>
+							</div>
+							<div class="content">
+								<div class="loading-choice-achievement" ng-hide="vm.list_choice_achievement">
+									<center><md-progress-circular md-mode="indeterminate" md-diameter="50"></md-progress-circular></center>
+								</div>
+								<div style="overflow-x:auto;overflow-y:hidden;height:320px;width:450px" id="achievement_wrp" ng-hide="!vm.list_choice_achievement">
+									<div class="achievement" id="achievement_content" ng-style="{'height':'320px','width':vm.data_row_width+'px'}">
+									<div>
+										<div ng-repeat="list in vm.list_choice_achievement" ng-if="list.order!='9999999999'">
+											<div class="collection-box" id="{{'choice'+list.id}}">
+												<i class="ci-delete-2" ng-click="vm.removeChoiceAchievement(list.id)"></i>
+												<img ng-src="{{list.image}}"/>
+												<span ng-bind="list.name"></span>
+											</div>
+										</div>
+										<div ng-repeat="item in vm.list_achievement">
+											<div class="collection-box choiceadd" id="{{'choiceadd'+item.id}}" style="display:none;opacity:0">
+												<i class="ci-delete-2" ng-click="vm.removeChoiceAchievement(item.id)"></i>
+												<img ng-src="{{item.image}}"/>
+												<span ng-bind="item.name"></span>
+											</div>
+										</div>
+										<div>
+											<div class="collection-box add" toggle-modal="ModalAddAchievement">
+												<div class="plus-icon"><i class="ci-add-item" ng-click="vm.showModalAddAchievement()"></i></div>
+											<span class="add-text"><ciayo translate="$add.achievement">add achievement</ciayo></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div ng-click="vm.choiceAchievementLeft()" class="achievement-choice-left" ng-if="vm.list_choice_achievement.length>6"><i class="ci-dropdown"></i></div>
+								<div ng-click="vm.choiceAchievementRight()" class="achievement-choice-right" ng-if="vm.list_choice_achievement.length>6"><i class="ci-dropdown"></i></div>
+							<div class="_empty">
+								<span>no achievement collection</span>
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+				<div layout="row" class="c-prof-container" ng-if="vm.state==1">
+					<div class="profile-public">
+						<div class="title">You dont have access to view timeline. Please login first</div>
+						<div class="button" ng-click="vm.login_first()" id="login_first1">Login</div>
+					</div>
+
+				</div>
+				<div layout="row" class="c-prof-container" ng-if="vm.state==2">
+					<div class="profile-public">
+						<div class="title">You dont have access to view friend list. Please login first</div>
+						<div class="button" ng-click="vm.login_first()" id="login_first2">Login</div>
+					</div>
+				</div>
+				<div layout="row" class="c-prof-container" ng-if="vm.state==3">
+					<div class="profile-public">
+						<div class="title">You dont have access to view achievement. Please login first</div>
+						<div class="button" ng-click="vm.login_first()" id="login_first3">Login</div>
+
+					</div>
+				
+				</div>
+			
+		</div>
+</div>
+
+	<!--modal edit about me-->
+    <div layout="column" layout-align="center center" class="c-modal" id="ModalEditMe">
+      <div toggle-modal="close" class="c-modal-backdrop" ></div>
+      <div layout="column" class="c-modal-wrapper c-pfl-overview-modal about-me">
+        <div toggle-modal="close" class="_close"><i class="ci-delete-2 s-10"></i>
+        </div>
+        <div class="_head"><ciayo translate="$about.me">about me</ciayo></div>
+        <div class="_fullname">
+          <div class="_text"><ciayo translate="$full.name">full name</ciayo></div>
+          <div class="_input">
+            <input type="text" name="firstname" placeholder="{{'$first.name' | translate}}" ng-model="vm.edit_first_name"/>
+            <input type="text" name="middlename" placeholder="{{'$middle.name' | translate}}" ng-model="vm.edit_middle_name"/>
+            <input type="text" name="lastname" placeholder="{{'$last.name' | translate}}" ng-model="vm.edit_last_name"/>
+          </div>
+        </div>
+        <div class="_birth">
+          <div class="_place">
+            <div class="_text"><ciayo translate="$place.of.birth">place of birth</ciayo></div>
+            <input type="text" name="placeofbirth" placeholder="Place" ng-model="vm.edit_place_of_birth" click-outside="vm.hideListPlace()" ng-change="vm.searchCities()" ng-model-options="{debounce: 150}" ng-keydown="vm.selectCities($event)"/>
+          </div>
+          <div class="_date">
+            <div class="_text"><ciayo translate="$date.of.birth">date of birth</ciayo></div>
+            <div class="_listplace" id="div_list_place">
+	            <ul class="asd" tabindex="{{vm.id_list_cities}}">
+	              <li ng-repeat="list in vm.list_place.list" ng-click="vm.edit_place_of_birth = list.name; vm.place_birth = list.name" style="outline:none" ng-class="{active : vm.list_place.selectedIndex===$index}" id="#list_place_{{$index}}">
+	              	<nobr><span ng-bind="list.name_country"></span></nobr>
+	              </li>
+	            </ul>
+          	</div>
+          	<input type="input" id="datepicker" ng-model="vm.edit_date_of_birth" ng-click="vm.cal()">
+          	<span><i class="ci-calendar"></i></span>
+          </div>
+          <span id="edit_date" ng-bind="date" style="display:none"></span>
+        </div>
+        <div class="_nationality" ng-class="vm._nationality ? 'active' : ''">
+          <div class="_text"><ciayo translate="$nationality">nationality</ciayo></div>
+          <div ng-click="vm._nationality = !vm._nationality" style="outline:none;width: 238px;">
+          <div class="_list"><span><img ng-src="{{vm.nationality_image}}"/></span><input type="text" ng-model="vm.nationality_name" ng-click="vm.nationality_name=''; vm.nationality_image=''" ng-keydown="vm.selectNationality($event)"/><i class="ci-dropdown" ng-click="vm.nationality_name=''; vm.nationality_image=''" style="outline:none"></i></div>
+          <div class="_listdropdown" id="div_list_nationality">
+            <ul ng-repeat="list in vm.list_nationality | orderBy:'country_name' | filter:vm.nationality_name" ng-class="{active : vm.list_nationality.selectedIndex===$index}">
+              <li ng-if="list.country_name!='Anonymous'" ng-click="vm.setNationality(list.country_name, list.image, vm.natio[list.country_name])"  style="outline:none">
+              	<span>
+              		<img ng-src="{{list.image}}"/>
+              	</span>
+              	<span ng-bind="list.country_name"></span>
+              </li>
+            </ul>
+            <ul ng-repeat="list in vm.list_nationality | orderBy:'country_name'" style="display:none">
+              <li ng-if="list.country_name!='Anonymous'" ng-click="vm.setNationality(list.country_name, list.image, $index+1)"  style="outline:none">
+                <section ng-init="vm.natio[list.country_name] = $index+1"></section>
+              	<span ng-bind="vm.natio[list.country_name]"></span>
+              </li>
+            </ul>
+          </div>
+          </div>
+        </div>
+        <input type="hidden" ng-model="vm.edit_nationality">
+        <div class="_button">
+          <md-button class="md-raised md-button md-ink-ripple cancel" type="submit" ng-transclude="" aria-label="Cancel" toggle-modal="close"><span class=" ng-scope"><ciayo translate="$cancel">Cancel</ciayo></span></md-button>
+          <md-button class="md-raised md-primary md-button md-ink-ripple" type="submit" ng-transclude="" aria-label="Save" ng-click="vm.updateUserFilter()" toggle-modal="close"><span class="ng-scope"><ciayo translate="$save">Save</ciayo></span></md-button>
+        </div>
+      </div>
+    </div>
+    		<!--modal edut website-->
+		<div layout="column" layout-align="center center" class="c-modal" id="ModalEditWebsite">
+			<div toggle-modal="close" class="c-modal-backdrop" ></div>
+			<div layout="column" class="c-modal-wrapper c-pfl-overview-modal website">
+				<div toggle-modal="close" class="_close"><i class="ci-delete-2 s-10"></i>
+				</div>
+				<div class="_head"><ciayo translate="$website">website</ciayo></div>
+				<div class="_text"><ciayo translate="$your.website">your website</ciayo></div>
+				<!-- <div class="_yourwebsite">www.kuncorojatikusumo.com<i class="ci-delete-2"></i></div> -->
+				<div class="_addwebsite"><input type="text" name="website" placeholder="{{'$website' | translate}}" ng-model="vm.edit_website"/></div>
+				<div class="_button">
+					<md-button class="md-raised md-button md-ink-ripple cancel" type="submit" ng-transclude="" aria-label="Cancel" toggle-modal="close"><span class="ng-scope"><ciayo translate="$cancel">Cancel</ciayo></span></md-button>
+					<md-button class="md-raised md-primary md-button md-ink-ripple" type="submit" ng-transclude="" aria-label="Save" ng-click="vm.saveWebsite()" toggle-modal="close"><span class="ng-scope"><ciayo translate="$save">Save</ciayo></span></md-button>
+				</div>
+			</div>
+		</div>
+
+		<!--modal edit username-->
+		<div layout="column" layout-align="center center" class="c-modal" id="ModalEditUsername">
+			<div toggle-modal="close" class="c-modal-backdrop" ></div>
+			<div layout="column" class="c-modal-wrapper c-pfl-overview-modal username">
+				<div toggle-modal="close" class="_close" ng-click="vm.init()" style="outline:none"><i class="ci-delete-2 s-10"></i>
+				</div>
+
+				<div class="_head"><ciayo translate="$display.name&title">Display Name & Title</ciayo></div>
+				<label for="user_username"><ciayo translate="$displayname">Display Name</ciayo></label>
+				<div class="_username">
+					<input type="text" name="username" id="user_username" ng-model="vm.edit_profile_name" maxlength="65"/><i class="ci-delete-2" ng-click="vm.clearName()" style="outline:none"></i>
+					</div>
+				<label for="user_title"><ciayo translate="$title">Title</ciayo></label>
+				<div class="_username">
+					<select name="usertitle" id="user_title" style="height: 40px; background:#fff;border:1px solid #e6e6e6;border-radius:4px;outline:none;width:100%" ng-model="vm.edit_title">
+						<option ng-show="vm.listTitle==''" value="">no title</option>
+						<option ng-show="vm.listTitle!=''" value="no title">no title</option>
+						<option ng-show="vm.listTitle!=''" ng-selected="{{item.name==vm.edit_title}}" ng-repeat="item in vm.listTitle" value="{{item.name}}" ng-bind="item.name"></option>
+					</select>
+				</div>
+
+				<div class="_button">
+					<md-button class="md-raised md-button md-ink-ripple cancel" type="submit" ng-transclude="" aria-label="Cancel" toggle-modal="close" ng-click="vm.init()"><span class="ng-scope"><ciayo translate="$cancel">Cancel</ciayo></span></md-button>
+					<md-button class="md-raised md-primary md-button md-ink-ripple" type="submit" ng-transclude="" aria-label="Save" ng-click="vm.editUsername()" toggle-modal="close"><span class="ng-scope"><ciayo translate="$save">Save</ciayo></span></md-button>
+				</div>
+			</div>
+		</div>
+
+		<!--modal edit title-->
+		<div layout="column" layout-align="center center" class="c-modal" id="ModalEditTitle">
+			<div toggle-modal="close" class="c-modal-backdrop" ></div>
+			<div layout="column" class="c-modal-wrapper c-pfl-overview-modal username">
+				<div toggle-modal="close" class="_close" ng-click="vm.init()" style="outline:none"><i class="ci-delete-2 s-10"></i>
+				</div>
+				<div class="_head">Title</div>
+					<div class="_username"><input type="text" name="username" ng-model="vm.edit_profile_name"/><i class="ci-delete-2" ng-click="vm.clearName()" style="outline:none"></i></div>
+				<div class="_username">
+					<select name="" id="" style="height: 40px; background:#fff;border:1px solid #e6e6e6;border-radius:4px;outline:none;width:100%" ng-model="vm.edit_title">
+						<option ng-selected="{{item.name==vm.edit_title}}" ng-repeat="item in vm.listCompleted" value="{{item.name}}" ng-bind="item.name"></option>
+					</select>
+				</div>
+				<div class="_button">
+					<md-button class="md-raised md-button md-ink-ripple cancel" type="submit" ng-transclude="" aria-label="Cancel" toggle-modal="close" ng-click="vm.init()"><span class="ng-scope"><ciayo translate="$cancel">Cancel</ciayo></span></md-button>
+					<md-button class="md-raised md-primary md-button md-ink-ripple" type="submit" ng-transclude="" aria-label="Save" ng-click="vm.saveTitle()" toggle-modal="close"><span class="ng-scope"><ciayo translate="$save">Save</ciayo></span></md-button>
+				</div>
+			</div>
+		</div>
+
+	<!--modal edit social media-->
+		<div layout="column" layout-align="center center" class="c-modal" id="ModalEditSocialmedia">
+			<div toggle-modal="close" class="c-modal-backdrop" ></div>
+			<div layout="column" class="c-modal-wrapper c-pfl-overview-modal social-media">
+				<div toggle-modal="close" class="_close"><i class="ci-delete-2 s-10"></i>
+				</div>
+				<div class="_head"><ciayo translate="$social.media">social media</ciayo></div>
+				<div class="_text"><ciayo translate="$put.social.media">You can also put URL from your social media account here</ciayo></div>
+				<div class="loading-social-media" ng-hide="vm.social_media">
+					<center><md-progress-circular md-mode="indeterminate" md-diameter="50"></md-progress-circular></center>
+				</div>
+				<div class="_socialmedia" ng-repeat="list in vm.list_social_media" ng-hide="!vm.social_media">
+					<div class="_logo"><i class="ci-{{list.name | spaceless |lowercase}} active"></i></div>
+					<div class="_smtext"><span ng-bind="list.name"></span> username</div>
+					<div class="_smusername"><span ng-bind="list.value"></span><span ng-click="vm.deleteSocialMedia(list.id)"><i class="ci-delete-2"></i></span></div>
+				</div>
+				<div class="_addsocialmedia">
+					<span ng-click="vm.showIconSocialMedia()">
+					<div class="_addicon" md-ink-ripple="#999999">
+						<i class="ci-facebook" ng-show="vm.choose_social_media=='0'"></i>
+						<i class="ci-twitter" ng-show="vm.choose_social_media=='1'"></i>
+						<i class="ci-instagram" ng-show="vm.choose_social_media=='2'"></i>
+						<i class="ci-pinterest" ng-show="vm.choose_social_media=='8'"></i>
+						<i class="ci-path" ng-show="vm.choose_social_media=='7'"></i>
+						<i class="ci-add-item" ng-show="vm.choose_social_media=='clear'"></i>
+					</div>
+					<div class="_addpopup">
+							<span ng-click="vm.chooseSocialMedia(8)" style="outline:none"><i class="ci-pinterest active"></i></span>
+							<span ng-click="vm.chooseSocialMedia(0)" style="outline:none"><i class="ci-facebook active"></i></span>
+							<span ng-click="vm.chooseSocialMedia(1)" style="outline:none"><i class="ci-twitter active"></i></span>
+							<span ng-click="vm.chooseSocialMedia(2)" style="outline:none"><i class="ci-instagram active"></i></span>
+							<span ng-click="vm.chooseSocialMedia(7)" style="outline:none"><i class="ci-path active"></i></span>
+						</div>
+					</span>
+					<div class="_add"><ciayo translate="$add.social.media">add social media</ciayo></div>
+					<div class="_addtext"><input type="text" name="socialmedia" ng-disabled="vm.choose_social_media=='clear'" ng-model="vm.account_social_media"/></div>
+				</div>
+				<div class="_button">
+					<md-button class="md-raised md-button md-ink-ripple cancel" type="submit" ng-transclude="" aria-label="Cancel" toggle-modal="close"><span class="ng-scope"><ciayo translate="$cancel">Cancel</ciayo></span></md-button>
+					<md-button ng-click="vm.addSocialMedia()" class="md-raised md-primary md-button md-ink-ripple" type="submit" ng-transclude="" aria-label="Save"><span class="ng-scope"><ciayo translate="$save">Save</ciayo></span></md-button>
+				</div>
+			</div>
+		</div>
+
+		<!--modal add badge-->
+		<div layout="column" layout-align="center center" class="c-modal" id="ModalAddBadge">
+			<div toggle-modal="close" class="c-modal-backdrop" ></div>
+			<div layout="column" class="c-modal-wrapper c-pfl-overview-modal add-badge">
+				<div toggle-modal="close" class="_close"><i class="ci-delete-2 s-10"></i>
+				</div>
+				<div class="_title"><ciayo translate="$pick.badge">Pick badge to show on your overview</ciayo></div>
+				<div class="_content">
+					<div class="collection-box" ng-repeat="item in vm.list_badge">
+						<img ng-src="{{item.image}}"/>
+						<span ng-bind="item.name"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--modal add achievement-->
+		<div layout="column" layout-align="center center" class="c-modal" id="ModalAddAchievement">
+			<div toggle-modal="close" class="c-modal-backdrop" ></div>
+			<div layout="column" class="c-modal-wrapper c-pfl-overview-modal add-achievement">
+				<div toggle-modal="close" class="_close"><i class="ci-delete-2 s-10"></i>
+				</div>
+				<div class="_title"><ciayo translate="$pick.achievement">Pick achievement to show on your overview</ciayo></div>
+				<div class="_search-wrp">
+					<i class="ci-search"></i>
+					<input type="text" ng-enter="vm.searchAchievement()" name="achievement" placeholder="{{'$search.achievement' | translate}}" ng-model="vm.keyword_achievement" ng-model-options="{ debounce: 700 }"/>
+					<md-button ng-click="vm.searchAchievement()" class="md-raised md-primary md-button md-ink-ripple" type="submit" ng-transclude="" aria-label="Search"><span class="ng-scope"><ciayo translate="$search">Search</ciayo></span></md-button>
+				</div>
+				<div class="_content">
+					<div class="loading-profile-achievement" ng-hide="vm.search_complete">
+						<center><md-progress-circular md-mode="indeterminate" md-diameter="150"></md-progress-circular></center>
+					</div>
+					<div>
+					<div class="collection-box" ng-repeat="item in vm.list_achievement | filter:vm.key_achievement" ng-hide="!vm.search_complete">
+						<img ng-src="{{item.image}}" ng-click="vm.pickAchievement(item.id)" style="outline:none;opacity:1" class="{{'pick'+item.id}}"/>
+						<img ng-src="{{item.image}}" style="cursor:auto;opacity:0.2;display:none" class="{{'pickdisabled'+item.id}}"/>
+						<span ng-bind="item.name" class="{{'picktext'+item.id}}" style="opacity:1"></span>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<script>
+	function show_frame(el){
+		$(el).parent().siblings('.list-content').removeClass('open');
+		$(el).parent('.list-content').toggleClass('open');
+	}
+	
+	function close_frame(el){
+		 $(".list-content").removeClass("open");
+	}
+	
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		setTimeout(function(){
+        	$('#datepicker').datepicker(
+        	{
+        		changeMonth: true,
+	            changeYear: true,
+	            yearRange: '-116:-11',
+	            dateFormat: 'dd/mm/yy',
+	            defaultDate:"-15y-m-d",
+			    beforeShow: function() {
+			        setTimeout(function(){
+			            $('.ui-datepicker').css('z-index', 999);
+			        }, 0);
+			    }
+			});
+        }, 1);
+	});
+</script>		

@@ -1,0 +1,511 @@
+<card-right ng-class="{'-loading':post.loadingRightCount<1 || post.loadingImage}" class="layout-column {{post.view=='detail'?'flex-auto':'flex-50'}}">
+	<!-- DETAIL -->
+	<div class="right-loader">
+		<div class="right-loader-waves">
+			<md-progress-circular md-mode="indeterminate" md-diameter="200"></md-progress-circular>
+		</div>
+	</div>
+	<div class="card-header layout-row flex-none" ng-if="post.view=='detail'">
+		<div class="c-detail-avatar flex-none">
+			<div class="c-pp -s40" style="background-color: {{post.user_avatar.full_body.background_avatar}};background-image: url({{post.user_avatar.full_body.avatar}})"></div>
+		</div>
+		<div class="c-detail-info flex-grow">
+			<div class="c-detail-name">
+				<a ui-sref="profile({user:post.username})" ng-bind="post.user_display_name"></a>
+			</div>
+			<div class="c-detail-title" ng-bind-html="post.activity_detail.activity_title"></div>
+		</div>
+		<div class="c-detail-date line-2"><strong>{{post.updated_at*1000 |date:'HH:mm'}}</strong>
+			<span>{{post.updated_at*1000 |date:'d MMM yyyy'}}</span></div>
+	</div>
+	<!-- END DETAIL -->
+	<card-tab class="-head layout-row flex-none">
+		<card-react flex="flex" layout="row">
+			<div flex="none" class="_topmost" ng-switch="post.reaction.detail.most.rate">
+				<img ng-switch-when="1" width="40" src="../assets/img/reaction/cimotion_ciayo_80px.png">
+				<img ng-switch-when="2" width="40" src="../assets/img/reaction/cimotion_chips_80px.png">
+				<img ng-switch-when="3" width="40" src="../assets/img/reaction/cimotion_crocket_80px.png">
+				<img ng-switch-when="4" width="40" src="../assets/img/reaction/cimotion_coco_80px.png">
+				<img ng-switch-when="5" width="40" src="../assets/img/reaction/cimotion_carla_80px.png">
+				<img ng-switch-when="6" width="40" src="../assets/img/reaction/cimotion_chuck_80px.png">
+				<img ng-switch-default width="40"  src="../assets/img/reaction/cimotion_ciayo_80px-gray.png">
+			</div>
+			<div flex="noshrink" class="_reaction_item" layout="row" layout-align="center center" ng-click="postReaction(post.post_id,1)">
+				<div md-ink-ripple="#000000" flex="none" style="background-image: url('assets/img/reaction/Ciayo.png')" class="_reaction -s40 {{post.reaction.user_react.rate==1?'-active':''}}" title="CIAYO"></div>
+			</div>
+			<div flex="noshrink" class="_reaction_item" layout="row" layout-align="center center" ng-click="postReaction(post.post_id,2)">
+				<div md-ink-ripple="#000000" flex="none" style="background-image: url('assets/img/reaction/Chips.png')" class="_reaction -s25 {{post.reaction.user_react.rate==2?'-active':''}}" title="WOW"></div>
+			</div>
+			<div flex="noshrink" class="_reaction_item" layout="row" layout-align="center center" ng-click="postReaction(post.post_id,3)">
+				<div md-ink-ripple="#000000" flex="none" style="background-image: url('assets/img/reaction/Crocket.png')" class="_reaction -s50 {{post.reaction.user_react.rate==3?'-active':''}}" title="HAPPY"></div>
+			</div>
+			<div flex="noshrink" class="_reaction_item" layout="row" layout-align="center center" ng-click="postReaction(post.post_id,4)">
+				<div md-ink-ripple="#000000" flex="none" style="background-image: url('assets/img/reaction/Coco.png')" class="_reaction -s30 {{post.reaction.user_react.rate==4?'-active':''}}" title="LOVE"></div>
+			</div>
+			<div flex="noshrink" class="_reaction_item" layout="row" layout-align="center center" ng-click="postReaction(post.post_id,5)">
+				<div md-ink-ripple="#000000" flex="none" style="background-image: url('assets/img/reaction/Carla.png')" class="_reaction -s45 {{post.reaction.user_react.rate==5?'-active':''}}" title="ANGRY"></div>
+			</div>
+			<div flex="noshrink" class="_reaction_item" layout="row" layout-align="center center" ng-click="postReaction(post.post_id,6)">
+				<div md-ink-ripple="#000000" flex="none" style="background-image: url('assets/img/reaction/Chuck.png')" class="_reaction -s55 {{post.reaction.user_react.rate==6?'-active':''}}" title="SAD"></div>
+			</div>
+		</card-react>
+		<card-tab-toggle layout="row" layout-align="center center" md-ink-ripple="#000000" ng-click="reactionDetail(post.post_id)">
+			<span flex="flex" ng-if="post.reaction.detail.count>0">
+				<span ng-bind="post.reaction.detail.count"></span>
+			<ciayo translate-once="$give.reaction">People give reaction</ciayo>
+			&nbsp;
+			</span>
+			<span ng-if="post.reaction.detail.count==0">
+				<ciayo translate-once="$nopeople.give.reaction">No People give reaction</ciayo>
+			</span>
+			<span flex="none">
+				<i class="ci-dropdown s-10"></i>
+			</span>
+		</card-tab-toggle>
+		<card-pane layout="column">
+			<card-reaction-title flex="none"><b><ciayo translate-once="$who.gave.reaction">Who gave reaction on this post</ciayo></b></card-reaction-title>
+			<card-reaction-lists flex="grow">
+				<div layout="row" class="_list" ng-repeat="user in post.reaction.user">
+					<div flex="none" class="_userimage">
+						<div class="c-pp -s30" style="background-image: url({{user.avatar.avatar}});background-color:'{{user.avatar.background_avatar}}'"></div>
+
+						<!--<img ng-src="{{user.user.avatar.full_body}}" width="30" height="30"/>-->
+					</div>
+					<div flex="flex" class="_username">
+						<a ui-sref="profile({user:user.username})" ng-bind="user.display_name"></a>
+					</div>
+					<div class="_media">
+						<!--<img src="assets/img/reaction/like.png"/>-->
+						<span ng-switch="user.rate">
+					 	<span ng-switch-when="1"><img width="24" src="../assets/img/reaction/cimotion_ciayo_80px.png"></span>
+						<span ng-switch-when="2"><img width="24" src="../assets/img/reaction/cimotion_chips_80px.png"></span>
+						<span ng-switch-when="3"><img width="24" src="../assets/img/reaction/cimotion_crocket_80px.png"></span>
+						<span ng-switch-when="4"><img width="24" src="../assets/img/reaction/cimotion_coco_80px.png"></span>
+						<span ng-switch-when="5"><img width="24" src="../assets/img/reaction/cimotion_carla_80px.png"></span>
+						<span ng-switch-when="6"><img width="24" src="../assets/img/reaction/cimotion_chuck_80px.png"></span>
+						</span>
+					</div>
+				</div>
+			</card-reaction-lists>
+		</card-pane>
+	</card-tab>
+	<!--REACTION-->
+	<card-tab class="flex-none" ng-class="{'-active':post.post_id!=1}">
+		<card-tab-toggle class="layout-column layout-align-center-center" md-ink-ripple="#000000" ng-if="post.post_id!=1">
+			<i class="ci-comment s-20"></i>
+			<span ng-bind="post.comment_count"></span>
+		</card-tab-toggle>
+		<card-pane class="layout-row">
+			<!--NORMAL-->
+			<card-comment-block class="layout-column flex">
+				<card-comment-more class="flex-none" ng-if="detail!=true && post.comment_count>5" ng-click="loadDetail(post.post_code)"><span><ciayo translate-once="$view.more.comment...">View more comments ..</ciayo></span></card-comment-more>
+				<card-comment-more class="flex-none" ng-if="detail==true && post.comment_count>5&&post.comment_stop==false" ng-click="commentLoad(post,null,post.comment_detail.length,5)"><span><ciayo translate-once="$view.more.comment...">Load more comments ..</ciayo></span></card-comment-more>
+				<card-comments class="flex-grow">
+					<div ng-if="post.comment_detail.length==0" class="_empty-comment" ng-class="'_empty'+((index)%5+1)"><span><ciayo translate-once="$no.comment.post!">No comment on this post!</ciayo></span></div>
+					<!-- class _comment.active kalo dia edit comment, tambahin pake javascript ya -->
+					<div ng-repeat="comment in post.comment_detail" class="_comment layout-row {{post.login_id==comment.user_id?'-me':''}}" ng-class="{'active':comment.on_edit,'edited':comment.created_at!=comment.updated_at}">
+						<!-- end class active -->
+						<div class="_userimage flex-none">
+							<div class="c-pp -s30" style="background-image: url({{comment.user_avatar.avatar}});background-color:{{comment.user_avatar.background_avatar}}"></div>
+						</div>
+						<div class="_bubble layout-row layout-wrap flex-grow">
+							<!-- begin edit comment -->
+							<div class="_usercomment _editcomment flex-grow">
+								<textarea name="" id="" rows="3" ng-model="comment.content" ng-keyup="commentEditCloseKey($event,comment)"></textarea>
+								<div class="_esc-to-cancel">Press Esc to <strong><a href="" class="_cancel-edit-comment" ng-click="commentEditClose(comment)">Cancel</a></strong> <span class="_cancel-separator">•</span> <strong><a href="" class="_save-edit-comment" ng-click="commentEdit(comment)">Save</a></strong></div>
+							</div>
+							<!-- end edit comment -->
+							<div class="layout-row layout-wrap flex-grow">
+								<a ui-sref="profile({user:comment.username})" class="_username flex-auto" ng-bind="comment.user_display_name"></a>
+								<div class="_datetime flex-nogrow">{{comment.updated_at*1000 |date:'d MMM'}} at {{comment.updated_at*1000 |date:'HH:mm'}}</div>
+
+								<div class="_action _etc flex-nogrow" ng-if="post.login_id==comment.user_id || post.login_id==post.user_id">
+									<span data-toggle="dropdown"><i class="ci-etc-fill s-12"></i></span>
+									<ul class="_dropdown">
+										<li ng-if="post.login_id==comment.user_id" ng-click="commentEditOpen(comment)"><span>Edit</span></li>
+										<li ng-if="post.login_id==post.user_id || comment.user_id==post.login_id"><span ng-click="deleteComment(comment.id_comment,$index)">Delete</span></li>
+									</ul>
+								</div>
+							</div>
+							<div ng-bind-html="comment | comment" class="_usercomment flex-grow"></div>
+							<div class="flex-grow layout-row layout-align-space-between-stretch">
+								<div toggle-card-comment="open" class="_open-comment flex-none" ng-click="commentReplyOpen(post,comment)">
+									<i class="ci-reply s-10"></i>
+									<span ng-if="comment.reply_count>0" ng-bind="comment.reply_count"></span>
+									<span><ciayo translate="$reply.comment"></ciayo></span>
+								</div>
+								<div ng-if="comment.created_at!=comment.updated_at" class="_editedtext flex-none">
+									<span class="_cancel-separator">•</span>
+									<ciayo>edited</ciayo>
+								</div>
+								<div class="flex-nogrow layout-row layout-align-start-end">
+									<div ng-click="likeComment(comment,1)" class="_action _etc flex-nogrow {{comment.like==1?'active _etc':''}}" style="outline:none"><i class="ci-like s-12"></i><span ng-bind="comment.like_count"></span>
+									</div>
+									<div ng-click="likeComment(comment,-1)" class="_action _etc flex-nogrow {{comment.like==-1?'active _etc':''}}" style="outline:none"><i class="ci-dislike s-12"></i><span ng-bind="comment.dislike_count"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</card-comments>
+				<card-comment-box class="layout-row flex-none">
+					<div class="_userimage flex-initial">
+						<div class="c-pp -s30" style="background-color:{{post.profile.user_avatar.background_avatar}};background-image: url({{post.profile.user_avatar.avatar}})"></div>
+					</div>
+					<div class="_bubble flex">
+						<input type="text" placeholder="{{'$write.comment...' | translate}}" ng-enter="commentCreate(post,post.comment_text,null);post.comment_text=''" ng-model="post.comment_text" class="_textbox" ng-disabled="!post.enable_comment" />
+					</div>
+					<c-sticker text="post.comment_text"></c-sticker>
+				</card-comment-box>
+			</card-comment-block>
+			<!--EDIT-->
+			<card-comment-nested class="layout-column">
+				<card-comment-back class="flex-none">
+					<span class="_button" ng-click="commentReplyClose()" toggle-card-comment="back">
+						<i class="ci-prev s-10"></i>
+						<span><ciayo translate-once="$back">Back</ciayo></span>
+					</span>
+				</card-comment-back>
+				<card-comments class="flex-grow">
+					<div class="_comment -nested layout-row" ng-class="{'-me':commentReply.user_id==post.login_id}">
+						<div class="_userimage flex-none">
+							<div class="c-pp -s30" style="background-image: url({{commentReply.user_avatar.avatar}});background-color:{{commentReply.user_avatar.background_avatar}}"></div>
+						</div>
+						<div class="_bubble flex-grow layout-row layout-wrap">
+							<div class="layout-nowrap layout-align-space-between-stretch layout-row flex-grow">
+								<a ui-sref="profile({user:commentReply.username})" class="_username flex-auto" ng-bind="commentReply.user_display_name"></a>
+								<div class="_datetime flex-nogrow">{{commentReply.updated_at*1000 |date:'d MMM'}} at {{commentReply.updated_at*1000 |date:'HH:mm'}}</div>
+							</div>
+							<div class="_usercomment flex-grow" ng-bind-html="commentReply | comment"></div>
+							<div ng-if="commentReply.created_at!=commentReply.updated_at" class="_editedtext flex-none">
+									<ciayo>edited</ciayo>
+								</div>
+						</div>
+					</div>
+					<!--detail-->
+					<div class="_comment layout-row" ng-repeat=" detail in commentReply.detail" ng-class="{'-me':detail.user_id==post.login_id}">
+						<div class="_userimage flex-none">
+							<div class="c-pp -s30" style="background-image: url({{detail.user_avatar.avatar}});background-color:{{detail.user_avatar.background_avatar}}"></div>
+						</div>
+						<div class="_bubble flex-grow layout-row layout-wrap">
+							<div class="layout-nowrap layout-align-space-between-stretch layout-row flex-grow">
+								<a ui-sref="profile({user:detail.username})" class="_username flex-auto" ng-bind="detail.user_display_name"></a>
+								<div class="_datetime flex-nogrow">{{detail.updated_at*1000 |date:'d MMM'}} at {{detail.updated_at*1000 |date:'HH:mm'}}</div>
+
+								<div class="_action _etc flex-nogrow"><span data-toggle="dropdown"><i class="ci-etc-fill s-12"></i></span>
+									<ul class="_dropdown">
+										<li ng-if="post.login_id==detail.user_id" ng-click="commentEditOpen($event)"><span>Edit</span></li>
+										<li ng-if="post.login_id==post.user_id || detail.user_id==post.user_id"><span ng-click="deleteComment(detail.id_comment,$index)">Delete</span></li>
+									</ul>
+								</div>
+							</div>
+							<div class="_usercomment flex-grow" ng-bind-html="detail | comment"></div>
+							<div class="layout-align-end-stretch layout-row flex-grow">
+								<div ng-click="likeComment(detail,1)" class="_action _etc flex-nogrow {{detail.like==1?'active _etc':''}}" style="outline:none"><i class="ci-like s-12"></i><span ng-bind="detail.like_count"></span>
+								</div>
+								<div ng-click="likeComment(detail,-1)" class="_action _etc flex-nogrow {{detail.like==-1?'active _etc':''}}" style="outline:none"><i class="ci-dislike s-12"></i><span ng-bind="detail.dislike_count"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</card-comments>
+				<card-comment-box class="flex-none layout-row">
+					<div class="_userimage flex-initial">
+						<div class="c-pp -s30" style="background-color:{{post.profile.user_avatar.background_avatar}};background-image: url({{post.profile.user_avatar.avatar}})"></div>
+					</div>
+					<div class="_bubble flex">
+						<input type="text" placeholder="{{'$write.comment...' | translate}}" ng-enter="commentCreate(post,post.comment_text,commentReply);post.comment_text=''" ng-model="post.comment_text" class="_textbox" ng-disabled="!post.enable_comment" />
+					</div>
+					<c-sticker></c-sticker>
+				</card-comment-box>
+			</card-comment-nested>
+		</card-pane>
+	</card-tab>
+	<!--COMMENT-->
+	<card-tab class="flex-none" ng-class="{'-active':post.post_id==1}">
+		<card-tab-toggle class="layout-column layout-align-center-center" md-ink-ripple="#000000"><i class="ci-share s-20"></i><span ng-bind="post.list_post_share.length"></span>
+		</card-tab-toggle>
+		<card-pane class="layout-column">
+			<card-share-activity class="flex-none layout-row">
+				<div class="flex">
+					<ciayo translate-once="$share.activity">Share your activity</ciayo>
+				</div>
+				<a target="_blank" ng-href="{{post.activity_detail.share.pinterest}}"  class="_media _pinterest" ng-click="shareTo('pinterest')"><i class="ci-pinterest s-24"></i></a>
+				<a target="_blank" ng-href="{{post.activity_detail.share.twitter}}" class="_media _twitter" ng-click="shareTo('twitter')"><i class="ci-twitter s-24"></i></a>
+				<a href="" class="_media _facebook" ng-click="shareFBAPI(post)" ng-class="(post.facebook_disabled)?'_disabled':''"><i class="ci-facebook s-24"></i></a>
+				<a target="_blank" class="_media _path" ng-if="false"><i class="ci-path-01 s-24"></i></a>
+			</card-share-activity>
+			<div flex ng-if="post.list_post_share.length==0">
+				<div class="_empty-share"><span><ciayo translate-once="$no.body.share">No body share this post</ciayo></span></div>
+			</div>
+			<card-share-title class="flex-none" ng-if="post.list_post_share.length>0"><ciayo translate-once="$who.shared.post">Who shared this post</ciayo></card-share-title>
+			<card-share-lists class="flex-grow" ng-if="post.list_post_share.length>0">
+				<div class="_list layout-row" ng-repeat="list in post.list_post_share">
+					<div class="_userimage flex-none">
+						<div class="c-pp -s30" style="background-image: url({{list.user_avatar.avatar_crop}});background-color:{{list.user_avatar.background_avatar}};background-size:cover;"></div>
+					</div>
+					<div class="_username flex"><a ui-sref="profile({user:list.username})" ng-bind="list.user_display_name"></a></div>
+					<div class="_media" ng-repeat="platform in list.lists"><i class="ci-{{platform}} s-16"></i></div>
+				</div>
+			</card-share-lists>
+		</card-pane>
+	</card-tab>
+	<!--SHARE-->
+	<card-tab class="flex-none">
+		<card-tab-toggle class="layout-column layout-align-center-center" md-ink-ripple="#000000"><i class="ci-download s-20"></i>
+		</card-tab-toggle>
+		<card-pane>
+			<card-download class="flex layout-column layout-align-center-center">
+				<div class="_media"><img ng-src="{{post.generated_image_url}}" width="200" />
+				</div>
+				<p class="_paragraph">
+					<ciayo translate-once="$save.picture?">Do you want to save this picture?</ciayo>
+				</p>
+				<form action="{{::post.download_link}}" method="post">
+					<input type="text" name="c" ng-model="post.userdata" style="display:none">
+					<md-button class="md-primary md-raised" type="submit"><i class="cfi-file_download"></i>&nbsp; <ciayo translate-once="$save">Save</ciayo>
+					</md-button>
+				</form>
+			</card-download>
+		</card-pane>
+	</card-tab>
+	<!--DOWNLOAD-->
+	<card-tab class="flex-none">
+		<card-tab-toggle class="layout-column layout-align-center-center" md-ink-ripple="#000000"><i class="ci-etc-outline s-20"></i>
+		</card-tab-toggle>
+		<card-pane>
+			<card-option class="flex layout-row" ng-if="post.isPublic==undefined">
+				<card-option-button class="flex layout-column layout-align-center-center">
+					<div class="_option flex-none" ng-if="post.user_status==undefined">
+						<div md-ink-ripple="#000000" toggle-card-option="-permission" class="_button">
+							<ciayo translate-once="$post.permission">Post Permission</ciayo>
+						</div>
+					</div>
+					<div class="_option flex-none">
+						<div md-ink-ripple="#000000" class="_button" ng-click="unsubscribePost(post)" ng-if="post.unsubscribe==false">
+							<ciayo translate-once="$turnoff.notification">Turn Off Notification</ciayo>
+						</div>
+						<div md-ink-ripple="#000000" class="_button" ng-click="subscribePost(post)" ng-if="post.unsubscribe==true">
+							<span>Turn On Notification</span>
+						</div>
+					</div>
+					<div class="_option flex-none" ng-if="post.user_status==undefined">
+						<div md-ink-ripple="#000000" data-toggle="dropdown" class="_button">
+							<ciayo translate-once="$edit.post">Edit Post</ciayo>
+						</div>
+						<div class="_dropdown">
+							<div md-ink-ripple="#000000" toggle-card-option="-edit-caption" class="_button">Caption</div>
+							<div md-ink-ripple="#000000" toggle-card-option="-edit-with" class="_button" ng-click="withDetail(post.post_id)">With</div>
+						</div>
+					</div>
+					<div class="_option flex-none" ng-if="post.user_status==undefined">
+						<div md-ink-ripple="#000000" toggle-card-option="-delete" class="_button">
+							<ciayo translate-once="$delete.post">Delete Post</ciayo>
+						</div>
+					</div>
+				</card-option-button>
+				<card-option-pane class="-permission layout-column">
+					<div class="_head flex-none">
+						<div class="_button -back">
+							<md-button toggle-card-option="close" class="md-primary"><i class="ci-prev s-12"></i><span><ciayo translate-once="$back">Back</ciayo></span>
+							</md-button>
+						</div>
+						<div class="_title">
+							<ciayo translate-once="$post.permission">Post Permission</ciayo>
+						</div>
+					</div>
+					<div class="_body flex layout-column">
+						<card-option-permission class="flex">
+							<div class="_title">
+								<ciayo translate-once="$who.see.this?">Who should see this?</ciayo>
+							</div>
+							<div class="_radio-group">
+								<label md-ink-ripple="#000000" class="_radio" ng-repeat="permission in permission_list" ng-click="updatePermission(post.post_id,permission.id)">
+									<input type="radio" ng-model="post.permission.category" ng-value="permission.name" /><i class="ci-{{::permission.icon}}"></i><span ng-bind="::permission.name"></span>
+								</label>
+							</div>
+						</card-option-permission>
+					</div>
+				</card-option-pane>
+				<card-option-pane class="layout-column" class="-edit-caption">
+					<div class="_head flex-none">
+						<div class="_button -back">
+							<md-button toggle-card-option="close" class="md-primary"><i class="ci-prev s-12"></i><span><ciayo translate-once="$back" ng-click="post.activity_detail.caption=post.activity_detail.old_caption">Back</ciayo></span>
+							</md-button>
+						</div>
+						<div class="_title">Edit Caption</div>
+						<div class="_button -save">
+							<md-button toggle-card-option="close" class="md-raised md-primary" ng-click="updateCaption(post.post_id,post.activity_detail.caption,post.activity_detail.caption_bubble)">Save</md-button>
+						</div>
+					</div>
+					<div class="_body flex layout-column">
+						<card-option-caption>
+							<!--<label class="_type" ng-class="post.activity_detail.caption_bubble?'-active':''" ng-click="post.activity_detail.caption_bubble=true">
+								<i class="ci-bubble-caption s-20"></i>
+							</label>
+							<label class="_type" ng-class="!post.activity_detail.caption_bubble?'-active':''" ng-click="post.activity_detail.caption_bubble=false">
+								<i class="ci-box-caption s-20"></i>
+							</label>-->
+							<input type="text" value="" ng-model="post.activity_detail.caption" limit-to="50" class="_input" />
+						</card-option-caption>
+					</div>
+				</card-option-pane>
+				<card-option-pane class="-edit-with layout-column">
+					<div class="_head flex-none">
+						<div class="_button -back">
+							<md-button toggle-card-option="close" class="md-primary"><i class="ci-prev s-12"></i><span><ciayo translate-once="$back">Back</ciayo></span>
+							</md-button>
+						</div>
+						<div class="_title">Edit With</div>
+						<div class="_button -save">
+							<md-button toggle-card-option="close" class="md-raised md-primary" ng-click="withUpdate(post.post_id,post.with)">Save</md-button>
+						</div>
+					</div>
+					<div class="_body flex layout-column">
+						<card-option-with class="flex layout-column">
+							<div class="_field flex-none">
+								<i class="ci-search s-16"></i>
+								<input type="text" placeholder="Search your friend .." class="_input" ng-model="with.text" ng-keydown="withKeydown($event,$index)" ng-change="withSearch()" ng-model-options="{debounce: 150}" />
+								<ul class="_dropdown" ng-hide="with.search_list.isEmpty() || with.text==''">
+									<li class="layout-row" ng-repeat="list in with.search_list.list" ng-class="{selected : with.search_list.selectedIndex===$index}" ng-mouseover="with.search_list.selectedIndex=$index" ng-click="withSelect($index)">
+										<div class="c-pp -s30 flex-none" style="background-image:url({{ list.user_avatar_thumbnail.avatar }});background-color:{{list.user_avatar_thumbnail.background_avatar}}"></div>
+
+										<span flex ng-bind="list.user_display_name"></span>
+									</li>
+								</ul>
+							</div>
+							<div class="_lists flex-grow">
+								<div layout="row" class="_list" ng-repeat="with in post.with">
+									<div class="_userimage flex-none">
+										<div class="c-pp -s30" style="background-image: url({{with.user_avatar_detail.avatar}});background-color:{{with.user_avatar_detail.background_avatar}};"></div>
+									</div>
+									<div class="_username flex-grow">
+										<a ui-sref="profile({user:with.username})" ng-bind="with.user_display_name"></a>
+									</div>
+									<div class="_remove flex-none" ng-click="withRemove(with);"><i class="ci-delete-3 s-10"></i>
+									</div>
+								</div>
+							</div>
+						</card-option-with>
+					</div>
+				</card-option-pane>
+				<card-option-pane class="-delete layout-column layout-align-center-center">
+					<p><ciayo>Are you want to delete this post?</ciayo></p>
+					<div>
+						<md-button class="md-raised md-primary" ng-click="deletePost(post.post_id,$index)">Yes</md-button>
+						<md-button toggle-card-option="close" class="md-raised md-primary">No</md-button>
+					</div>
+				</card-option-pane>
+			</card-option>
+		</card-pane>
+	</card-tab>
+	
+	<card-tab class="flex-auto layout-row">
+		<card-tab-toggle class="layout-column layout-align-center-center" md-ink-ripple="#000000"><i class="ci-c-button s-30"></i>
+		</card-tab-toggle>
+		<card-pane>
+			<card-option class="flex layout-column layout-align-center-center">
+				<card-option-button class="flex layout-column layout-align-center-center">
+					<div class="c-pp -s40" style="background-color: {{post.user_avatar.full_body.background_avatar}};background-image: url({{post.user_avatar.full_body.avatar}}"></div>
+					<div style="color: #02679E;margin-top: 10px;margin-bottom: 10px;" ng-bind="::post.user_display_name"></div>
+
+					<div class="_c-option layout-row">
+
+							<!-- <div class="_c-action -click" layout="column" layout-align="center center" flex>
+								<div class="_action-wrp" lex layout="column" layout-align="center center">
+									<div class="_img-wrp">
+										<img src="../assets/svg/c-button_checkme-activ.svg">
+									</div>
+									<span>check me</span>
+								</div>
+							</div>
+							<div class="_c-action -active" layout="column" flex>
+								<div class="_action-wrp" flex layout="column" layout-align="center center">
+									<div class="_img-wrp">
+										<img src="../assets/svg/c-button_addfriends-activ.svg">
+									</div>
+									<span>add friend</span>
+								</div>
+								<div class="_action-wrp -check" flex layout="column" layout-align="center center">
+									<div class="_img-wrp">
+										<div class="_check"><i class="ci-check-3"></i></div>
+										<img src="../assets/svg/c-button_addfriends-noactiv.svg">
+									</div>
+									<span>friends request sent</span>
+								</div>
+								<div class="_action-wrp -friend" flex layout="column" layout-align="center center">
+									<div class="_img-wrp">
+										<img src="../assets/svg/c-button-friend.svg">
+									</div>
+									<span>friend</span>
+								</div>
+							</div>
+							<div class="_c-action -active" layout="column" flex>
+								<div class="_action-wrp" flex layout="column" layout-align="center center">
+									<div class="_img-wrp">
+										<img src="../assets/svg/c-button_follow-activ.svg">
+									</div>
+									<span>follow</span>
+								</div>
+								<div class="_action-wrp -check" flex layout="column" layout-align="center center">
+									<div class="_img-wrp">
+										<div class="_check"><i class="ci-check-3"></i></div>
+										<img src="../assets/svg/c-button_follow-noactiv.svg">
+									</div>
+									<span>following</span>
+								</div>
+							</div> -->
+
+		<!-- <c-friend-connection user = "user" ng-repeat="user in vm.list_user">
+           
+         </c-friend-connection> -->
+
+         		<c-friend-connection user = "post.user_list_button" type="timeline">
+           
+         		</c-friend-connection>
+         
+
+					</div>
+					<!--<div flex="none" class="_option">
+						<a ng-href="profile/{{post.username!=null?post.username:post.user_id}}" md-ink-ripple="#000000" class="_button">
+							<ciayo translate-once="$check.myprofile">View Profile</ciayo>
+						</a>
+					</div>
+					<div flex="none" class="_option">
+						<div md-ink-ripple="#000000" class="_button" ng-if="post.user_status!=null" ng-click="requestFollow(post.user_id,!post.user_status.follow, post)" ng-bind="post.user_status.follow?('$unfollow' | translate):('$follow' | translate)"></div>
+					</div>
+					<div flex="none" class="_option">
+
+						<span ng-switch="post.user_status.friend.add">
+						<span ng-switch-when="true">
+							<div md-ink-ripple="#000000" class="_button"><ciayo translate-once="$friends">Friends</ciayo></div>
+						</span>
+						<span ng-switch-when="false">
+							<span ng-switch="post.user_status.friend.approve">
+								<span ng-switch-when="true">
+									<div md-ink-ripple="#000000" class="_button"><ciayo translate-once="$friends">Friends</ciayo></div>
+								</span>
+						<span ng-switch-when="false">
+									<span ng-switch="post.user_status.friend.addstatus">
+										<span ng-switch-when="true">
+											<div md-ink-ripple="#000000" class="_button"><ciayo translate-once="$friend.request.sent">Friend request sent</ciayo></div>
+										</span>
+						<span ng-switch-when="false">
+											<div md-ink-ripple="#000000" class="_button" ><ciayo translate-once="$response.friend.request">Response friend request</ciayo></div>
+										</span>
+						</span>
+						</span>
+						</span>
+						</span>
+
+
+						</span>
+						<div md-ink-ripple="#000000" class="_button" ng-if="post.user_status!=null" ng-click="requestFriend(post.user_id,1)">Add as Friend</div>
+
+					</div>-->
+				</card-option-button>
+			</card-option>
+		</card-pane>
+	</card-tab>
+	<card-tab-active></card-tab-active>
+</card-right>

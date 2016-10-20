@@ -1,0 +1,303 @@
+<div class="c-mn-hdr">
+			<div class="c-header-wrp"><a	ui-sref="/" ui-sref-opts="{reload: true}">
+					<div class="c-mn-logo"></div></a>
+				<div class="c-mn-src" id="listUser">
+					<input type="c-mn-src-i" placeholder="{{'$search.cayers' | translate}}" ng-keydown="keydownWith($event)" ng-model="with.text" ng-change="searchWith()" class="input" style="box-sizing: border-box" ng-model-options="{debounce: 150}" ng-enter="search_enter(this.value)" id="i_search_text"/>
+					<ul class="c-mn-src-list" ng-show="with.text!=''" click-outside="close_search_user()" outside-if-not="i_search_text">
+						<li ng-repeat="suggestion in with.search_list.list track by $index" ng-class="{active : with.search_list.selectedIndex === $index}" ng-click="search_click(suggestion.username)" ng-mouseover="with.search_list.selectedIndex=$index"> 
+							<div class="photo-profile" style="background: {{suggestion.user_avatar_thumbnail.background_avatar}}"><img ng-src="{{suggestion.user_avatar_cropped.avatar}}"/></div>
+							<div class="name">{{suggestion.user_display_name}}</div>
+						</li>
+					</ul>
+					<img class="search-loader-header" src="assets/img/loader-16.gif" ng-hide="!gg">
+					<span ng-click="search_enter()" style="cursor:pointer;">
+						<i class="ci-search"></i >
+					</span>
+				</div>
+				<!--.c-mn-src(ng-controller='searchController')
+				input.input(type='c-mn-src-i', placeholder='Search Ciayers', ng-keydown='checkKeyDown($event)', ng-keyup='checkKeyUp($event)', ng-model='searchText', ng-change='search()')
+				ul.c-mn-src-list
+					li(ng-repeat='suggestion in suggestions track by $index', ng-class='{active : selectedIndex === $index}', ng-click='AssignValueAndHide($index)') {{suggestion}}
+				a(href='#')
+					span
+				-->
+				 <div class="c-mn-ico">
+					<ul class="c-mn-ico-mm">
+						<li class="mm1" ng-class="type=='timeline'?'active':''"><a md-ink-ripple="#000000" ui-sref="/" ui-sref-opts="{reload: true}"><div class="mman"><span class="mman-wrp"><ciayo translate="$timeline">Timeline</ciayo></span></div></a></li>
+						<li class="mm2" ng-class="type=='trending'?'active':''"><a md-ink-ripple="#000000" ui-sref="trending" ui-sref-opts="{reload: true}"><div class="mman"><span class="mman-wrp"><ciayo translate="$trending">Trending</ciayo></span></div></a></li>
+						<li class="mm3 friend-request" ng-class="type=='friend-request'?'active':''" ng-class="isFriendRequestOpen?'open':''">
+						<a md-ink-ripple="#000000" ng-click="type!='friend-request'?toggle_friend_request():''" ><div class="mman">
+						<span class="mman-wrp">
+						<ciayo translate="$request">Request</ciayo></span></div>
+						<!-- <i class="ci-notif-star" ng-show="friend_request_count>0"></i> -->
+							<span class="ci-notif-custom" ng-show="friend_request_count>0">{{friend_request_count}}</span>
+						</a></li>
+
+
+						<li class="mm4 notif" ng-class="type=='notification'?'active':''">
+						<a md-ink-ripple="#000000" class="" id="show_notification" ng-click="type!='notification'?toggle_notification():''" >
+						<div class="c-mn-ico-ntf" ng-hide="true"></div>
+						<div class="mman"><span class="mman-wrp"><ciayo translate="$notification">Notification</ciayo></span></div>
+
+						<!-- <i class="ci-notif-star" id="ci-notif-star" ng-show="notification_count>0"></i> -->
+						<span class="ci-notif-custom" ng-show="notification_count>0">{{notification_count}}</span>
+
+						</a>
+							<div class="c-notification-popup" ng-show="isNotificationOpen" style="display:block" click-outside="closeNotification();" outside-if-not="c-notification-popup, c-modal-custom" id="c-notification-popup">
+								<div class="header">
+																		<div class="title1"><ciayo translate="$notification">Notifications</ciayo></div>
+																		<div class="title3" ng-click="notification_setting()"><ciayo translate="$setting">Setting</ciayo></div>
+																		
+																		<div class="title2" ng-class="notification_popup_all.length==0?'noactive':''" ng-click="notification_popup_all.length==0?'':notification_mark_all()"><ciayo translate="$mark.all.read">Mark all as read</ciayo></div>
+								</div>
+								<ul class="_lists" >
+								<!-- 	<div ng-if="notification_popup_all.length==0 && start_notification_popup == true" class="loading-empty">
+												<ciayo translate="$dont.any.notification">Sorry, you dont have any notification</ciayo>
+											</div> -->
+									<div ng-if="notification_popup_all.length==0 && start_notification_popup == false" class="loading-popup">
+										<div class="loader">
+											<md-progress-circular md-mode="indeterminate" md-diameter="150"></md-progress-circular>
+										</div>
+									</div>
+										<li ng-if="start_notification_popup == true" class="active-update">
+											<a ui-sref="update" ui-sref-opts="{reload: true}">
+												<div class="photo-profile"><img ng-src="assets/img/logo-medium.png"/></div>
+												<div class="comment-group">
+
+													<span class="profile-name"><b>CIAYO Update</b>
+
+													<i class="ci-notif-star"></i>
+													</span>
+													<br>
+													<span class="profile-activity" style="font-size:10px;">There’s something new on CIAYO. Check it out! </span> 
+
+
+												</div>
+												<div class="activity_img">
+													<div class="view-info">View info</div>
+												</div>
+											</a>
+										</li>
+										<li ng-repeat="notification_all in notification_popup_all | orderBy:'-created_at'" >
+											<a ng-click="view_notification(notification_all, notification_popup_all.indexOf(notification_all))" ng-class="notification_all.read_at==null?'active':''" >
+												
+												<div class="photo-profile" style="background: {{notification_all.from_user_avatar.background_avatar}}"><img ng-src="{{notification_all.from_user_avatar.avatar_crop}}"/>
+												</div>
+												<div class="comment-group">
+
+
+													<span class="profile-name" ng-bind="notification_all.from_user_display_name" ng-show="notification_all.type!='comment'&&notification_all.type!='like'"></span>
+
+													<span class="profile-activity" ng-bind-html="notification_all.title"> </span> 
+												
+												<span ng-switch="notification_all.type">
+													<span ng-switch-when="comment">
+													 	<span> "{{notification_all.activity_name}}"</span>
+													</span>
+																					<span ng-switch-when="like">
+																							<span class=""> "{{notification_all.activity_name}}"</span>
+																					</span>
+																					<span ng-switch-when="tag">
+																							<span class=""> "{{notification_all.activity_name}}"</span>
+																					</span>
+
+													<div class="clear"></div>
+
+													<div class="message_icon">
+														<span ng-switch="notification_all.type">
+															<span ng-switch-when="like"><img src="../assets/svg/notif-like.svg"></span>
+															<span ng-switch-when="comment"><img src="../assets/svg/notif-comment.svg"></span>
+															<span ng-switch-when="tag"><img src="../assets/svg/notif-tag.svg"></span>
+															<span ng-switch-when="follow_request"><img src="../assets/svg/notif-follow-request.svg"></span>
+															<span ng-switch-when="friend_request"><img src="../assets/svg/notif-friends-request.svg"></span>
+															<span ng-switch-when="special_event"><img src="../assets/svg/notif-special-event.svg"></span>
+															<span ng-switch-when="added_friend"><img src="../assets/svg/notif-friends-request.svg"></span>
+															<span ng-switch-when="ask_with"><img src="../assets/svg/notif-comment.svg"></span>
+															<span ng-switch-when="ask_place"><img src="../assets/svg/notif-comment.svg"></span>
+															<span ng-switch-when="response_with"><img src="../assets/svg/notif-comment.svg"></span>
+															<span ng-switch-when="response_place"><img src="../assets/svg/notif-comment.svg"></span>
+															<span ng-switch-when="rate">
+																<span ng-switch="notification_all.type_rate">
+																	 <span ng-switch-when="angry"><img src="../assets/svg/notif-cimotion-angry.svg"></span>
+																	 <span ng-switch-when="ciayo"><img src="../assets/svg/notif-cimotion-ciayo.svg"></span>
+																	 <span ng-switch-when="happy"><img src="../assets/svg/notif-cimotion-happy.svg"></span>
+																	 <span ng-switch-when="love"><img src="../assets/svg/notif-cimotion-love.svg"></span>
+																	 <span ng-switch-when="sad"><img src="../assets/svg/notif-cimotion-sad.svg"></span>
+																	 <span ng-switch-when="wow"><img src="../assets/svg/notif-cimotion-wow.svg"></span>
+																</span>
+															</span>
+														</span>
+													</div>
+
+													<div class="message_date">{{notification_all.created_at | formatdate}}</div>
+												</div>
+												<span ng-switch="notification_all.type">
+													<span ng-switch-when="like">
+														<div class="activity_img"><img ng-src="{{notification_all.activity_image}}"/>
+														</div>
+													</span>
+													<span ng-switch-when="comment">
+														<div class="activity_img"><img ng-src="{{notification_all.activity_image}}"/>
+														</div>
+													</span>
+													<span ng-switch-when="tag">
+														<div class="activity_img"><img ng-src="{{notification_all.activity_image}}"/>
+														</div>
+													</span>
+													<span ng-switch-when="rate">
+														<div class="activity_img"><img ng-src="{{notification_all.activity_image}}"/>
+														</div>
+													</span>
+													<span ng-switch-when="ask_with">
+														<div class="activity_img"><img ng-src="{{notification_all.activity_image}}"/>
+														</div>
+													</span>
+													<span ng-switch-when="ask_place">
+														<div class="activity_img"><img ng-src="{{notification_all.activity_image}}"/>
+														</div>
+													</span>
+													<span ng-switch-when="response_with">
+														<div class="activity_img"><img ng-src="{{notification_all.activity_image}}"/>
+														</div>
+													</span>
+													<span ng-switch-when="response_place">
+														<div class="activity_img"><img ng-src="{{notification_all.activity_image}}"/>
+														</div>
+													</span>
+												</span>
+
+														</a>
+																				<div class="activity_config">
+																					<div class="icon1">
+																						<!--img(ng-src="../assets/img/notification/icon1.png")-->
+																						<md-icon class="material-icons md-light md-18 icon" ng-click="notification_delete(notification_popup_all.indexOf(notification_all))">clear</md-icon>
+																					</div>
+																				</div>
+																		</li>
+																		
+								</ul>
+								<div class="footer" ng-click="show_all_notification()" ng-hide="notification_popup_all.length==0">
+										<div class="button" md-ink-ripple="#000000" style="position:relative"><ciayo translate="$see.all">See All</ciayo></div></div>
+							</div>
+						</li>
+												<li class="mm5" ng-class="type=='achievement'?'active':''"><a md-ink-ripple="#000000" ui-sref="achievement" ui-sref-opts="{reload: true}"><div class="c-mn-ico-ntf" ng-hide="true"></div><div class="mman"><span class="mman-wrp"><ciayo translate="$achievement">Achievement</ciayo></span></div><i class="ci-notif-star"></i></a></li>
+												<li class="mm6" ng-class="type=='store'?'active':''"><a md-ink-ripple="#000000" ui-sref="store.home" ui-sref-opts="{reload: true}"><div class="c-mn-ico-ntf" ng-hide="true"></div><div class="mman"><span class="mman-wrp"><ciayo translate="$store">Store</ciayo></span></div><i class="ci-notif-star"></i></a></li>
+
+												<li class="mm7" ng-class="type=='setting'?'active':''"><a md-ink-ripple="#000000" href="javascript:void(0)" ng-click="setting()"><div class="c-mn-ico-ntf" ng-hide="true"></div><div class="mman"><span class="mman-wrp"><ciayo translate="$setting">Setting</ciayo></span></div></a></li>
+						<!--<li class="mm8" ng-hide="true" ng-class="type=='message'?'active':''"><a href="#"><div class="c-mn-ico-ntf" ng-hide="true"></div><div class="mman"><span class="mman-wrp">Message</span></div></a></li>-->
+					</ul>
+					<div class="c-fr-popup" ng-show="isFriendRequestOpen" style="display:block" click-outside="closeFriendRequest();" outside-if-not="c-friend-request-popup" id="c-friend-request-popup">
+												<div class="c-fr-popup-title"><ciayo translate="$friend.requests">Friends Requests</ciayo><span class="find-friends"><a ng-click="friend_request_find_friend()"><ciayo translate="$find.friends" ng-hide="true">Find Friends</ciayo></a></span></div>
+								<div class="c-fr-popup-body">
+									<ul>
+										<div ng-if="friend_request_popup.length==0 && start_friend_request_popup == true" class="loading_empty">
+												<ciayo translate="$dont.connect.request">Sorry, you dont have connection request</ciayo>
+											</div>
+											<div ng-if="friend_request_popup.length==0 && start_friend_request_popup == false" class="loading">
+													<div class="loader">
+															<md-progress-circular md-mode="indeterminate" md-diameter="150"></md-progress-circular>
+													</div>
+											</div>
+										<li ng-repeat="friend_popup in friend_request_popup" ng-class="friend_popup.fr_accept_status==true?'success': friend_popup.fr_reject_status==true?'error':''" ng-show="friend_popup" >
+
+										
+											<div class="action-loading" ng-show="friend_popup.fr_action_loading">
+												<div class="loader">
+												 	<md-progress-circular md-mode="indeterminate" md-diameter="50px"></md-progress-circular>
+												</div>
+											</div>
+
+											<div class="c-fr-list-ava" style="background: {{friend_popup.list_user.user_avatar_thumbnail.background_avatar}}">
+												<img ng-src="{{friend_popup.list_user.user_avatar_cropped.avatar}}" ng-click="view_friend_request(friend_popup.username)"/>
+											</div>
+											<div class="c-fr-list-info">
+											<div class="display-name">
+												<a ng-click="view_friend_request(friend_popup.list_user.username)">
+													{{friend_popup.list_user.user_display_name ? friend_popup.list_user.user_display_name : '' }}
+												</a>
+											</div>
+											<span class="full-name">
+												{{friend_popup.list_user.user_full_name ? friend_popup.list_user.user_full_name : '-' }} 
+												
+											</span>
+											<span class="gender-icon">&nbsp;</span>
+											<span class="gender">
+												{{friend_popup.list_user.user_gender=='1' ? 'Male' : 'Female' }}
+											</span>
+										 
+											<div class="mutual-friends"><c-mutual-friend user-id="friend_popup.list_user.user_id" mutual-friend-count="friend_popup.list_user.total_mutual_friend"></c-mutual-friend></div></div>
+										 
+											<div class="c-fr-list-action" ng-show="friend_popup.fr_default_status">
+												<md-button aria-label="Accept" class="md-raised -ciayo-button" ng-click="fr_action_accept(friend_popup, friend_request_popup.indexOf(friend_popup))"><i class="ci-check-1 s-10"></i>
+												</md-button>
+												<md-button aria-label="Decline" class="md-raised -ciayo-button" ng-click="fr_action_reject(friend_popup, friend_request_popup.indexOf(friend_popup))"><i class="ci-delete-2 s-10"></i>
+												</md-button>
+											</div>
+											
+											<div class="c-fr-list-action" ng-show="friend_popup.fr_accept_status">
+												<md-button class="md-raised -ciayo-button md-primary view-profile" ng-click="fr_view_profile(friend_popup.list_user.username)"><ciayo translate="$view.profile">View Profile</ciayo></md-button>
+											</div>
+
+											<div class="c-fr-list-action" ng-show="friend_popup.fr_reject_status">
+																<md-button class="md-raised -ciayo-button md-primary view-profile" ng-click="fr_action_block(friend_popup, friend_request_popup.indexOf(friend_popup))"><ciayo translate="$block">Block</ciayo></md-button>
+											</div>
+										</li>
+										
+									</ul>
+								</div>
+								<div class="c-fr-popup-invite">
+									<div class="_title">Invite friends to CIAYO</div>
+									<div layout="row" class="_invites">
+										<div flex class="_invite" style="background-image: url('assets/img/friend-request/email.png')" ng-click="modalInviteEmail()">Invite Friends by Email</div>
+										<div flex class="_invite" style="background-image: url('assets/img/friend-request/gmail.png')" ng-click="modalInviteGmail()">Invite from Gmail account</div>
+										<div flex class="_invite" style="background-image: url('assets/img/friend-request/facebook.png')" ng-click="invitationFacebook()">Invite from Facebook</div>
+									</div>
+								</div>
+								<div class="c-fr-popup-more" md-ink-ripple="#000000" style="position:relative" ng-click="show_all_friend_request()" ng-hide="friend_request_popup.length==0"><a><ciayo translate="$see.all">See All</ciayo></a></div>
+							</div>
+				</div>
+				<div class="c-mn-pfl">
+					<div class="c-mn-pfl-name"><a ui-sref="profile({'user':''})" ui-sref-opts="{reload: true}" ng-bind="profile[5].value"></a></div>
+					<div class="c-mn-pfl-avt" style="background: {{user_avatar.background_avatar}}"><a ui-sref="profile({'user':''})" ui-sref-opts="{reload: true}"><img ng-src="{{user_avatar.avatar}}"/></a></div>
+				</div>
+				<div class="c-clear">
+					<!--.c-notification-popup
+					.header 
+						.title1 Notifications
+						.title3 
+							a(href='#') Setting
+						.title2 
+							a(href='#') Mark all as read
+					ul._lists
+						mixin notification-list(profile_img, profile_name, profile_activity, message, date, activity_img)
+							li
+								a(href='#')
+									.photo-profile 
+										+img(profile_img)
+									.comment-group
+										span.profile-name= profile_name
+										| 
+										span.profile-activity= profile_activity
+										| 
+										span.message= message
+										.message_date= date
+									.activity_config
+										.icon1
+											md-icon(class='material-icons md-light md-18 icon')= "crop_din"
+										.icon1
+											//img(ng-src="../assets/img/notification/icon1.png")
+											md-icon(class='material-icons md-light md-18 icon')= "clear"
+									.activity_img
+										img(ng-src= activity_img)
+						- for(x = 0; x < 2; x++)
+							+notification-list('profile.png','Fathurrahman', 'rate your post', '"Watching movies"', '3 minutes ago', '../assets/img/notification/activity.png')
+							+notification-list('profile.png','Fransiskus Stepfano Fransiskus Stepfano Fransiskus Stepfano Fransiskus Stepfano	 Fransiskus Stepfano Fransiskus Stepfano Fransiskus Stepfano', 'rate your post', '"Watching movies"', '3 minutes ago', '../assets/img/notification/activity2.png')
+							+notification-list('profile.png','Fathurrahmand', 'rate your post', '"Watching movies"', '3 minutes ago', '../assets/img/notification/activity2.png')
+					.footer
+						a(href='#')
+							.button See All 
+					-->
+				</div>
+			</div>
+			<c-modal></c-modal>
+		</div>

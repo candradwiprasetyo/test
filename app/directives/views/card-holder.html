@@ -1,0 +1,147 @@
+<div class="c-tml-head layout-row" ng-if="!trending">
+	<div class="c-tml-datetime flex-none">
+		<div class="_time" ng-bind="::post.created_at*1000 |date:'HH:mm'"></div>
+		<div class="_date" ng-bind="::post.created_at*1000 |date:'d MMM yyyy'"></div>
+	</div>
+	<div class="c-tml-userimage flex-none" ui-sref="profile({user:post.username})">
+		<div class="c-pp -s40" style="background-color: {{post.user_avatar.full_body.background_avatar}};">
+			<img ng-src="{{post.user_avatar.full_body.avatar_crop}}" width="40" height="40">
+		</div>
+	</div>
+	<div class="c-tml-username flex">
+		<a ui-sref="profile({user:post.username})" ng-bind="::post.user_display_name"></a>
+		<div class="c-tml-status flex-auto">
+			<span ng-bind-html="::post.activity_detail.activity_title" ng-click="loadDetail(post.post_code)" style="cursor:pointer;"></span>
+		</div>
+	</div>
+</div>
+<!--TRENDING-->
+<div class="c-trending-post" ng-if="trending">
+	<div class="_list">
+		<div class="_head layout-row">
+			<div class="c-pp -s40" style="background-color: {{post.user_avatar.full_body.background_avatar}};" ui-sref="profile({user:post.username})">
+				<img ng-src="{{post.user_avatar.full_body.avatar_crop}}" width="40" height="40">
+			</div>
+			<div class="layout-align-center-start layout-column flex">
+				<div class="layout-row">
+					<div class="_name flex-none" ng-bind="::post.user_display_name" ui-sref="profile({user:post.username})"></div>
+					<div class="_status flex">
+						<span ng-bind-html="::post.activity_detail.activity_title" ng-click="loadDetail(post.post_code)"></span>
+					</div>
+				</div>
+				<div class="_time">{{post.updated_at*1000 |date:'d MMM yyyy HH:mm'}}</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--TRENDING-->
+<card type="activity" class="layout-row" ng-class="trending?'post-trending':''">
+	
+	<card-activity class="layout-column flex-50">
+		<div class="_ribbon -landscape-post" ng-if="trending">{{::index>8?'':'0'}}{{index+1}}</div>
+		<card-activity-parallax class="flex-none" style="width:436px;height:312px;">
+<!--			<parallax plx="post.activity_detail" ng-if="post.activity_detail"></parallax>-->
+			<img ng-if="!post.loadingImage&&post.activity_detail.preview && !post.loading_preload" ng-src="{{post.activity_detail.preview}}" width="436" height=312> 
+			<div ng-if="post.loadingImage || post.loading_preload">
+			<md-progress-circular md-mode="indeterminate" md-diameter="200" style="margin:60px auto"></md-progress-circular>
+			</div>
+			<card-activity-caption ng-bind="post.activity_detail.caption" ng-if="!post.activity_detail.caption_bubble && (post.activity_detail.caption!=''&& post.activity_detail.caption!=null)"></card-activity-caption>
+		</card-activity-parallax>
+		<div class="layout-wrap layout-row">
+			<!--ITEM-->
+			<card-activity-info ng-if="post.items_detail.items.length==0" class="-item flex">
+				<card-activity-toggle class="-noitem layout-align-center-center layout-column" style="cursor:default">
+					<i class="ci-item-blank s-20"></i>
+					<span><ciayo translate-once="$no.item">No Item</ciayo></span>
+				</card-activity-toggle>
+			</card-activity-info>
+			<card-activity-info ng-repeat="item in post.items_detail.items" class="-item flex">
+				<card-activity-toggle md-ink-ripple="#59bae7" clickable="true" class="layout-align-center-center layout-column">
+					<img ng-src="{{item.image}}" />
+				</card-activity-toggle>
+				<card-activity-pane class="layout-align-center-center layout-column"><img ng-src="{{item.image_detail}}" /><strong ng-bind="item.name"></strong></card-activity-pane>
+			</card-activity-info>
+			<!--END ITEM-->
+			<!--WITH-->
+			<card-activity-info class="-friend flex-none" ng-class="post.with_detail.with_status.class">
+				<!--asking-->
+				<card-activity-toggle class="-ask layout-align-center-center layout-row" md-ink-ripple="#59bae7" ng-if="post.with_detail.with_status.value==-1" ng-click="askWith(post)" style="color:white;cursor:{{post.login_id==post.user_id?'default':'cursor'}}">
+					<i class="ci-icon-with-side -top-left"></i>
+					<span><ciayo translate-once="$who.with.you?">who<br> are you <br>with?</ciayo></span>
+				</card-activity-toggle>
+				<!--tag friend-->
+				<card-activity-toggle class="-tag layout-row layout-align-center-center" md-ink-ripple="#59bae7" ng-if="post.with_detail.with_status.value==0" clickable="true" ng-click="$parent.withDetail(post.post_id)">
+					<span> <small><ciayo translate-once="$with">with</ciayo></small><strong ng-bind="post.with_detail.with_user_count"></strong></span><i class="ci-with s-24"></i>
+				</card-activity-toggle>
+				<!--secret-->
+				<card-activity-toggle class="-secret layout-row layout-align-center-center"  md-ink-ripple="#59bae7" ng-if="post.with_detail.with_status.value==1" clickable="true" ng-click="askWith(post)" style="color:white;cursor:{{post.login_id==post.user_id?'default':'cursor'}}">
+					<i class="ci-icon-with-side -top-left"></i>
+					<i class="ci-icon-balon"></i>
+					<span>It’s <br>Secret</span>
+				</card-activity-toggle>
+				<!--alone-->
+				<card-activity-toggle class="-alone layout-row layout-align-center-center" md-ink-ripple="#59bae7" ng-if="post.with_detail.with_status.value==2" clickable="true" ng-click="askWith(post)" style="color:white;cursor:{{post.login_id==post.user_id?'default':'cursor'}}">
+					<i class="ci-icon-with-side -top-left"></i>
+					<i class="ci-icon-balon"></i>
+					<span><ciayo translate-once="$alone">I’m <br>Alone</ciayo></span>
+				</card-activity-toggle>
+				<card-activity-pane class="layout-column">
+					<card-activity-people-username ng-if="post.with_detail.with_status.value==0" class="flex-none" ng-bind="post.user_display_name"></card-activity-people-username>
+					<card-activity-people-title ng-if="post.with_detail.with_status.value==0" class="flex-none" ng-bind-html="post.activity_detail.activity_title"></card-activity-people-title>
+					<card-activity-people-lists ng-if="post.with_detail.with_status.value==0" class="flex-auto">
+						<div class="_list layout-row" ng-repeat="with in post.with">
+							<div class="_userimage flex-none">
+								<div class="c-pp -s30" style="background-image: url({{with.user_avatar_detail.avatar}});background-color:{{with.user_avatar_detail.background_avatar}}"></div>
+							</div>
+							<div class="_username flex-auto">
+								<a ui-sref="profile({'user':with.username})" ng-bind="with.user_display_name"></a>
+							</div>
+						</div>
+					</card-activity-people-lists>
+					<card-activity-empty ng-if="post.with_detail.with_status.value!=0">
+						<!--kalo alone-->
+						<img src="assets/img/im-alone.png" ng-if="post.with_detail.with_status.value==2">
+						<span ng-if="post.with_detail.with_status.value==2">I'm Alone</span>
+
+						<!--kalo secret-->
+						<img  ng-if="post.with_detail.with_status.value==1" src="assets/img/its-secret.png">
+						<span ng-if="post.with_detail.with_status.value==1"><ciayo translate-once="$secret">It's Secret</ciayo></span>
+					</card-activity-empty>
+				</card-activity-pane>
+			</card-activity-info>
+			<!--PLACE-->
+			<card-activity-info ng-class="post.place_detail.place_status.class" class="-place flex-none">
+				<!--asking-->
+				<card-activity-toggle class="-ask layout-column layout-align-center-center" md-ink-ripple="#59bae7" ng-if="post.place_detail.place_status.value==-1" ng-click="askPlace(post)" style="color:white;cursor:{{post.login_id==post.user_id?'default':'cursor'}}">
+					<i class="ci-icon-place-side -top-left"></i>
+					<span><ciayo translate-once="$where.are.you?">where <br> are you?</ciayo></span>
+				</card-activity-toggle>
+				<!--tag-->
+				<card-activity-toggle class="-place layout-column layout-align-center-center" md-ink-ripple="#59bae7" ng-if="post.place_detail.place_status.value==0" clickable="true">
+					<i class="ci-icon-place-side -top-left"></i>
+					<img ng-src="{{post.place_detail.place.place_image}}"  /><span></span>
+				</card-activity-toggle>
+				<!--secret-->
+				<card-activity-toggle class="-secret layout-column layout-align-center-center" md-ink-ripple="#59bae7" ng-if="post.place_detail.place_status.value==1" ng-click="askPlace(post)" style="color:white;cursor:{{post.login_id==post.user_id?'default':'cursor'}}">
+					<i class="ci-icon-place-side -top-left"></i>
+					<i class="ci-icon-balon"></i>
+					<span><ciayo translate-once="$secret">It’s <br>Secret</ciayo></span>
+				</card-activity-toggle>
+				<card-activity-pane>
+					<img ng-src="{{post.place_detail.place.place_image_detail}}" width="80" height="80"/>
+					<strong ng-bind="post.place_detail.place.place_name"></strong>
+					<p ng-bind="post.place_detail.place.place_address"></p>
+					<img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{post.place_detail.place.place_lat}},{{post.place_detail.place.place_lang}}&zoom=15&size=436x312&key=AIzaSyAp_OxlQ8w6fayEK51b-6mpupMi-wbdOwc" />
+				</card-activity-pane>
+			</card-activity-info>
+			<!--END OF PLACE-->
+			
+			<card-activity-overlay>
+				<div toggle-activity-close="toggle-activity-close" class="_close" style="top: 7px;right: 16px;"><i class="ci-delete-2 s-10"></i></div>
+			</card-activity-overlay>
+		</div>
+	</card-activity>
+	<!---->
+	<c-card-right></c-card-right>
+</card>
+<!--card(type="activity" layout="row")-->

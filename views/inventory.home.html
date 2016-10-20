@@ -1,0 +1,15 @@
+
+<div layout="row">
+	<h3 flex="flex" class="c-store-title"><ciayo translate="$my.sticker.collection">My Sticker Collection</ciayo></h3>
+	<!--<div flex="none" ng-hide="!vm.listStickerCollection.length">
+		<md-button class="md-raised md-primary -ciayo-button" ng-click="vm.deleteToggle=!vm.deleteToggle" ng-if="vm.deleteToggle?vm.toggleText='Done':vm.toggleText='Delete Sticker'"><span ng-bind="vm.toggleText"></span></md-button>
+	</div>-->
+</div>
+<div layout="row" layout-wrap="layout-wrap">
+	<div flex="none" ng-repeat="item in vm.listStickerCollection">
+		<div class="c-store-item"><img ng-src="{{item.image}}" class="_image" ng-click="vm.viewDetail(item.id)">
+			<div class="_title" ng-bind="item.name" ng-click="vm.viewDetail(item.id)"></div>
+			<!--<button type="button" class="_button" md-ink-ripple="#02679E" ng-click="vm.deleteSticker(item.id)" ng-hide="!vm.deleteToggle">Delete</button>-->
+		</div>
+	</div>
+</div>

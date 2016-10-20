@@ -1,0 +1,83 @@
+
+                <h1 class="c-set-right-heading"><ciayo translate="$PRIVACY.SETTING">PRIVACY SETTING</ciayo></h1>
+                <div class="c-set-right-body">
+                  <div class="c-set-pset">
+                    <ul class="c-set-pset-list">
+                        <li>
+                          <label><ciayo translate="$timeline.access">Timeline access</ciayo></label>
+                            <div class="c-dropdown"><a href="" data-toggle="dropdown" md-ink-ripple="#999999"><span ng-bind="'$'+vm.timeline_access_privacy | translate">Anyone</span><span class="cfi-arrow-down"></span><i class="ci-dropdown"></i></a>
+                            <ul class="c-dropdown-menu c-dropdown-menu-right">
+                              <li ng-click="vm.setTimelineAccessPrivacy('anyone')" ng-class="vm.timeline_access_privacy=='anyone' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$anyone">Anyone</ciayo></a></li>
+                              <li ng-click="vm.setTimelineAccessPrivacy('friends')" ng-class="vm.timeline_access_privacy=='friends' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$friends">Friends</ciayo></a></li>
+                              <li ng-click="vm.setTimelineAccessPrivacy('best.friends')" ng-class="vm.timeline_access_privacy=='best.friends' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$best.friends">Best Friends</ciayo></a></li>
+                              <li ng-click="vm.setTimelineAccessPrivacy('families')" ng-class="vm.timeline_access_privacy=='families' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$families">Families</ciayo></a></li>
+                              <li ng-click="vm.setTimelineAccessPrivacy('acquitances')" ng-class="vm.timeline_access_privacy=='acquitances' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$acquitances">Acquitances</ciayo></a></li>
+                              <li ng-click="vm.setTimelineAccessPrivacy('coworkers')" ng-class="vm.timeline_access_privacy=='coworkers' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$coworkers">Coworkers</ciayo></a></li>
+                              <li ng-click="vm.setTimelineAccessPrivacy('onlyme')" ng-class="vm.timeline_access_privacy=='onlyme' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$onlyme">Only Me</ciayo></a></li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li>
+                        <li>
+                          <label><ciayo translate="$message.previlage">Message previlage</ciayo></label>
+                            <div class="c-dropdown"><a href="" data-toggle="dropdown" md-ink-ripple="#999999"><span ng-bind="'$'+vm.message_previlage_privacy | translate">Anyone</span><span class="cfi-arrow-down"></span><i class="ci-dropdown"></i></a>
+                            <ul class="c-dropdown-menu c-dropdown-menu-right">
+                              <li ng-click="vm.setMessagePrevilagePrivacy('anyone')" ng-class="vm.message_previlage_privacy=='anyone' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$anyone">Anyone</ciayo></a></li>
+                              <li ng-click="vm.setMessagePrevilagePrivacy('friends')" ng-class="vm.message_previlage_privacy=='friends' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$friends">Friends</ciayo></a></li>
+                              <li ng-click="vm.setMessagePrevilagePrivacy('best.friends')" ng-class="vm.message_previlage_privacy=='best.friends' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$best.friends">Best Friends</ciayo></a></li>
+                              <li ng-click="vm.setMessagePrevilagePrivacy('families')" ng-class="vm.message_previlage_privacy=='families' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$families">Families</ciayo></a></li>
+                              <li ng-click="vm.setMessagePrevilagePrivacy('acquitances')" ng-class="vm.message_previlage_privacy=='acquitances' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$acquitances">Acquitances</ciayo></a></li>
+                              <li ng-click="vm.setMessagePrevilagePrivacy('coworkers')" ng-class="vm.message_previlage_privacy=='coworkers' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$coworkers">Coworkers</ciayo></a></li>
+                              <li ng-click="vm.setMessagePrevilagePrivacy('onlyme')" ng-class="vm.message_previlage_privacy=='onlyme' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$onlyme">Only Me</ciayo></a></li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li>
+                          <label><ciayo translate="$post.default.setting">Post default Setting</ciayo></label>
+                            <div class="c-dropdown"><a href="" data-toggle="dropdown" md-ink-ripple="#999999"><span ng-bind="'$'+vm.post_default_privacy | translate">Anyone</span><span class="cfi-arrow-down"></span><i class="ci-dropdown"></i></a>
+                            <ul class="c-dropdown-menu c-dropdown-menu-right">
+                              <li ng-click="vm.setPostDefaultPrivacy('anyone')" ng-class="vm.post_default_privacy=='anyone' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$anyone">Anyone</ciayo></a></li>
+                              <li ng-click="vm.setPostDefaultPrivacy('friends')" ng-class="vm.post_default_privacy=='friends' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$friends">Friends</ciayo></a></li>
+                              <li ng-click="vm.setPostDefaultPrivacy('best.friends')" ng-class="vm.post_default_privacy=='best.friends' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$best.friends">Best Friends</ciayo></a></li>
+                              <li ng-click="vm.setPostDefaultPrivacy('families')" ng-class="vm.post_default_privacy=='families' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$families">Families</ciayo></a></li>
+                              <li ng-click="vm.setPostDefaultPrivacy('acquitances')" ng-class="vm.post_default_privacy=='acquitances' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$acquitances">Acquitances</ciayo></a></li>
+                              <li ng-click="vm.setPostDefaultPrivacy('coworkers')" ng-class="vm.post_default_privacy=='coworkers' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$coworkers">Coworkers</ciayo></a></li>
+                              <li ng-click="vm.setPostDefaultPrivacy('onlyme')" ng-class="vm.post_default_privacy=='onlyme' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$onlyme">Only Me</ciayo></a></li>
+                            </ul>
+                          </div>
+                        </li>
+                    </ul>
+                    <ul class="c-set-pset-list">
+                        <li>
+                          <label><ciayo translate="$who.can.find.me?">Who can find Me?</ciayo></label>
+                            <div class="c-dropdown"><a href="" data-toggle="dropdown" md-ink-ripple="#999999"><span ng-bind="'$'+vm.find_me_privacy | translate">Anyone</span><span class="cfi-arrow-down"></span><i class="ci-dropdown"></i></a>
+                            <ul class="c-dropdown-menu c-dropdown-menu-right">
+                              <li ng-click="vm.setFindMePrivacy('anyone')" ng-class="vm.find_me_privacy=='anyone' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$anyone">Anyone</ciayo></a></li>
+                              <li ng-click="vm.setFindMePrivacy('friends')" ng-class="vm.find_me_privacy=='friends' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$friends">Friends</ciayo></a></li>
+                              <li ng-click="vm.setFindMePrivacy('best.friends')" ng-class="vm.find_me_privacy=='best.friends' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$best.friends">Best Friends</ciayo></a></li>
+                              <li ng-click="vm.setFindMePrivacy('families')" ng-class="vm.find_me_privacy=='families' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$families">Families</ciayo></a></li>
+                              <li ng-click="vm.setFindMePrivacy('acquitances')" ng-class="vm.find_me_privacy=='acquitances' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$acquitances">Acquitances</ciayo></a></li>
+                              <li ng-click="vm.setFindMePrivacy('coworkers')" ng-class="vm.find_me_privacy=='coworkers' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$coworkers">Coworkers</ciayo></a></li>
+                              <li ng-click="vm.setFindMePrivacy('onlyme')" ng-class="vm.find_me_privacy=='onlyme' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$onlyme">Only Me</ciayo></a></li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li>
+                            <label><ciayo translate="$who.can.find.me?">Who can add Me?</ciayo></label>
+                            <div class="c-dropdown"><a href="" data-toggle="dropdown" md-ink-ripple="#999999"><span ng-bind="'$'+vm.add_me_privacy | translate">Anyone</span><span class="cfi-arrow-down"></span><i class="ci-dropdown"></i></a>
+                            <ul class="c-dropdown-menu c-dropdown-menu-right">
+                              <li ng-click="vm.setAddMePrivacy('anyone')" ng-class="vm.add_me_privacy=='anyone' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$anyone">Anyone</ciayo></a></li>
+                              <li ng-click="vm.setAddMePrivacy('friends')" ng-class="vm.add_me_privacy=='friends' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$friends">Friends</ciayo></a></li>
+                              <li ng-click="vm.setAddMePrivacy('best.friends')" ng-class="vm.add_me_privacy=='best.friends' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$best.friends">Best Friends</ciayo></a></li>
+                              <li ng-click="vm.setAddMePrivacy('families')" ng-class="vm.add_me_privacy=='families' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$families">Families</ciayo></a></li>
+                              <li ng-click="vm.setAddMePrivacy('acquitances')" ng-class="vm.add_me_privacy=='acquitances' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$acquitances">Acquitances</ciayo></a></li>
+                              <li ng-click="vm.setAddMePrivacy('coworkers')" ng-class="vm.add_me_privacy=='coworkers' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$coworkers">Coworkers</ciayo></a></li>
+                              <li ng-click="vm.setAddMePrivacy('onlyme')" ng-class="vm.add_me_privacy=='onlyme' ? 'active' : ''"><a href="javascript:void(0)"><i class="check-none"></i><i class="ci-check-2"></i><ciayo translate="$onlyme">Only Me</ciayo></a></li>
+                            </ul>
+                          </div>
+                        </li>
+                    </ul>
+                    <div class="c-clear"></div>
+                  </div>
+                  <hr/><a href="javascript:void(0)" ng-click="vm.restoreDefaultSetting()" class="c-link-underline"><ciayo translate="$restore.default.setting">Restore Default Setting</ciayo></a>
+                </div>
